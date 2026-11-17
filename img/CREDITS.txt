@@ -1,0 +1,5 @@
+photo-amoeba.jpg | File:Amoeba proteus.jpg | Cymothoa exigua | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Amoeba_proteus.jpg
+photo-cheek-cells.jpg | File:Human Cheek Cells (Methylene Blue Stain).jpg | Fritzmann2002 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Human_Cheek_Cells_(Methylene_Blue_Stain).jpg
+photo-plant-cells.jpg | File:Elodea cells under microscope.jpg | ~delta | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Elodea_cells_under_microscope.jpg
+photo-red-blood-cells.jpg | File:SEM blood cells.jpg | Bruce Wetzel and Harry Schaefer (photographers; National Cancer Institute) | Public domain | https://commons.wikimedia.org/wiki/File:SEM_blood_cells.jpg
+photo-neuron.jpg | File:Nervous Tissue Spinal Cord Motor Neuron (41850850452).jpg | Berkshire Community College Bioscience Image Library | CC0 | https://commons.wikimedia.org/wiki/File:Nervous_Tissue_Spinal_Cord_Motor_Neuron_(41850850452).jpg

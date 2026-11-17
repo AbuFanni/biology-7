@@ -1,0 +1,1643 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>البيولوجيا ببساطة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap">
+<style>
+  /* layout: one friendly column; every organelle owns one color + one icon, used the same way in text, chips and cell drawings */
+  :root {
+    --bg: #F2F5FA; --surface: #FFFFFF; --surface2: #E8EEF7; --fg: #172033; --muted: #586477; --rule: #D6DEEA;
+    --accent: #1F55C9; --accent-fg: #FFFFFF;
+    --ok: #2B8A3E; --ok-bg: #E6F4EA; --bad: #C92A2A; --bad-bg: #FDECEC;
+    --tile: #F6F8FC; --tile-line: #DCE3EE;
+    --warn: #D9480F; --life: #C2255C; --need: #5C940D; --pbar: #69DB7C;
+    --o-mem: #1C7ED6; --o-cyt: #E09F00; --o-nuc: #7048E8; --o-mit: #E8590C; --o-wal: #8B5A2B; --o-vac: #0C98AD; --o-chl: #2F9E44;
+    --o-mem-t: #D0EBFF; --o-cyt-t: #FFF1C2; --o-nuc-t: #E5DBFF; --o-mit-t: #FFE3D1; --o-wal-t: #EBD9C6; --o-vac-t: #C5F2F7; --o-chl-t: #D3F9D8;
+    --ca-mus: #C92A2A; --ca-mus-t: #FFD8D8; --ca-neu: #B07D00; --ca-neu-t: #FFEFAD; --ca-rbc: #B42318; --ca-rbc-t: #F04A3E; --ca-rbc-c: #FF9C94;
+    --ca-wbc: #5C6B7A; --ca-wbc-t: #EEF2F6; --ca-skin: #C2703A; --ca-skin-t: #FCE3CF; --ca-sp: #3B5BDB; --ca-sp-t: #DBE4FF;
+    --ca-root-t: #FFF6E5; --soil: #9C7A54; --soil-t: #E3D2BC; --germ: #5C940D; --germ-t: #D8F5A2;
+    --amoeba: #5C7A99; --amoeba-t: #DCE8F2; --water: #DDF1FF; --juice: #D6204A;
+    --font-display: "Baloo Bhaijaan 2", "IBM Plex Sans Arabic", Tahoma, sans-serif;
+    --font-body: "IBM Plex Sans Arabic", "Geeza Pro", Tahoma, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10151F; --surface: #182030; --surface2: #202A3D; --fg: #E9EEF6; --muted: #A1ACBD; --rule: #2C374B;
+      --accent: #7EA6FF; --accent-fg: #0E1420; --ok: #69DB7C; --ok-bg: #16301E; --bad: #FF8787; --bad-bg: #3A1A1D;
+      --warn: #FF922B; --life: #F783AC; --need: #A9E34B; --pbar: #2B8A3E;
+      --o-mem: #74B9FF; --o-cyt: #FFD043; --o-nuc: #B197FC; --o-mit: #FF8A4C; --o-wal: #D4A373; --o-vac: #3BC9DB; --o-chl: #69DB7C;
+      --o-mem-t: #173352; --o-cyt-t: #3B3014; --o-nuc-t: #2D2452; --o-mit-t: #452818; --o-wal-t: #3A2B1E; --o-vac-t: #113B42; --o-chl-t: #173B21;
+      --ca-mus: #FF8787; --ca-mus-t: #4A2226; --ca-neu: #FFD43B; --ca-neu-t: #3D3410; --ca-rbc: #FF8787; --ca-rbc-t: #D9362B; --ca-rbc-c: #FF8F87;
+      --ca-wbc: #B8C4D0; --ca-wbc-t: #2A3340; --ca-skin: #F0A875; --ca-skin-t: #46301F; --ca-sp: #91A7FF; --ca-sp-t: #222C55;
+      --ca-root-t: #3A3122; --soil: #C49A6C; --soil-t: #4A3A28; --germ: #A9E34B; --germ-t: #2C3B12;
+      --amoeba: #9DB4CC; --amoeba-t: #22303D; --water: #16304A; --juice: #FF5C7F;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10151F; --surface: #182030; --surface2: #202A3D; --fg: #E9EEF6; --muted: #A1ACBD; --rule: #2C374B;
+    --accent: #7EA6FF; --accent-fg: #0E1420; --ok: #69DB7C; --ok-bg: #16301E; --bad: #FF8787; --bad-bg: #3A1A1D;
+    --warn: #FF922B; --life: #F783AC; --need: #A9E34B; --pbar: #2B8A3E;
+    --o-mem: #74B9FF; --o-cyt: #FFD043; --o-nuc: #B197FC; --o-mit: #FF8A4C; --o-wal: #D4A373; --o-vac: #3BC9DB; --o-chl: #69DB7C;
+    --o-mem-t: #173352; --o-cyt-t: #3B3014; --o-nuc-t: #2D2452; --o-mit-t: #452818; --o-wal-t: #3A2B1E; --o-vac-t: #113B42; --o-chl-t: #173B21;
+    --ca-mus: #FF8787; --ca-mus-t: #4A2226; --ca-neu: #FFD43B; --ca-neu-t: #3D3410; --ca-rbc: #FF8787; --ca-rbc-t: #D9362B; --ca-rbc-c: #FF8F87;
+    --ca-wbc: #B8C4D0; --ca-wbc-t: #2A3340; --ca-skin: #F0A875; --ca-skin-t: #46301F; --ca-sp: #91A7FF; --ca-sp-t: #222C55;
+    --ca-root-t: #3A3122; --soil: #C49A6C; --soil-t: #4A3A28; --germ: #A9E34B; --germ-t: #2C3B12;
+    --amoeba: #9DB4CC; --amoeba-t: #22303D; --water: #16304A; --juice: #FF5C7F;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: var(--font-body); font-size: 1.15rem; line-height: 1.9;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: max(1.5rem, env(safe-area-inset-top, 0px)) 6rem;
+    overflow-x: clip;
+  }
+  img { max-width: 100%; }
+  .wrap { max-width: 50rem; margin: 0 auto; display: grid; gap: 1.5rem; }
+  h1, h2, h3 { font-family: var(--font-display); line-height: 1.35; text-wrap: balance; margin: 0; }
+  p { margin: 0 0 .7rem; }
+  p:last-child { margin-bottom: 0; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* icons sit on a light tile so they read in light and dark */
+  .ic { display: inline-block; vertical-align: middle; flex: none; width: 2.7rem; height: 2.7rem; padding: .2rem;
+        background: var(--tile); border: 1px solid var(--tile-line); border-radius: 12px; object-fit: contain; }
+  .ic.lg { width: 3.6rem; height: 3.6rem; border-radius: 16px; }
+  .ic.sm { width: 2rem; height: 2rem; padding: .12rem; border-radius: 9px; }
+  span.ic svg { display: block; width: 100%; height: 100%; }
+  .ei { width: 1.3em; height: 1.3em; vertical-align: -.3em; margin-inline-end: .25em; }
+  .scene { display: inline-flex; gap: .25rem; align-items: center; flex: none; }
+  .row-ic { display: flex; flex-wrap: wrap; gap: .8rem; margin: .4rem 0 .8rem; }
+  .row-ic figure { margin: 0; text-align: center; font-size: .95rem; font-weight: 700; display: grid; justify-items: center; gap: .15rem; line-height: 1.4; }
+  .row-ic.needs figure { max-width: 6.4rem; }
+  .row-ic.cls { gap: .5rem; margin-bottom: 0; }
+  .row-ic.cls figure { font-size: .85rem; }
+
+  /* hero */
+  .hero { padding-block: .5rem .5rem; }
+  .floats { display: flex; gap: .5rem; justify-content: flex-end; margin-bottom: .3rem; }
+  .floats .ic { animation: bob 5s ease-in-out infinite; animation-delay: var(--d, 0s); }
+  @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-9px) rotate(4deg); } }
+  .hero h1 { font-size: clamp(2.6rem, 9vw, 4.2rem); font-weight: 800; }
+  .hero .sub { font-size: 1.3rem; color: var(--muted); max-width: 36rem; margin-top: .25rem; }
+  .strip { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+  .topic { display: inline-flex; align-items: center; gap: .3rem; min-height: 2.6rem; padding: .1rem .75rem; border-radius: 999px;
+           background: var(--surface); border: 1.5px solid var(--rule); color: var(--fg); text-decoration: none; font-weight: 700; font-size: .98rem; line-height: 1.4; }
+  .topic .ei { margin: 0; width: 1.45em; height: 1.45em; }
+  .nav { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem; }
+  .nav a { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; text-decoration: none;
+           background: var(--accent); color: var(--accent-fg); padding: .35rem 1.1rem; border-radius: 999px; }
+  .nav a.alt { background: var(--surface); color: var(--fg); border: 1.5px solid var(--rule); }
+
+  /* organelle tags */
+  .o { --c: var(--muted); display: inline-block; white-space: nowrap; font-weight: 700; font-size: .95em; color: var(--fg);
+       padding: 0 .5em; border-radius: .5em; line-height: 1.8;
+       background: color-mix(in srgb, var(--c) 15%, transparent);
+       border: 1.5px solid color-mix(in srgb, var(--c) 55%, transparent); }
+  .o.mem { --c: var(--o-mem); } .o.cyt { --c: var(--o-cyt); } .o.nuc { --c: var(--o-nuc); } .o.mit { --c: var(--o-mit); }
+  .o.wal { --c: var(--o-wal); } .o.vac { --c: var(--o-vac); } .o.chl { --c: var(--o-chl); }
+
+  /* paint for every drawing: f = soft fill, s = line, k = solid */
+  .f-mem { fill: var(--o-mem-t); } .s-mem { stroke: var(--o-mem); } .k-mem { fill: var(--o-mem); }
+  .f-cyt { fill: var(--o-cyt-t); } .s-cyt { stroke: var(--o-cyt); } .k-cyt { fill: var(--o-cyt); }
+  .f-nuc { fill: var(--o-nuc-t); } .s-nuc { stroke: var(--o-nuc); } .k-nuc { fill: var(--o-nuc); }
+  .f-mit { fill: var(--o-mit-t); } .s-mit { stroke: var(--o-mit); } .k-mit { fill: var(--o-mit); }
+  .f-wal { fill: var(--o-wal-t); } .s-wal { stroke: var(--o-wal); } .s-wal2 { stroke: var(--o-wal-t); }
+  .f-vac { fill: var(--o-vac-t); } .s-vac { stroke: var(--o-vac); } .k-vac { fill: var(--o-vac); }
+  .f-chl { fill: var(--o-chl-t); } .s-chl { stroke: var(--o-chl); } .k-chl { fill: var(--o-chl); }
+  .hit { fill: none; stroke: transparent; pointer-events: stroke; }
+  .ldr { stroke: var(--fg); stroke-width: 2; }
+  .ah, .mkc { fill: var(--fg); }
+  .mkt { fill: var(--bg); font: 700 15px sans-serif; }
+  .mk .mkc, .mk .ldr, .mk .ah { transition: fill .2s, stroke .2s; }
+  .mk.pulse .mkc, .mk.pulse .ah { fill: var(--accent); }
+  .mk.pulse .ldr { stroke: var(--accent); }
+  .mkb { flex: none; display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%;
+         background: var(--fg); color: var(--bg); font: 700 1rem/1 sans-serif; }
+  .why .mkb { width: 1.6rem; height: 1.6rem; font-size: .85rem; vertical-align: middle; }
+
+  /* lesson */
+  .part-title { display: flex; align-items: baseline; gap: .75rem; margin-top: 1rem; }
+  .part-title h2 { font-size: 2.1rem; }
+  .part-title span { color: var(--muted); }
+  .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 18px; padding: 1.25rem 1.25rem 1.4rem; min-width: 0; scroll-margin-top: 1rem; }
+  .card > h3 { font-size: 1.55rem; margin-bottom: .6rem; display: flex; gap: .6rem; align-items: center; }
+  .num { flex: none; display: inline-grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 50%;
+         background: var(--surface2); font-family: var(--font-display); font-size: 1.1rem; line-height: 1; }
+  .lives { display: grid; grid-template-columns: repeat(auto-fill, minmax(8.6rem, 1fr)); gap: .6rem; margin: .6rem 0 .9rem; }
+  .life { display: grid; justify-items: center; align-content: start; text-align: center; gap: .15rem; padding: .6rem .5rem .7rem;
+          border-radius: 14px; background: var(--surface2); border-top: 5px solid var(--life); min-width: 0; }
+  .life h4 { margin: .15rem 0 0; font-size: 1.12rem; font-family: var(--font-display); }
+  .life p { margin: 0; font-size: .95rem; line-height: 1.5; }
+  .note { color: var(--muted); font-size: 1rem; }
+  h4.try { font-family: var(--font-display); font-size: 1.2rem; margin: 1.1rem 0 .3rem; }
+  .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; margin: .5rem 0 .9rem; }
+  .pane { background: var(--surface2); border-radius: 14px; padding: .8rem 1rem; min-width: 0; }
+  .pane h4 { margin: 0 0 .2rem; font-size: 1.2rem; display: flex; gap: .5rem; align-items: center; font-family: var(--font-display); }
+  .pane.vert { border-inline-start: 6px solid var(--accent); }
+  .pane.invert { border-inline-start: 6px solid var(--warn); }
+  .pts { margin: .2rem 0 .6rem; padding-inline-start: 1.2rem; display: grid; gap: .25rem; }
+  .types { display: grid; grid-template-columns: repeat(auto-fill, minmax(14.5rem, 1fr)); gap: .75rem; margin: .5rem 0 .8rem; }
+  .type { display: flex; gap: .7rem; align-items: flex-start; border-radius: 14px; padding: .7rem .8rem; background: var(--surface2);
+          border-inline-start: 6px solid var(--c); min-width: 0; }
+  .type h4 { margin: 0 0 .1rem; font-size: 1.15rem; }
+  .type p { font-size: 1rem; margin: 0; }
+  .tip { border: 2px dashed var(--warn); border-radius: 14px; padding: .6rem .9rem; margin: .4rem 0 .9rem; }
+  .tip > b:first-child { color: var(--warn); }
+  .tip:last-child { margin-bottom: 0; }
+  .recipe { background: var(--surface2); border-radius: 14px; padding: .7rem 1rem; margin: .6rem 0; }
+  .recipe .pts { margin: 0; }
+  .law { font-family: var(--font-display); font-size: 1.28rem; line-height: 1.7; background: var(--surface2); border-radius: 14px; padding: .8rem 1rem; margin-bottom: .9rem; }
+  .bars { display: grid; gap: .3rem; margin-top: .4rem; }
+  .bar { height: 14px; border-radius: 7px; background: var(--surface); overflow: hidden; }
+  .bar span { display: block; height: 100%; width: 0; }
+  .shot { margin: 1rem auto 0; max-width: 26rem; text-align: center; }
+  .shot img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--rule); }
+  .shot figcaption { font-size: .95rem; color: var(--muted); margin-top: .3rem; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .75rem; }
+  .shots .shot { margin-inline: 0; max-width: none; }
+
+  /* card 3: the staircase + order game */
+  .ladder-box { margin: .5rem 0 .3rem; }
+  .lend { display: block; color: var(--muted); font-size: .9rem; font-weight: 700; }
+  .ladder { list-style: none; margin: .2rem 0; padding: 0; display: flex; flex-direction: column-reverse; gap: .35rem; }
+  .ladder li { --k: 1; display: flex; align-items: center; gap: .5rem; padding: .4rem .55rem; border-radius: 12px; min-width: 0;
+               background: color-mix(in srgb, var(--accent) 6%, var(--surface2)); border-inline-start: 6px solid var(--accent);
+               margin-inline-end: calc((8 - var(--k)) * .45rem); }
+  .stepn { flex: none; display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 50%;
+           background: var(--accent); color: var(--accent-fg); font-family: var(--font-display); font-weight: 700; line-height: 1; }
+  .stx { min-width: 0; line-height: 1.5; }
+  .stx b { font-family: var(--font-display); font-size: 1.15rem; }
+  .stx span { display: block; font-size: .98rem; }
+  .stx small { display: block; font-size: .9rem; color: var(--muted); }
+  .ladder-note { display: none; color: var(--muted); font-size: .95rem; margin: .3rem 0 0; }
+  .ladder-box.quiz .ladder-note { display: block; }
+  .ladder-box.quiz .stx, .ladder-box.quiz .ladder .ic { filter: blur(6px); user-select: none; -webkit-user-select: none; }
+  .game { margin-top: .9rem; background: var(--surface2); border-radius: 14px; padding: .3rem .9rem .5rem; }
+  .game summary { cursor: pointer; font-family: var(--font-display); font-weight: 700; font-size: 1.18rem; min-height: 2.6rem; display: flex; align-items: center; gap: .5rem; }
+  .og-msg { font-weight: 700; margin: .3rem 0 .5rem; }
+  .og-pool { display: flex; flex-wrap: wrap; gap: .45rem; min-height: 3.4rem; padding: .5rem; border-radius: 12px; background: var(--surface); }
+  .og-rungs { list-style: none; margin: .7rem 0; padding: 0; display: flex; flex-direction: column-reverse; gap: .35rem; }
+  .rung { --k: 1; display: flex; align-items: center; gap: .5rem; min-height: 3.1rem; padding: .2rem .45rem; border: 2px dashed var(--muted);
+          border-radius: 12px; margin-inline-end: calc((8 - var(--k)) * .45rem); }
+  .rung.full { border-style: solid; border-color: var(--ok); background: var(--ok-bg); }
+  .rn { flex: none; display: grid; place-items: center; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: var(--surface); font-weight: 700; line-height: 1; }
+  .rung .ochip, .rung .ochip:disabled { cursor: default; color: var(--fg); opacity: 1; border-color: var(--ok); }
+  @media (min-width: 560px) { .ladder li, .rung { margin-inline-end: calc((8 - var(--k)) * 1rem); } }
+
+  /* card 4 + 5 */
+  .amoeba-fig { margin: .5rem auto .2rem; display: grid; justify-items: center; gap: .2rem; font-weight: 700; }
+  .amoeba { position: relative; width: 8.5rem; height: 6.2rem; background: var(--amoeba-t); border: 3px solid var(--amoeba);
+            border-radius: 46% 54% 60% 40% / 52% 40% 60% 48%; }
+  .am-nuc { position: absolute; top: 36%; left: 44%; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--o-nuc-t); border: 3px solid var(--o-nuc); }
+  @keyframes morph {
+    0%, 100% { border-radius: 46% 54% 60% 40% / 52% 40% 60% 48%; transform: translateX(0); }
+    25% { border-radius: 62% 38% 45% 55% / 40% 58% 42% 60%; }
+    50% { border-radius: 38% 62% 55% 45% / 60% 45% 55% 40%; transform: translateX(-10px); }
+    75% { border-radius: 55% 45% 38% 62% / 45% 60% 40% 55%; }
+  }
+  @keyframes drift { 50% { transform: translate(-8px, 4px); } }
+  .tree { display: grid; justify-items: center; margin: .3rem 0 .9rem; }
+  .tree .node { font-family: var(--font-display); font-weight: 700; font-size: 1.12rem; padding: .15rem .9rem; border-radius: 12px; border: 2px solid var(--fg); background: var(--surface); }
+  .tree .branch { display: block; width: 50%; height: 28px; overflow: visible; }
+  .tree .branch path { fill: none; stroke: var(--fg); stroke-width: 2.5; vector-effect: non-scaling-stroke; }
+  .tree .kids { display: grid; grid-template-columns: 1fr 1fr; width: 100%; justify-items: center; }
+  .tree .node.v { border-color: var(--accent); } .tree .node.iv { border-color: var(--warn); }
+
+  /* cells you can tap */
+  .cellbox { display: grid; gap: .6rem; margin-top: .4rem; }
+  .cellsvg { display: block; width: 100%; max-width: 26rem; height: auto; margin: 0 auto; }
+  .cellsvg .pt { cursor: pointer; transition: opacity .25s; transform-box: fill-box; transform-origin: center; }
+  .cellsvg.dim .pt:not(.on) { opacity: .2; }
+  .cellsvg .pt:focus { outline: none; }
+  .cellsvg .pt:focus-visible { outline: 3px solid var(--accent); }
+  .cellsvg .pt.pop { animation: pop .5s ease; }
+  .cellsvg .pt.big.pop { animation-name: popb; }
+  @keyframes pop { 40% { transform: scale(1.12); } }
+  @keyframes popb { 40% { transform: scale(1.025); } }
+  .parts { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+  .parts li { background: var(--surface2); border-radius: 12px; padding: .4rem .7rem; }
+  .pbtn { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin-inline-end: .4rem; cursor: pointer; min-height: 2.6rem; vertical-align: middle; }
+  .pbtn[aria-pressed="true"] .o { background: color-mix(in srgb, var(--c) 32%, transparent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 40%, transparent); }
+  .cellbox.js .parts { display: flex; flex-wrap: wrap; justify-content: center; gap: .3rem .4rem; }
+  .cellbox.js .parts li { background: none; padding: 0; }
+  .cellbox.js .ptxt { display: none; }
+  .cellbox:not(.js) .info, .cellbox:not(.js) .actions { display: none; }
+  .info { --c: var(--rule); background: var(--surface2); border-radius: 14px; padding: .7rem 1rem; min-height: 4.2rem; border-inline-start: 6px solid var(--c); }
+  .info p { margin: .1rem 0 .45rem; }
+  .info p:last-child { margin-bottom: .1rem; }
+  .info .muted { color: var(--muted); }
+  .cmp { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 1rem; font-size: 1rem; background: var(--surface2); border-radius: 14px; overflow: hidden; }
+  .cmp caption { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; text-align: start; padding-bottom: .3rem; }
+  .cmp th, .cmp td { padding: .3rem .5rem; border-bottom: 1px solid var(--rule); text-align: center; vertical-align: middle; }
+  .cmp tbody th { text-align: start; font-weight: 400; }
+  .cmp tr:last-child > * { border-bottom: 0; }
+  .cmp tr.extra { background: color-mix(in srgb, var(--ok) 9%, transparent); }
+  .cmp svg { display: inline-block; vertical-align: middle; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .cmp .yes { width: 1.7rem; height: 1.7rem; stroke: var(--ok); stroke-width: 3.2; }
+  .cmp .no { width: 1.25rem; height: 1.25rem; stroke: var(--muted); stroke-width: 2.6; opacity: .75; }
+
+  /* diffusion */
+  .diff { margin-top: .9rem; background: var(--surface2); border-radius: 14px; padding: .8rem; display: grid; gap: .6rem; }
+  .glass { width: 100%; max-width: 22rem; margin: 0 auto; }
+  .glass canvas { display: block; width: 100%; }
+  #dFast[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); }
+  .diff .bar span { background: var(--juice); }
+  .dstat { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; text-align: center; margin: 0; min-height: 2.2rem; }
+  .ex { display: flex; gap: .6rem; align-items: center; }
+
+  /* card 9: flip cards */
+  .flips { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.4rem, 1fr)); gap: .7rem; margin: .6rem 0 1rem; }
+  .flip { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: center; border-radius: 16px; }
+  .flip-in { display: block; }
+  .face { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .3rem; padding: .7rem .6rem;
+          border-radius: 16px; background: var(--surface2); border: 2px solid var(--rule); }
+  .face .fname { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; line-height: 1.4; }
+  .face .hint { font-size: .85rem; color: var(--muted); line-height: 1.3; }
+  .back { text-align: start; align-items: stretch; justify-content: flex-start; background: var(--surface); border-color: var(--ok); margin-top: .5rem; }
+  .back .bl { display: block; font-size: .95rem; line-height: 1.6; margin-top: .25rem; }
+  .back .bl b { color: var(--ok); }
+  html:not(.js) .face .hint { display: none; }
+  .js .flip { perspective: 1000px; }
+  .js .flip-in { display: grid; height: 100%; transition: transform .6s; transform-style: preserve-3d; }
+  .js .face { grid-area: 1 / 1; margin: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .js .back { transform: rotateY(180deg); }
+  .js .flip[aria-pressed="true"] .flip-in { transform: rotateY(180deg); }
+  .ca { display: block; width: 100%; max-width: 9.5rem; height: auto; margin: 0 auto; overflow: visible; }
+  .ca-mus { fill: var(--ca-mus-t); stroke: var(--ca-mus); } .ca-mus-l { stroke: var(--ca-mus); opacity: .35; }
+  .neu-l { stroke: var(--ca-neu); } .neu-k { fill: var(--ca-neu); } .ca-neu { fill: var(--ca-neu-t); stroke: var(--ca-neu); }
+  .ca-rbc { fill: var(--ca-rbc-t); stroke: var(--ca-rbc); } .ca-rbc-c { fill: var(--ca-rbc-c); }
+  .wbc-o { stroke: var(--ca-wbc); } .wbc-ok { fill: var(--ca-wbc); } .wbc-i { stroke: var(--ca-wbc-t); } .wbc-f { fill: var(--ca-wbc-t); }
+  .germ { stroke: var(--germ); fill: var(--germ-t); }
+  .ca-skin { fill: var(--ca-skin-t); stroke: var(--ca-skin); }
+  .ca-sp { fill: var(--ca-sp-t); stroke: var(--ca-sp); } .sp-tail { stroke: var(--ca-sp); }
+  .soilg { fill: var(--soil-t); stroke: var(--soil); stroke-width: 1.5; }
+  .ca-root { fill: var(--ca-root-t); stroke: var(--o-wal); }
+  @keyframes squeeze { 50% { transform: scale(.72, 1.3); } }
+  @keyframes wig { from { transform: scaleY(1); } to { transform: scaleY(-1); } }
+
+  /* questions */
+  .how { background: var(--surface); border: 2px solid var(--accent); border-radius: 18px; padding: 1rem 1.2rem; }
+  .how ol { margin: .3rem 0 0; padding-inline-start: 1.4rem; }
+  .ws-title { margin-top: 1.5rem; scroll-margin-top: 1rem; }
+  .ws-title h2 { font-size: 1.9rem; }
+  .ws-title p { color: var(--muted); margin: 0; }
+  .q { background: var(--surface); border: 1px solid var(--rule); border-radius: 18px; padding: 1.1rem 1.15rem 1.2rem; min-width: 0; display: grid; gap: .8rem; scroll-margin-top: 1rem; }
+  .q.done { border-color: var(--ok); box-shadow: inset 0 0 0 1px var(--ok); }
+  .q.mini { background: transparent; border: 2px dashed var(--rule); padding: .8rem; margin-top: .3rem; }
+  .q.mini.done { border-style: solid; }
+  .q-head { display: flex; gap: .6rem; align-items: flex-start; }
+  .q-head .num { background: var(--accent); color: var(--accent-fg); }
+  .q-head .num.ok { background: var(--ok); }
+  .prompt { font-weight: 500; min-width: 0; }
+  .prompt small { display: block; color: var(--muted); font-weight: 400; font-size: .95rem; }
+  .blk { display: grid; gap: .6rem; min-width: 0; }
+  .blk > p { margin: 0; }
+  .bank { display: flex; flex-wrap: wrap; gap: .45rem; padding: .6rem; border-radius: 14px; background: var(--surface2); }
+  .bank::before { content: "بنك الأجوبة (اسحب منه):"; width: 100%; font-size: .9rem; color: var(--muted); line-height: 1.2; }
+  .chip, .tog, .ochip { font: inherit; font-size: 1rem; font-weight: 700; color: var(--fg); background: var(--surface); border: 2px solid var(--rule);
+          border-radius: 12px; padding: .2rem .6rem; line-height: 1.6; min-height: 2.6rem; display: inline-flex; align-items: center; gap: .3rem; }
+  .chip { cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+  .tog, .ochip { cursor: pointer; }
+  .chip.sel { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent); }
+  .tog[aria-pressed="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, var(--surface)); }
+  .chip.ok, .tog.ok { border-color: var(--ok); background: var(--ok-bg); }
+  .chip.bad, .tog.bad { border-color: var(--bad); background: var(--bad-bg); }
+  .lines { display: grid; gap: .6rem; }
+  .line { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .5rem; padding-bottom: .6rem; border-bottom: 1px dashed var(--rule); min-width: 0; }
+  .line:last-child { border-bottom: 0; padding-bottom: 0; }
+  .lbl { flex: 1 1 12rem; font-weight: 700; min-width: 0; }
+  .slot { font: inherit; font-size: 1rem; font-weight: 700; color: var(--fg); cursor: pointer;
+          display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+          min-width: 7.5rem; min-height: 2.6rem; padding: .1rem .5rem; border-radius: 10px; border: 2px dashed var(--muted); background: transparent; }
+  .slot > .chipin { display: inline-flex; align-items: center; gap: .3rem; }
+  .slot.small { min-width: 5rem; }
+  .slot.filled { border-style: solid; border-color: var(--fg); background: var(--surface2); }
+  .slot.hot { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+  .slot.ok { border-color: var(--ok); background: var(--ok-bg); }
+  .slot.bad { border-color: var(--bad); background: var(--bad-bg); }
+  .arr { font-size: 1.5rem; line-height: 1; }
+  .tray { display: flex; flex-wrap: wrap; gap: .45rem; padding: .6rem; border-radius: 14px; background: var(--surface2); min-height: 3.6rem; }
+  .tray::before { content: "الكروت (اسحب كل كرت لسلّته):"; width: 100%; font-size: .9rem; color: var(--muted); line-height: 1.2; }
+  .tray.hot { box-shadow: inset 0 0 0 2px var(--accent); }
+  .bins { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .bin { --c: var(--muted); display: flex; flex-direction: column; gap: .4rem; min-width: 0; min-height: 7rem; padding: .4rem; border-radius: 14px;
+         border: 2px dashed var(--c); background: color-mix(in srgb, var(--c) 7%, transparent); }
+  .bin.hot { border-style: solid; background: color-mix(in srgb, var(--c) 20%, transparent); }
+  .bin-h { font: inherit; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--fg); background: none; border: 0;
+           border-bottom: 2px solid var(--c); padding: .1rem .3rem .2rem; cursor: pointer; text-align: center; min-height: 2.6rem; }
+  .binlist { display: flex; flex-wrap: wrap; gap: .4rem; flex: 1; align-content: flex-start; }
+  @media (max-width: 460px) { .bins { grid-template-columns: 1fr; } }
+  .pickopts { display: flex; flex-wrap: wrap; gap: .45rem; padding: .6rem; border-radius: 14px; background: var(--surface2); }
+  .cnt { display: inline-block; justify-self: start; font-weight: 700; color: var(--muted); margin: 0; }
+  .cnt.full { color: var(--accent); }
+  .opts { display: grid; gap: .45rem; }
+  .opt { font: inherit; text-align: right; color: var(--fg); cursor: pointer; background: var(--surface2); border: 2px solid transparent; border-radius: 12px;
+         padding: .45rem .8rem; display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; }
+  .opt.sel { border-color: var(--accent); }
+  .opt.ok { border-color: var(--ok); background: var(--ok-bg); }
+  .opt.bad { border-color: var(--bad); background: var(--bad-bg); }
+  .q textarea { font: inherit; font-size: 1rem; width: 100%; min-height: 4.5rem; padding: .5rem .7rem; border-radius: 12px; border: 1.5px solid var(--rule); background: var(--surface); color: var(--fg); resize: vertical; }
+  .actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .actions.center { justify-content: center; }
+  .btn { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; cursor: pointer; border-radius: 999px; padding: .25rem 1.2rem; border: 2px solid var(--accent); background: var(--accent); color: var(--accent-fg); }
+  .btn.ghostbtn { background: transparent; color: var(--accent); }
+  .btn.ghostbtn[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); }
+  .fb { font-weight: 700; }
+  .fb:empty { display: none; }
+  .fb.ok { color: var(--ok); } .fb.bad { color: var(--bad); }
+  .why { background: var(--surface2); border-radius: 14px; padding: .75rem 1rem; border-inline-start: 6px solid var(--ok); }
+  .why h4 { margin: 0 0 .25rem; font-size: 1.1rem; color: var(--ok); font-family: var(--font-display); }
+  .why ul { margin: 0; padding-inline-start: 1.2rem; display: grid; gap: .35rem; }
+  .paper { margin-top: .6rem; padding: .5rem .8rem; border: 1.5px dashed var(--fg); border-radius: 10px; background: var(--surface); }
+  .fig { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; justify-content: center; padding: .6rem; background: var(--surface2); border-radius: 14px; }
+  .figsvg { display: block; width: 100%; max-width: 30rem; height: auto; margin: 0 auto; }
+  .drag-ghost { position: fixed; z-index: 60; pointer-events: none; transform: translate(-50%, -60%) rotate(-4deg); opacity: .92; box-shadow: 0 10px 24px rgba(0,0,0,.25); }
+  .shake { border-color: var(--bad) !important; color: var(--bad); }
+  @keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-7px); } 40% { transform: translateX(7px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+  .conf { position: fixed; z-index: 70; width: 8px; height: 11px; margin: -5px 0 0 -4px; border-radius: 2px; pointer-events: none; }
+
+  /* score + finale */
+  .score { position: fixed; z-index: 40; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); left: max(12px, env(safe-area-inset-left, 0px));
+           display: grid; gap: .15rem; min-width: 8.5rem;
+           font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; background: var(--fg); color: var(--bg);
+           border-radius: 999px; padding: .3rem 1rem .5rem; box-shadow: 0 6px 18px rgba(0,0,0,.2); }
+  .score .pb { display: block; height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--bg) 25%, transparent); overflow: hidden; }
+  .score .pb i { display: block; height: 100%; width: 0; background: var(--pbar); transition: width .5s ease; }
+  .score.win { background: var(--ok); color: var(--surface); }
+  .finale { position: fixed; z-index: 50; left: 50%; transform: translateX(-50%); bottom: calc(4.8rem + env(safe-area-inset-bottom, 0px));
+            width: min(22rem, calc(100vw - 32px)); display: flex; gap: .7rem; align-items: center;
+            background: var(--surface); border: 2px solid var(--ok); border-radius: 18px; padding: .6rem .8rem; box-shadow: 0 12px 30px rgba(0,0,0,.25); }
+  .finale[hidden] { display: none; }
+  .finale b { flex: 1; font-family: var(--font-display); font-size: 1.3rem; line-height: 1.4; color: var(--ok); }
+  .finale .x { flex: none; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1.5px solid var(--rule); background: var(--surface2); cursor: pointer; padding: .6rem; }
+  .finale .x svg { display: block; width: 100%; height: 100%; fill: none; stroke: var(--fg); stroke-width: 2.6; stroke-linecap: round; }
+  footer { color: var(--muted); font-size: .85rem; text-align: center; margin-top: 2rem; }
+
+  /* scroll reveal: the hidden state only comes from JS */
+  .rv { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
+  .rv.in { opacity: 1; transform: none; }
+  @media print { .rv { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .amoeba { animation: morph 7s ease-in-out infinite; }
+    .am-nuc { animation: drift 7s ease-in-out infinite; }
+    .mus-anim { transform-box: fill-box; transform-origin: center; animation: squeeze 2.6s ease-in-out infinite; }
+    .sp-tail { transform-box: fill-box; transform-origin: left center; animation: wig .45s ease-in-out infinite alternate; }
+    .mk.pulse .mkc { transform-box: fill-box; transform-origin: center; animation: mkp .45s ease-in-out 4 alternate; }
+    .shake { animation: shake .4s; }
+  }
+  @keyframes mkp { to { transform: scale(1.3); } }
+  @media (prefers-reduced-motion: reduce) {
+    .drag-ghost { transform: translate(-50%, -60%); }
+    .floats .ic { animation: none; }
+    .rv { opacity: 1; transform: none; transition: none; }
+    .js .flip-in { transition: none; transform: none !important; }
+    .js .back { transform: none; visibility: hidden; }
+    .js .flip[aria-pressed="true"] .back { visibility: visible; }
+    .js .flip[aria-pressed="true"] .front { visibility: hidden; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="floats" aria-hidden="true">
+      <img class="ic lg" src="img/microscope.svg" alt="" style="--d:0s">
+      <img class="ic lg" src="img/dna.svg" alt="" style="--d:-1.2s">
+      <img class="ic lg" src="img/microbe.svg" alt="" style="--d:-2.4s">
+      <img class="ic lg" src="img/seedling.svg" alt="" style="--d:-3.6s">
+    </div>
+    <h1>البيولوجيا ببساطة</h1>
+    <p class="sub">كل مواد الامتحان، موضوع موضوع: بنفهم كل إشي بالصور والحركة، وبعدين بنحلّ أسئلة المراجعة سوا.</p>
+    <div class="strip">
+      <a class="topic" href="#t1"><img class="ei" src="img/hatching-chick.svg" alt="">مميزات الحياة</a>
+      <a class="topic" href="#t2"><img class="ei" src="img/droplet.svg" alt="">شروط البقاء</a>
+      <a class="topic" href="#t3"><img class="ei" src="img/elephant.svg" alt="">التدريج البيولوجي</a>
+      <a class="topic" href="#t4"><img class="ei" src="img/microbe.svg" alt="">وحيد ومتعدّد الخلايا</a>
+      <a class="topic" href="#t5"><img class="ei" src="img/bone.svg" alt="">فقاري ولافقاري</a>
+      <a class="topic" href="#t6"><img class="ei" src="img/microscope.svg" alt="">الخلية الحيوانية</a>
+      <a class="topic" href="#t7"><img class="ei" src="img/potted-plant.svg" alt="">الخلية النباتية</a>
+      <a class="topic" href="#t8"><img class="ei" src="img/cup-with-straw.svg" alt="">الانتشار</a>
+      <a class="topic" href="#t9"><img class="ei" src="img/drop-of-blood.svg" alt="">أنواع الخلايا</a>
+      <a class="topic" href="#t10"><img class="ei" src="img/test-tube.svg" alt="">قطعة بحث علمي</a>
+    </div>
+    <nav class="nav">
+      <a href="#explain">الشرح</a>
+      <a href="#ws1" class="alt">أسئلة المراجعة</a>
+      <a href="#ws2" class="alt">ورقة عضيّات الخلية</a>
+      <a href="#ws3" class="alt">قطعة بحث علمي</a>
+    </nav>
+  </header>
+
+  <div class="part-title" id="explain"><h2>الشرح</h2><span>١٠ مواضيع</span></div>
+
+  <section class="card" id="t1">
+    <h3><span class="num">١</span>مميزات الحياة</h3>
+    <p>كيف بنعرف إنه إشي حيّ؟ الكائن الحي <b>بيعمل</b> أشياء الجماد ما بيعملها. هدول اسمهم <b>مميزات الحياة</b>.</p>
+    <div class="lives">
+      <div class="life"><img class="ic lg" src="img/person-running.svg" alt=""><h4>الحركة</h4><p>بيتحرّك</p></div>
+      <div class="life"><img class="ic lg" src="img/lungs.svg" alt=""><h4>التنفّس</h4><p>بيتنفّس</p></div>
+      <div class="life"><img class="ic lg" src="img/hatching-chick.svg" alt=""><h4>التكاثر</h4><p>بيجيب صغار من نوعه</p></div>
+      <div class="life"><img class="ic lg" src="img/red-apple.svg" alt=""><h4>التغذية</h4><p>بياكل أو بيصنع أكله</p></div>
+      <div class="life"><img class="ic lg" src="img/seedling.svg" alt=""><h4>النمو</h4><p>بيكبر</p></div>
+      <div class="life"><img class="ic lg" src="img/sweat-droplets.svg" alt=""><h4>الإفراز</h4><p>بيطلّع الفضلات من جسمه</p></div>
+      <div class="life"><img class="ic lg" src="img/eye.svg" alt=""><h4>الإحساس</h4><p>بيحسّ باللي حواليه وبيردّ عليه</p></div>
+    </div>
+    <div class="tip"><b>دقّق!</b> مميزات الحياة = أشياء الكائن الحي <b>بيعملها</b>. شروط البقاء = أشياء <b>بيحتاجها</b> من البيئة. لا تخربط بينهم!</div>
+  </section>
+
+  <section class="card" id="t2">
+    <h3><span class="num">٢</span>شروط البقاء (احتياجات البقاء)</h3>
+    <p>عشان الكائن الحي يضلّ عايش، لازم يلاقي ببيئته:</p>
+    <div class="row-ic needs">
+      <figure><img class="ic lg" src="img/droplet.svg" alt="">ماء</figure>
+      <figure><img class="ic lg" src="img/red-apple.svg" alt="">غذاء</figure>
+      <figure><img class="ic lg" src="img/wind-face.svg" alt="">أكسجين (هوا)</figure>
+      <figure><img class="ic lg" src="img/thermometer.svg" alt="">درجة حرارة ملائمة</figure>
+      <figure><img class="ic lg" src="img/sun.svg" alt="">ضوء</figure>
+      <figure><span class="ic lg"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 26 Q12 17 20 21 Q29 15 37 25 V36 H3Z" fill="#A57939" stroke="#5E3F22" stroke-width="1.6" stroke-linejoin="round"></path><g fill="#6A462F"><circle cx="11" cy="29" r="1.8"></circle><circle cx="20" cy="32" r="1.5"></circle><circle cx="29" cy="28" r="2"></circle><circle cx="16" cy="25.5" r="1.2"></circle><circle cx="26" cy="33" r="1.3"></circle></g></svg></span>تربة</figure>
+    </div>
+    <p class="note">الضوء والتربة مهمّين خصوصًا للنباتات.</p>
+    <h4 class="try">جرّب لحالك: مميزة حياة ولا شرط بقاء؟</h4>
+    <div id="lifeSort"></div>
+  </section>
+
+  <section class="card" id="t3">
+    <h3><span class="num">٣</span>التدريج البيولوجي (مستويات التنظيم بالطبيعة)</h3>
+    <p>وإله اسم تاني: <b>التسلسل الهرمي</b>.</p>
+    <p>كل إشي حيّ مبني من أجزاء صغيرة، والأجزاء الصغيرة بتتجمّع وبتعمل إشي أكبر. من الأصغر للأكبر:</p>
+    <div class="ladder-box" id="ladderBox">
+      <span class="lend">الأكبر</span>
+      <ol class="ladder">
+        <li style="--k:1"><span class="stepn">١</span><span class="ic"><svg viewBox="0 0 40 40" aria-hidden="true"><g fill="none" stroke="#2B3445" stroke-width="1.6"><ellipse cx="20" cy="20" rx="16" ry="6.5"></ellipse><ellipse cx="20" cy="20" rx="16" ry="6.5" transform="rotate(60 20 20)"></ellipse><ellipse cx="20" cy="20" rx="16" ry="6.5" transform="rotate(-60 20 20)"></ellipse></g><circle cx="20" cy="20" r="4.2" fill="#EA5A47" stroke="#2B3445" stroke-width="1.2"></circle><g fill="#1C7ED6"><circle cx="36" cy="20" r="2.3"></circle><circle cx="12" cy="6.1" r="2.3"></circle><circle cx="12" cy="33.9" r="2.3"></circle></g></svg></span><span class="stx"><b>ذرّة</b><span>أصغر وحدة بالمادة</span><small>مثال: وحدة واحدة من مادة المغنيزيوم</small></span></li>
+        <li style="--k:2"><span class="stepn">٢</span><span class="ic"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 23 L9 12 M20 23 L31 12" stroke="#2B3445" stroke-width="2.4"></path><circle cx="20" cy="24" r="9" fill="#EA5A47" stroke="#2B3445" stroke-width="1.6"></circle><circle cx="9" cy="12" r="5.5" fill="#92D3F5" stroke="#2B3445" stroke-width="1.6"></circle><circle cx="31" cy="12" r="5.5" fill="#92D3F5" stroke="#2B3445" stroke-width="1.6"></circle></svg></span><span class="stx"><b>جزيء</b><span>كم ذرّة مربوطين مع بعض</span><small>مثال: الماء</small></span></li>
+        <li style="--k:3"><span class="stepn">٣</span><span class="ic"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="14" fill="#E5DBFF" stroke="#7048E8" stroke-width="2.6"></circle><circle cx="23" cy="17" r="4.5" fill="#7048E8"></circle></svg></span><span class="stx"><b>عضيّة</b><span>جزء صغير جوّا الخلية، إله شغلة</span><small>مثال: النواة</small></span></li>
+        <li style="--k:4"><span class="stepn">٤</span><span class="ic"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4 C30 4 37 11 36 21 C35 31 28 36 19 36 C10 36 4 29 4 20 C4 11 10 4 20 4Z" fill="#FFF1C2" stroke="#1C7ED6" stroke-width="2.4"></path><circle cx="21" cy="19" r="6" fill="#E5DBFF" stroke="#7048E8" stroke-width="1.8"></circle></svg></span><span class="stx"><b>خلية</b><span>أصغر وحدة حيّة</span><small>مثال: خلية بشرة</small></span></li>
+        <li style="--k:5"><span class="stepn">٥</span><span class="ic"><svg viewBox="0 0 40 40" aria-hidden="true"><g fill="#FFF1C2" stroke="#1C7ED6" stroke-width="1.5"><rect x="3" y="3" width="10.5" height="10.5" rx="2.5"></rect><rect x="14.75" y="3" width="10.5" height="10.5" rx="2.5"></rect><rect x="26.5" y="3" width="10.5" height="10.5" rx="2.5"></rect><rect x="3" y="14.75" width="10.5" height="10.5" rx="2.5"></rect><rect x="14.75" y="14.75" width="10.5" height="10.5" rx="2.5"></rect><rect x="26.5" y="14.75" width="10.5" height="10.5" rx="2.5"></rect><rect x="3" y="26.5" width="10.5" height="10.5" rx="2.5"></rect><rect x="14.75" y="26.5" width="10.5" height="10.5" rx="2.5"></rect><rect x="26.5" y="26.5" width="10.5" height="10.5" rx="2.5"></rect></g><g fill="#7048E8"><circle cx="8.25" cy="8.25" r="1.8"></circle><circle cx="20" cy="8.25" r="1.8"></circle><circle cx="31.75" cy="8.25" r="1.8"></circle><circle cx="8.25" cy="20" r="1.8"></circle><circle cx="20" cy="20" r="1.8"></circle><circle cx="31.75" cy="20" r="1.8"></circle><circle cx="8.25" cy="31.75" r="1.8"></circle><circle cx="20" cy="31.75" r="1.8"></circle><circle cx="31.75" cy="31.75" r="1.8"></circle></g></svg></span><span class="stx"><b>نسيج</b><span>خلايا متشابهة بتشتغل مع بعض</span><small>مثال: نسيج جلدي</small></span></li>
+        <li style="--k:6"><span class="stepn">٦</span><img class="ic" src="img/stomach.svg" alt=""><span class="stx"><b>عضو</b><span>كم نسيج مع بعض بيعملوا شغلة</span><small>مثال: المعدة</small></span></li>
+        <li style="--k:7"><span class="stepn">٧</span><img class="ic" src="img/lungs.svg" alt=""><span class="stx"><b>جهاز</b><span>كم عضو بيشتغلوا مع بعض</span><small>مثال: الأنف + القصبة الهوائية + الرئتين</small></span></li>
+        <li style="--k:8"><span class="stepn">٨</span><img class="ic" src="img/elephant.svg" alt=""><span class="stx"><b>كائن حي</b><span>كل الأجهزة مع بعض</span><small>مثال: فيل</small></span></li>
+      </ol>
+      <span class="lend">الأصغر</span>
+      <p class="ladder-note">الأسماء مخبّاية وقت اللعبة. سكّر اللعبة لترجع تشوفها.</p>
+    </div>
+    <details class="game" id="orderGame">
+      <summary>جرّب لحالك: رتّبهم من الأصغر للأكبر</summary>
+      <div class="og"></div>
+    </details>
+  </section>
+
+  <section class="card" id="t4">
+    <h3><span class="num">٤</span>وحيد الخلية ومتعدّد الخلايا</h3>
+    <div class="two">
+      <div class="pane">
+        <h4>وحيد الخلية</h4>
+        <figure class="amoeba-fig"><div class="amoeba" aria-hidden="true"><span class="am-nuc"></span></div><figcaption>أميبا</figcaption></figure>
+        <p>كل جسمه <b>خلية وحدة بس</b>، وهي بتعمل كل إشي لحالها. صغير كتير وبيعيش ببيئة رطبة. أمثلة: أميبا، بكتيريا.</p>
+      </div>
+      <div class="pane">
+        <h4>متعدّد الخلايا</h4>
+        <div class="row-ic" style="justify-content:center"><figure><img class="ic lg" src="img/elephant.svg" alt="">فيل</figure><figure><img class="ic lg" src="img/person.svg" alt="">إنسان</figure></div>
+        <p>جسمه مبني من <b>ملايين الخلايا</b>، وفيه أنسجة وأعضاء وأجهزة. أمثلة: فيل، إنسان.</p>
+      </div>
+    </div>
+    <figure class="shot"><img src="img/photo-amoeba.jpg" alt="صورة أميبا تحت المجهر" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>أميبا حقيقية تحت المجهر</figcaption></figure>
+  </section>
+
+  <section class="card" id="t5">
+    <h3><span class="num">٥</span>فقاري ولافقاري</h3>
+    <div class="tree">
+      <span class="node">الكائنات الحية</span>
+      <svg class="branch" viewBox="0 0 200 34" preserveAspectRatio="none" aria-hidden="true"><path d="M100 0 V15 M0 34 V15 H200 V34"></path></svg>
+      <div class="kids"><span class="node v">الفقاريات</span><span class="node iv">اللافقاريات</span></div>
+    </div>
+    <div class="two">
+      <div class="pane vert">
+        <h4><img class="ic sm" src="img/bone.svg" alt="">الفقاريات</h4>
+        <ul class="pts">
+          <li>يوجد لديها عظام في داخل أجسامها تكوّن هيكلًا داخليًّا.</li>
+          <li>الهيكل ينمو ويكبر مع تقدّم الحيوان.</li>
+          <li>تملك عمودًا فقريًّا في وسط جسمها.</li>
+          <li>يجري الدم في جهاز نقل مغلق.</li>
+          <li>وهنالك ٥ طوائف: الأسماك، البرمائيات، الزواحف، الطيور، الثدييات.</li>
+        </ul>
+        <div class="row-ic cls">
+          <figure><img class="ic" src="img/fish.svg" alt="">الأسماك</figure>
+          <figure><img class="ic" src="img/frog.svg" alt="">البرمائيات</figure>
+          <figure><img class="ic" src="img/lizard.svg" alt="">الزواحف</figure>
+          <figure><img class="ic" src="img/bird.svg" alt="">الطيور</figure>
+          <figure><img class="ic" src="img/cow.svg" alt="">الثدييات</figure>
+        </div>
+      </div>
+      <div class="pane invert">
+        <h4>اللافقاريات</h4>
+        <ul class="pts">
+          <li>لا يوجد لديها عظام في داخل أجسامها.</li>
+          <li>وهنالك طائفتان: الحشرات، الرخويات.</li>
+        </ul>
+        <div class="row-ic cls">
+          <figure><img class="ic" src="img/honeybee.svg" alt="">الحشرات</figure>
+          <figure><img class="ic" src="img/snail.svg" alt="">الرخويات</figure>
+        </div>
+      </div>
+    </div>
+    <p>يعني السؤال دايمًا: عنده عظام وعمود فقري جوّا جسمه؟ <b>آه</b> = فقاري. <b>لأ</b> = لافقاري.</p>
+    <div class="tip"><b>انتبه:</b> الأفعى ما إلها رجلين بس عندها عمود فقري ← فقارية (من الزواحف). والدلفين عايش بالبحر بس هو من الثدييات ← فقاري.</div>
+  </section>
+
+  <section class="card" id="t6">
+    <h3><span class="num">٦</span>الخلية الحيوانية وعضيّاتها</h3>
+    <p>الخلية هي أصغر وحدة حيّة. جوّاها أجزاء صغيرة اسمها <b>عضيّات</b>، وكل عضيّة إلها شغلة. اكبس على أي جزء بالرسمة:</p>
+    <div class="cellbox" id="animalCell">
+      <div class="cellart"></div>
+      <ul class="parts">
+        <li data-k="mem"><button type="button" class="pbtn"><span class="o mem">غشاء الخلية</span></button><span class="ptxt">(= الغشاء الخلوي) بيحيط بالخلية. <b>شبه نفّاذ</b>: اختياري، بيدخّل وبيطلّع بعض المواد بس.</span></li>
+        <li data-k="cyt"><button type="button" class="pbtn"><span class="o cyt">سيتوبلازم</span></button><span class="ptxt">سائل بيشبه <b>الجلي</b>، بيعبّي الخلية والعضيّات سابحة فيه.</span></li>
+        <li data-k="nuc"><button type="button" class="pbtn"><span class="o nuc">نواة</span></button><span class="ptxt">فيها <bdi>DNA</bdi> (الصفات الوراثية)، ومسؤولة عن <b>انقسام الخلية</b>.</span></li>
+        <li data-k="mit"><button type="button" class="pbtn"><span class="o mit">ميتوكوندريا</span></button><span class="ptxt"><b>محطة القوة</b> بالخلية.</span></li>
+      </ul>
+      <div class="info" aria-live="polite"></div>
+    </div>
+    <figure class="shot"><img src="img/photo-cheek-cells.jpg" alt="صورة خلايا حيوانية تحت المجهر" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>خلايا حيوانية حقيقية تحت المجهر</figcaption></figure>
+  </section>
+
+  <section class="card" id="t7">
+    <h3><span class="num">٧</span>الخلية النباتية وعضيّاتها</h3>
+    <p>فيها كل اللي بالحيوانية، وزيادة عليهم <b>٣ أشياء</b>: <span class="o wal">جدار الخلية</span>، <span class="o vac">فجوة عصارية</span>، <span class="o chl">بلاستيدات خضراء</span>.</p>
+    <div class="cellbox" id="plantCell">
+      <div class="cellart"></div>
+      <div class="actions center"><button type="button" class="btn ghostbtn" id="plantExtra" aria-pressed="false">شو الزيادة عن الحيوانية؟</button></div>
+      <ul class="parts">
+        <li data-k="wal"><button type="button" class="pbtn"><span class="o wal">جدار الخلية</span></button><span class="ptxt"><b>بيحمي وبيدعم</b> الخلية.</span></li>
+        <li data-k="mem"><button type="button" class="pbtn"><span class="o mem">غشاء الخلية</span></button><span class="ptxt">(= الغشاء الخلوي) بيحيط بالخلية. <b>شبه نفّاذ</b>: اختياري، بيدخّل وبيطلّع بعض المواد بس.</span></li>
+        <li data-k="cyt"><button type="button" class="pbtn"><span class="o cyt">سيتوبلازم</span></button><span class="ptxt">سائل بيشبه <b>الجلي</b>، بيعبّي الخلية والعضيّات سابحة فيه.</span></li>
+        <li data-k="nuc"><button type="button" class="pbtn"><span class="o nuc">نواة</span></button><span class="ptxt">فيها <bdi>DNA</bdi> (الصفات الوراثية)، ومسؤولة عن <b>انقسام الخلية</b>.</span></li>
+        <li data-k="vac"><button type="button" class="pbtn"><span class="o vac">فجوة عصارية</span></button><span class="ptxt"><b>بتخزّن</b> المي والمواد.</span></li>
+        <li data-k="chl"><button type="button" class="pbtn"><span class="o chl">بلاستيدات خضراء</span></button><span class="ptxt">فيها <b>كلوروفيل</b>، وبتقوم بـ<b>التمثيل الضوئي</b>.</span></li>
+        <li data-k="mit"><button type="button" class="pbtn"><span class="o mit">ميتوكوندريا</span></button><span class="ptxt"><b>محطة القوة</b> بالخلية.</span></li>
+      </ul>
+      <div class="info" aria-live="polite"></div>
+    </div>
+    <table class="cmp">
+      <caption>حيوانية ولا نباتية: مين فيها شو؟</caption>
+      <thead><tr><th scope="col">العضيّة</th><th scope="col">حيوانية</th><th scope="col">نباتية</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><span class="o mem">غشاء الخلية</span></th><td><svg class="yes" viewBox="0 0 24 24" role="img" aria-label="فيها"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></td><td><svg class="yes" viewBox="0 0 24 24" role="img" aria-label="فيها"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></td></tr>
+        <tr><th scope="row"><span class="o cyt">سيتوبلازم</span></th><td><svg class="yes" viewBox="0 0 24 24" role="img" aria-label="فيها"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></td><td><svg class="yes" viewBox="0 0 24 24" role="img" aria-label="فيها"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></td></tr>
+        <tr><th scope="row"><span class="o nuc">نواة</span></th><td><svg class="yes" viewBox="0 0 24 24" role="img" aria-label="فيها"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></td><td><svg class="yes" viewBox="0 0 24 24" role="img" aria-label="فيها"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></td></tr>
+        <tr><th scope="row"><span class="o mit">ميتوكوندريا</span></th><td><svg class="yes" viewBox="0 0 24 24" role="img" aria-label="فيها"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></td><td><svg class="yes" viewBox="0 0 24 24" role="img" aria-label="فيها"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></td></tr>
+        <tr class="extra"><th scope="row"><span class="o wal">جدار الخلية</span></th><td><svg class="no" viewBox="0 0 24 24" role="img" aria-label="ما فيها"><path d="M7 7l10 10M17 7L7 17"></path></svg></td><td><svg class="yes" viewBox="0 0 24 24" role="img" aria-label="فيها"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></td></tr>
+        <tr class="extra"><th scope="row"><span class="o vac">فجوة عصارية</span></th><td><svg class="no" viewBox="0 0 24 24" role="img" aria-label="ما فيها"><path d="M7 7l10 10M17 7L7 17"></path></svg></td><td><svg class="yes" viewBox="0 0 24 24" role="img" aria-label="فيها"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></td></tr>
+        <tr class="extra"><th scope="row"><span class="o chl">بلاستيدات خضراء</span></th><td><svg class="no" viewBox="0 0 24 24" role="img" aria-label="ما فيها"><path d="M7 7l10 10M17 7L7 17"></path></svg></td><td><svg class="yes" viewBox="0 0 24 24" role="img" aria-label="فيها"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></td></tr>
+      </tbody>
+    </table>
+    <figure class="shot"><img src="img/photo-plant-cells.jpg" alt="صورة خلايا نباتية تحت المجهر" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>خلايا نباتية حقيقية تحت المجهر: النقاط الخضرا هي البلاستيدات</figcaption></figure>
+  </section>
+
+  <section class="card" id="t8">
+    <h3><span class="num">٨</span>الانتشار</h3>
+    <div class="law">الانتشار هو انتشار المادة من المكان الذي فيه تركيزها عالٍ إلى المكان الذي فيه تركيزها منخفض، نتيجةً للحركة العشوائية لجزيئات المادة في جميع الاتجاهات وتصادمها ببعضها، وهي عملية لا تحتاج إلى بذل طاقة.</div>
+    <div class="recipe">
+      <ul class="pts">
+        <li><b>من وين لوين؟</b> من المحل اللي فيه من المادة <b>كتير</b> (تركيز عالي) للمحل اللي فيه منها <b>شوي</b> (تركيز منخفض).</li>
+        <li><b>ليش؟</b> لأنه الجزيئات بتتحرّك <b>حركة عشوائية</b> بكل الاتجاهات وبتتصادم ببعض.</li>
+        <li><b>بدها طاقة؟</b> <b>لأ</b>، بتصير لحالها.</li>
+      </ul>
+    </div>
+    <p class="ex"><span class="scene"><img class="ic sm" src="img/cup-with-straw.svg" alt=""><img class="ic sm" src="img/droplet.svg" alt=""></span><span>مثال من الكتاب: عصير التوت والماء. بعد وقت معيّن بيتجانسوا، ولون السائل بيصير أحمر ومتجانس.</span></p>
+    <div class="diff">
+      <div class="actions center">
+        <button type="button" class="btn" id="dDrop"><img class="ei" src="img/cup-with-straw.svg" alt="">نقّط عصير التوت</button>
+        <button type="button" class="btn ghostbtn" id="dReset">من جديد</button>
+        <button type="button" class="btn ghostbtn" id="dFast" aria-pressed="false">أسرع</button>
+      </div>
+      <div class="glass"><canvas id="dCan" role="img" aria-label="كاسة مي، ولما ننقّط العصير بتشوف نقاطه بتنتشر بكل الكاسة"></canvas></div>
+      <div class="bars">
+        <div>تركيز جهة اليمين <b id="dRv">0%</b><div class="bar"><span id="dRb"></span></div></div>
+        <div>تركيز جهة اليسار <b id="dLv">0%</b><div class="bar"><span id="dLb"></span></div></div>
+      </div>
+      <p class="dstat" id="dStat" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="card" id="t9">
+    <h3><span class="num">٩</span>أنواع الخلايا بالجسم</h3>
+    <p>مش كل الخلايا نفس الشكل. كل خلية <b>شكلها بيلائم شغلتها</b>. اكبس على الكرت لتشوف.</p>
+    <div class="flips">
+      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><g class="mus-anim"><path d="M6 35 C30 19 90 19 114 35 C90 51 30 51 6 35 Z" class="ca-mus" stroke-width="3"></path><path d="M28 31 H92 M28 39 H92" class="ca-mus-l" fill="none" stroke-width="1.4" stroke-linecap="round"></path><ellipse cx="60" cy="35" rx="9" ry="5" class="f-nuc s-nuc" stroke-width="2"></ellipse></g></svg><span class="fname">خلية عضلات</span><span class="hint">اكبس لتقلب</span></span>
+        <span class="face back"><span class="fname">خلية عضلات</span><span class="bl"><b>وظيفتها:</b> تحريك الجسم.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> طويلة، تتقلّص وتتمدّد.</span></span>
+      </span></button>
+      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><g class="neu-l" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 28 L14 17 L6 15 M14 17 L13 7 M20 41 L10 51 L4 53 M10 51 L12 62 M31 23 L33 10 L27 4 M33 10 L39 5 M28 47 L27 61"></path><path d="M42 35 C60 30 80 40 100 34"></path><path d="M100 34 L110 26 M100 34 L113 36 M100 34 L109 44"></path></g><g class="neu-k"><circle cx="110" cy="26" r="2.6"></circle><circle cx="113" cy="36" r="2.6"></circle><circle cx="109" cy="44" r="2.6"></circle></g><circle cx="31" cy="35" r="12" class="ca-neu" stroke-width="3"></circle><circle cx="31" cy="35" r="4.6" class="f-nuc s-nuc" stroke-width="2"></circle></svg><span class="fname">خلية أعصاب</span><span class="hint">اكبس لتقلب</span></span>
+        <span class="face back"><span class="fname">خلية أعصاب</span><span class="bl"><b>وظيفتها:</b> استيعاب معلومات من البيئة.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> لها تفرّعات أو تشعّبات.</span></span>
+      </span></button>
+      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><g transform="rotate(-18 86 42)"><ellipse cx="86" cy="42" rx="23" ry="11" class="ca-rbc" stroke-width="2.6"></ellipse><ellipse cx="86" cy="42" rx="9" ry="3.6" class="ca-rbc-c"></ellipse></g><circle cx="44" cy="35" r="25" class="ca-rbc" stroke-width="2.6"></circle><circle cx="44" cy="35" r="10.5" class="ca-rbc-c"></circle></svg><span class="fname">خلية دم حمراء</span><span class="hint">اكبس لتقلب</span></span>
+        <span class="face back"><span class="fname">خلية دم حمراء</span><span class="bl"><b>وظيفتها:</b> نقل الأكسجين إلى جميع الخلايا.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> مرنة، مفلطحة، لا يوجد لها نواة، تصل لكل خلية.</span></span>
+      </span></button>
+      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><path d="M52 21 Q78 3 100 22 M52 49 Q78 67 100 48" class="wbc-o" fill="none" stroke-width="12" stroke-linecap="round"></path><circle cx="44" cy="35" r="22.5" class="wbc-ok"></circle><path d="M52 21 Q78 3 100 22 M52 49 Q78 67 100 48" class="wbc-i" fill="none" stroke-width="7" stroke-linecap="round"></path><circle cx="44" cy="35" r="20" class="wbc-f"></circle><g class="k-nuc s-nuc" stroke-width="4"><circle cx="38" cy="31" r="5.5"></circle><circle cx="48" cy="29" r="5"></circle><circle cx="45" cy="40" r="5"></circle></g><g class="f-nuc"><circle cx="38" cy="31" r="5.5"></circle><circle cx="48" cy="29" r="5"></circle><circle cx="45" cy="40" r="5"></circle></g><g class="germ"><path d="M92 26 V23 M92 44 V47 M83 35 H80 M101 35 H104 M86 29 L84 27 M98 29 L100 27 M86 41 L84 43 M98 41 L100 43" stroke-width="1.8" stroke-linecap="round" fill="none"></path><circle cx="92" cy="35" r="8" stroke-width="2"></circle></g></svg><span class="fname">خلية دم بيضاء</span><span class="hint">اكبس لتقلب</span></span>
+        <span class="face back"><span class="fname">خلية دم بيضاء</span><span class="bl"><b>وظيفتها:</b> حماية الجسم والدفاع عنه من الأجسام الغريبة.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> لها أذرع كي تحاصر وتبتلع الجسم الغريب.</span></span>
+      </span></button>
+      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><g class="ca-skin" stroke-width="2"><rect x="6" y="6" width="26" height="17" rx="4"></rect><rect x="34" y="6" width="26" height="17" rx="4"></rect><rect x="62" y="6" width="26" height="17" rx="4"></rect><rect x="90" y="6" width="26" height="17" rx="4"></rect><rect x="6" y="26" width="12" height="17" rx="4"></rect><rect x="20" y="26" width="26" height="17" rx="4"></rect><rect x="48" y="26" width="26" height="17" rx="4"></rect><rect x="76" y="26" width="26" height="17" rx="4"></rect><rect x="104" y="26" width="12" height="17" rx="4"></rect><rect x="6" y="46" width="26" height="17" rx="4"></rect><rect x="34" y="46" width="26" height="17" rx="4"></rect><rect x="62" y="46" width="26" height="17" rx="4"></rect><rect x="90" y="46" width="26" height="17" rx="4"></rect></g><g class="k-nuc"><ellipse cx="19" cy="14.5" rx="3" ry="2.4"></ellipse><ellipse cx="47" cy="14.5" rx="3" ry="2.4"></ellipse><ellipse cx="75" cy="14.5" rx="3" ry="2.4"></ellipse><ellipse cx="103" cy="14.5" rx="3" ry="2.4"></ellipse><ellipse cx="33" cy="34.5" rx="3" ry="2.4"></ellipse><ellipse cx="61" cy="34.5" rx="3" ry="2.4"></ellipse><ellipse cx="89" cy="34.5" rx="3" ry="2.4"></ellipse><ellipse cx="19" cy="54.5" rx="3" ry="2.4"></ellipse><ellipse cx="47" cy="54.5" rx="3" ry="2.4"></ellipse><ellipse cx="75" cy="54.5" rx="3" ry="2.4"></ellipse><ellipse cx="103" cy="54.5" rx="3" ry="2.4"></ellipse></g></svg><span class="fname">خلية بشرة</span><span class="hint">اكبس لتقلب</span></span>
+        <span class="face back"><span class="fname">خلية بشرة</span><span class="bl"><b>وظيفتها:</b> تغلّف الجسم وتحمي الأنسجة.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> كثيفة جدًّا ومتراصّة.</span></span>
+      </span></button>
+      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><path class="sp-tail" d="M38 35 q6.3 -9 12.6 0 t12.6 0 t12.6 0 t12.6 0 t12.6 0 t12.6 0" fill="none" stroke-width="3" stroke-linecap="round"></path><ellipse cx="24" cy="35" rx="14" ry="9" class="ca-sp" stroke-width="2.6"></ellipse><ellipse cx="39" cy="35" rx="4.5" ry="3.2" class="ca-sp" stroke-width="2"></ellipse></svg><span class="fname">خلية حيوان منوي</span><span class="hint">اكبس لتقلب</span></span>
+        <span class="face back"><span class="fname">خلية حيوان منوي</span><span class="bl"><b>وظيفتها:</b> تكاثر الكائن الحي وتكوّن الجنين.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> صغيرة جدًّا، لها سوط (ذيل) كي تتحرّك بسرعة.</span></span>
+      </span></button>
+      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><g class="soilg"><circle cx="60" cy="22" r="6"></circle><circle cx="80" cy="27" r="6"></circle><circle cx="100" cy="32" r="5"></circle><circle cx="116" cy="36" r="4"></circle><circle cx="60" cy="58" r="6"></circle><circle cx="82" cy="61" r="6"></circle><circle cx="104" cy="63" r="5"></circle><circle cx="28" cy="57" r="6"></circle><circle cx="9" cy="58" r="5"></circle><circle cx="45" cy="61" r="5"></circle></g><path d="M4 6 H44 V30 C60 32 84 40 110 45 C116 46 116 53 110 53 C84 50 60 45 40 44 H4 Z" class="ca-root" stroke-width="3" stroke-linejoin="round"></path><circle cx="22" cy="24" r="5.5" class="f-nuc s-nuc" stroke-width="2"></circle></svg><span class="fname">خلية شعيرات ماصّة</span><span class="hint">اكبس لتقلب</span></span>
+        <span class="face back"><span class="fname">خلية شعيرات ماصّة</span><span class="bl"><b>وظيفتها:</b> امتصاص الماء والأملاح من التربة.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> تمتدّ طويلًا، وتتغلغل بين ذرّات التربة.</span></span>
+      </span></button>
+    </div>
+    <div class="shots">
+      <figure class="shot"><img src="img/photo-red-blood-cells.jpg" alt="صورة خلايا دم حمراء" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>خلايا دم حمراء حقيقية</figcaption></figure>
+      <figure class="shot"><img src="img/photo-neuron.jpg" alt="صورة خلية عصبية" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>خلية عصبية حقيقية</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="card" id="t10">
+    <h3><span class="num">١٠</span>قطعة بحث علمي</h3>
+    <p>بالامتحان بيعطوك قصة قصيرة عن <b>تجربة</b>، وبيسألوك عنها. ما تخاف: بكل تجربة دوّر على ٣ أشياء.</p>
+    <div class="types">
+      <div class="type" style="--c:var(--accent)"><img class="ic lg" src="img/sun.svg" alt=""><div><h4>العامل المؤثّر</h4><p>الإشي اللي الباحث <b>غيّره بإيده</b> بين الحالتين.</p></div></div>
+      <div class="type" style="--c:var(--warn)"><img class="ic lg" src="img/seedling.svg" alt=""><div><h4>العامل المتأثّر</h4><p>الإشي اللي <b>تغيّر بسببه</b>، وهو اللي <b>بنقيسه</b>.</p></div></div>
+      <div class="type" style="--c:var(--ok)"><img class="ic lg" src="img/droplet.svg" alt=""><div><h4>العوامل الثابتة</h4><p>كل الأشياء التانية اللي لازم <b>تضلّ نفسها</b> بالحالتين، عشان التجربة تكون عادلة.</p></div></div>
+    </div>
+    <p class="ex"><span class="scene"><img class="ic sm" src="img/potted-plant.svg" alt=""><img class="ic sm" src="img/sun.svg" alt=""></span><span>مثال: حطّينا نبتة بالضو ونبتة بالعتمة، وبعد أسبوع قسنا طول كل وحدة. <b>المؤثّر</b>: الضوء. <b>المتأثّر</b>: طول النبتة. <b>الثابتة</b>: نفس نوع النبتة، نفس كمية المي، نفس التربة.</span></p>
+    <div class="recipe">
+      <b>كيف ألاقيهم بالقصة؟ ٣ أسئلة لحالك:</b>
+      <ol class="pts">
+        <li>شو الإشي اللي كان <b>مختلف</b> بين الحالتين؟ ← العامل المؤثّر.</li>
+        <li>شو <b>قاسوا</b>؟ ← العامل المتأثّر.</li>
+        <li>شو كان <b>نفس الإشي</b> بالحالتين؟ ← العوامل الثابتة.</li>
+      </ol>
+    </div>
+    <div class="tip"><b>دقّق!</b> <b>النتيجة</b> = شو شفنا وقسنا بالتجربة. <b>الاستنتاج</b> = شو تعلّمنا من النتيجة.</div>
+  </section>
+
+  <div class="part-title" id="questions"><h2>يلّا نحلّ</h2><span>أسئلة المراجعة، ورقة عضيّات الخلية، وقطعة بحث</span></div>
+  <div class="how">
+    <b>كيف تحلّ؟</b>
+    <ol>
+      <li>اسحب الجواب من «بنك الأجوبة» وحطّه بالفراغ. (أو اكبس على الجواب، وبعدين اكبس على الفراغ.)</li>
+      <li>بدّك تشيل جواب؟ اكبس عليه وهو بالفراغ.</li>
+      <li>أسئلة التصنيف: اسحب كل كرت للسلّة الصح (أو اكبس عليه، وبعدين على اسم السلّة). بدّك ترجّعه؟ اكبس عليه وهو بالسلّة.</li>
+      <li>أسئلة «اختار»: اكبس على الأجوبة اللي بدّك إياها، وتحتها بتشوف قدّيش اخترت.</li>
+      <li>اكبس <b>فحص</b> لتعرف إذا صح، و<b>الحل</b> إذا علقت. مع كل حل في شرح، وكمان شو تكتب على الورقة.</li>
+    </ol>
+  </div>
+
+  <div class="ws-title" id="ws1"><h2>أسئلة المراجعة</h2><p>٩ أسئلة من الدفتر</p></div>
+  <div id="list1" class="wrap" style="max-width:none"></div>
+
+  <div class="ws-title" id="ws2"><h2>ورقة عضيّات الخلية</h2><p>سمِّ الأجزاء اللي الأسهم بتأشّر عليها</p></div>
+  <div id="list2" class="wrap" style="max-width:none"></div>
+
+  <div class="ws-title" id="ws3"><h2>قطعة بحث علمي</h2><p>من امتحان وزارة المعارف في العلوم والتكنولوجيا للصف السابع</p></div>
+  <div id="list3" class="wrap" style="max-width:none"></div>
+
+  <footer>الأيقونات: OpenMoji ‏(CC BY-SA 4.0). <span id="photo-credits">الصور الحقيقية من Wikimedia Commons: الأميبا (Cymothoa exigua، CC BY-SA 3.0)، خلايا الخدّ (Fritzmann2002، CC BY-SA 4.0)، خلايا النبات (‎~delta، CC BY-SA 4.0)، خلايا الدم (Bruce Wetzel و Harry Schaefer، ملك عام)، الخلية العصبية (Berkshire Community College، CC0).</span> قطعة البحث: امتحان العلوم والتكنولوجيا للصف السابع، وزارة المعارف، 2013.</footer>
+</div>
+
+<div class="score" id="score"><span id="scoreTxt" aria-live="polite">صح: 0 من 0</span><span class="pb" aria-hidden="true"><i id="scoreBar"></i></span></div>
+<div class="finale" id="finale" role="status" hidden>
+  <img class="ic lg" src="img/trophy.svg" alt="">
+  <b>بطل! حلّيت كل الأسئلة</b>
+  <button type="button" class="x" id="finX" aria-label="سكّر"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+
+<script>
+// ---------- helpers ----------
+document.documentElement.classList.add("js");
+var RM = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
+function $(id) { return document.getElementById(id); }
+var OICON = { mem: "door", cyt: "custard", nuc: "dna", mit: "battery", wal: "brick", vac: "bucket", chl: "herb" };
+var ONAME = { mem: "غشاء الخلية", cyt: "سيتوبلازم", nuc: "نواة", mit: "ميتوكوندريا", wal: "جدار الخلية", vac: "فجوة عصارية", chl: "بلاستيدات خضراء" };
+function ocls(v) {
+  if (/غشاء/.test(v)) return "mem";
+  if (/سيتوبلازم/.test(v)) return "cyt";
+  if (/نواة/.test(v)) return "nuc";
+  if (/ميتوكوندري/.test(v)) return "mit";
+  if (/جدار/.test(v)) return "wal";
+  if (/فجوة/.test(v)) return "vac";
+  if (/بلاستيد/.test(v)) return "chl";
+  return "";
+}
+function tag(v) {
+  var c = ocls(v);
+  return c ? '<span class="o ' + c + '"><img class="ei" src="img/' + OICON[c] + '.svg" alt="">' + v + "</span>" : v;
+}
+var SOIL = '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 26 Q12 17 20 21 Q29 15 37 25 V36 H3Z" fill="#A57939" stroke="#5E3F22" stroke-width="1.6" stroke-linejoin="round"></path>' +
+  '<g fill="#6A462F"><circle cx="11" cy="29" r="1.8"></circle><circle cx="20" cy="32" r="1.5"></circle><circle cx="29" cy="28" r="2"></circle><circle cx="16" cy="25.5" r="1.2"></circle><circle cx="26" cy="33" r="1.3"></circle></g></svg>';
+// icon tile; size: "" | "sm" | "lg"; "soil" is drawn here because there is no soil icon
+function I(name, size) {
+  if (name === "soil") return '<span class="ic' + (size ? " " + size : "") + '">' + SOIL + "</span>";
+  return '<img class="ic' + (size ? " " + size : "") + '" src="img/' + name + '.svg" alt="">';
+}
+function SC() { return { sc: [].slice.call(arguments) }; }
+function ar(n) { return String(n).replace(/\d/g, function (d) { return "٠١٢٣٤٥٦٧٨٩"[d]; }); }
+function shuffle(a) {
+  for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a;
+}
+function cssv(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+// give the lesson's static organelle tags their icon too
+[].forEach.call(document.querySelectorAll(".o"), function (el) {
+  var c = (el.className.match(/\b(mem|cyt|nuc|mit|wal|vac|chl)\b/) || [])[1];
+  if (c && !el.querySelector("img")) el.insertAdjacentHTML("afterbegin", '<img class="ei" src="img/' + OICON[c] + '.svg" alt="">');
+});
+
+function S(a, small) { return { slot: 1, a: Array.isArray(a) ? a : [a], small: !!small }; }
+function L() { return { p: [].slice.call(arguments) }; }
+function LC(combos) { return { p: [].slice.call(arguments, 1), combos: combos }; }
+function lab(t) { return { lab: t }; }
+function MK(i) { return { mk: i }; }
+var ARR = { arr: 1 };
+function chipI(v, icon) { return { v: v, html: I(icon, "sm") + "<span>" + v + "</span>" }; }
+function mkb(i) { return '<span class="mkb">' + i + "</span>"; }
+
+// ---------- small effects: flying chips, shake, confetti ----------
+function fly(el, parent) {
+  var a = el.getBoundingClientRect();
+  parent.appendChild(el);
+  if (RM.matches || !el.animate) return;
+  var b = el.getBoundingClientRect();
+  el.animate([{ transform: "translate(" + (a.left - b.left) + "px," + (a.top - b.top) + "px)" }, { transform: "none" }],
+    { duration: 420, easing: "cubic-bezier(.2,.8,.2,1)" });
+}
+function shake(el) {
+  el.classList.remove("shake");
+  void el.offsetWidth;
+  el.classList.add("shake");
+  clearTimeout(el._sh);
+  el._sh = setTimeout(function () { el.classList.remove("shake"); }, 700);
+}
+function burst(el, big) {
+  if (RM.matches || !el || !document.body.animate) return;
+  var r = el.getBoundingClientRect();
+  var x = r.left + r.width / 2, y = r.top + Math.min(r.height / 2, 60);
+  var cols = ["--o-mem", "--o-cyt", "--o-nuc", "--o-mit", "--o-vac", "--o-chl", "--life"].map(cssv);
+  var n = big ? 70 : 28;
+  for (var i = 0; i < n; i++) piece(x, y, cols[i % cols.length], i, big);
+}
+function piece(x, y, col, i, big) {
+  var s = document.createElement("i");
+  s.className = "conf";
+  s.style.left = x + "px"; s.style.top = y + "px"; s.style.background = col;
+  if (i % 3 === 0) s.style.borderRadius = "50%";
+  document.body.appendChild(s);
+  var a = Math.random() * Math.PI * 2, v = (big ? 120 : 60) + Math.random() * (big ? 200 : 100);
+  var dx = Math.round(Math.cos(a) * v), dy = Math.round(Math.sin(a) * v * 0.7 - (big ? 110 : 55)), rot = Math.round(Math.random() * 720 - 360);
+  var an = s.animate([
+    { transform: "translate(0px,0px) rotate(0deg)", opacity: 1 },
+    { transform: "translate(" + dx + "px," + dy + "px) rotate(" + Math.round(rot / 2) + "deg)", opacity: 1, offset: 0.55 },
+    { transform: "translate(" + Math.round(dx * 1.15) + "px," + (dy + 150) + "px) rotate(" + rot + "deg)", opacity: 0 }
+  ], { duration: 1000 + Math.random() * 600, easing: "cubic-bezier(.2,.7,.4,1)" });
+  an.onfinish = function () { s.remove(); };
+}
+
+// ---------- cell drawings: one function for the lesson (explore) and the questions (numbered) ----------
+function f1(v) { return Math.round(v * 10) / 10; }
+// soft wobbly outline through n points, smoothed with catmull-rom
+function blob(cx, cy, rx, ry, w1, w2, n) {
+  function pt(t) {
+    var r = 1 + w1 * Math.sin(3 * t + 0.6) + w2 * Math.cos(5 * t + 0.2);
+    return [cx + rx * r * Math.cos(t), cy + ry * r * Math.sin(t)];
+  }
+  var P = [], i;
+  for (i = 0; i < n; i++) P.push(pt(i / n * 2 * Math.PI));
+  var d = "M" + f1(P[0][0]) + " " + f1(P[0][1]);
+  for (i = 0; i < n; i++) {
+    var p0 = P[(i - 1 + n) % n], p1 = P[i], p2 = P[(i + 1) % n], p3 = P[(i + 2) % n];
+    d += "C" + f1(p1[0] + (p2[0] - p0[0]) / 6) + " " + f1(p1[1] + (p2[1] - p0[1]) / 6) + " " +
+      f1(p2[0] - (p3[0] - p1[0]) / 6) + " " + f1(p2[1] - (p3[1] - p1[1]) / 6) + " " + f1(p2[0]) + " " + f1(p2[1]);
+  }
+  return { d: d + "Z", pt: pt };
+}
+var AB = blob(205, 135, 140, 108, 0.035, 0.025, 40);
+var VB = blob(232, 150, 68, 70, 0.025, 0.02, 32);
+
+function mito(x, y, rot, s) {
+  return '<g transform="translate(' + x + " " + y + ") rotate(" + rot + ")" + (s ? " scale(" + s + ")" : "") + '">' +
+    '<rect x="-23" y="-12" width="46" height="24" rx="12" class="f-mit s-mit" stroke-width="3"></rect>' +
+    '<path d="M-17 1q2.85 -9 5.7 0t5.7 0t5.7 0t5.7 0t5.7 0t5.7 0" class="s-mit" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></g>';
+}
+function chl(x, y, rot) {
+  var g = "";
+  [-8, 0, 8].forEach(function (dx) {
+    for (var j = 0; j < 3; j++) g += '<rect x="' + (dx - 2.6) + '" y="' + f1(-3.9 + j * 2.7) + '" width="5.2" height="1.8" rx=".9" class="k-chl"></rect>';
+  });
+  return '<g transform="translate(' + x + " " + y + ") rotate(" + rot + ')"><ellipse rx="15" ry="8.5" class="f-chl s-chl" stroke-width="2.6"></ellipse>' +
+    '<path d="M-11 .9H11" class="s-chl" stroke-width="1.1"></path>' + g + "</g>";
+}
+function nucl(x, y, r) {
+  return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" class="f-nuc s-nuc" stroke-width="3.5"></circle>' +
+    '<path d="M' + f1(x - r * 0.6) + " " + f1(y + r * 0.3) + "q" + f1(r * 0.15) + " " + f1(-r * 0.3) + " " + f1(r * 0.3) + " 0t" + f1(r * 0.3) +
+    ' 0" class="s-nuc" fill="none" stroke-width="1.8" stroke-linecap="round" opacity=".55"></path>' +
+    '<circle cx="' + f1(x + r * 0.22) + '" cy="' + f1(y - r * 0.18) + '" r="' + f1(r * 0.28) + '" class="k-nuc"></circle>';
+}
+function animalParts() {
+  var d = AB.d;
+  return [
+    ["cyt", '<path d="' + d + '" class="f-cyt"></path>'],
+    ["nuc", nucl(210, 128, 40)],
+    ["mit", mito(118, 100, -20)], ["mit", mito(128, 188, 25)], ["mit", mito(292, 172, -35)], ["mit", mito(282, 78, 30)],
+    ["mem", '<path d="' + d + '" class="s-mem" fill="none" stroke-width="7"></path><path d="' + d + '" class="hit" stroke-width="24"></path>']
+  ];
+}
+function plantParts() {
+  var R = 'x="84" y="32" width="250" height="238" rx="20"', W = 'x="72" y="20" width="274" height="262" rx="28"';
+  var C = [[172, 56, 8], [240, 52, -6], [300, 62, 20], [318, 120, 90], [318, 200, 90], [240, 252, 4], [295, 248, -18], [112, 234, 0]];
+  return [
+    ["cyt", "<rect " + R + ' class="f-cyt"></rect>'],
+    ["vac", '<path d="' + VB.d + '" class="f-vac s-vac" stroke-width="3"></path>'],
+    ["nuc", nucl(118, 160, 25)],
+    ["mit", mito(130, 88, -20, 0.78)], ["mit", mito(182, 252, 0, 0.78)]
+  ].concat(C.map(function (c) { return ["chl", chl(c[0], c[1], c[2])]; })).concat([
+    ["mem", "<rect " + R + ' class="s-mem" fill="none" stroke-width="4"></rect><rect ' + R + ' class="hit" stroke-width="12"></rect>'],
+    ["wal", "<rect " + W + ' class="s-wal" fill="none" stroke-width="14"></rect><rect ' + W + ' class="s-wal2" fill="none" stroke-width="2" stroke-dasharray="12 7"></rect><rect ' + W + ' class="hit" stroke-width="16"></rect>']
+  ]);
+}
+var BIGPART = { cyt: 1, mem: 1, wal: 1, vac: 1 };
+// marks: [key, label y, arrow tip x, arrow tip y], numbered 1.. in that order
+function CELL(kind, mode, marks) {
+  var ex = mode === "explore", plant = kind === "plant";
+  var vb = plant ? (ex ? "56 4 302 292" : "0 0 360 300") : (ex ? "50 12 310 244" : "0 12 360 244");
+  var name = plant ? "خلية نباتية" : "خلية حيوانية";
+  var h = '<svg class="cellsvg' + (ex ? "" : " figsvg") + '" viewBox="' + vb + '" ' +
+    (ex ? 'role="group" aria-label="رسمة ' + name + ': اكبس على أي جزء"' : 'role="img" aria-label="رسمة خلية مع أرقام"') + ">";
+  (plant ? plantParts() : animalParts()).forEach(function (p) {
+    h += ex ? '<g class="pt' + (BIGPART[p[0]] ? " big" : "") + '" data-k="' + p[0] + '" tabindex="0" role="button" aria-label="' + ONAME[p[0]] + '">' + p[1] + "</g>" : p[1];
+  });
+  if (!ex && marks) marks.forEach(function (m, i) {
+    var ly = m[1], tx = m[2], ty = m[3], dx = tx - 36, dy = ty - ly, len = Math.sqrt(dx * dx + dy * dy), ux = dx / len, uy = dy / len;
+    var bx = tx - ux * 10, by = ty - uy * 10;
+    h += '<g class="mk" data-m="' + i + '"><line x1="36" y1="' + ly + '" x2="' + f1(bx) + '" y2="' + f1(by) + '" class="ldr"></line>' +
+      '<polygon points="' + tx + "," + ty + " " + f1(bx - uy * 4.6) + "," + f1(by + ux * 4.6) + " " + f1(bx + uy * 4.6) + "," + f1(by - ux * 4.6) + '" class="ah"></polygon>' +
+      '<circle cx="22" cy="' + ly + '" r="13" class="mkc"></circle><text x="22" y="' + (ly + 5.5) + '" text-anchor="middle" class="mkt">' + (i + 1) + "</text></g>";
+  });
+  return h + "</svg>";
+}
+var mA = AB.pt(-2.2), vA = VB.pt(2.36);
+var MK_Q8 = [["mem", 42, f1(mA[0]), f1(mA[1])], ["mit", 100, 99, 106], ["nuc", 158, 172, 140], ["cyt", 216, 185, 218]];
+var MK_A = [["mem", 42, f1(mA[0]), f1(mA[1])], ["cyt", 100, 165, 62], ["nuc", 158, 172, 140], ["mit", 216, 123, 199]];
+var MK_P = [["wal", 30, 72, 62], ["mem", 68, 84, 92], ["cyt", 106, 100, 118], ["nuc", 144, 94, 152], ["vac", 182, f1(vA[0]), f1(vA[1])], ["chl", 220, 97, 234], ["mit", 258, 165, 252]];
+
+var NEURON = '<svg class="figsvg" viewBox="0 0 300 130" role="img" aria-label="رسمة خلية" style="max-width:24rem">' +
+  '<g class="neu-l" fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">' +
+  '<path d="M56 48 L38 27 L22 20 M38 27 L36 10 M47 64 L22 60 L9 50 M22 60 L10 72 M56 82 L38 102 L22 106 M38 102 L40 120 M72 40 L76 18 L64 7 M76 18 L90 8 M76 90 L82 113 L70 123 M82 113 L97 120"></path>' +
+  '<path d="M96 65 C140 50 190 82 248 64" stroke-width="6"></path>' +
+  '<path d="M248 64 L270 46 L282 42 M248 64 L276 66 M248 64 L268 86 L280 92"></path></g>' +
+  '<g class="neu-k"><circle cx="282" cy="42" r="5"></circle><circle cx="276" cy="66" r="5"></circle><circle cx="280" cy="92" r="5"></circle></g>' +
+  '<circle cx="72" cy="65" r="26" class="ca-neu" stroke-width="4"></circle>' +
+  '<circle cx="72" cy="65" r="10" class="f-nuc s-nuc" stroke-width="3"></circle><circle cx="75" cy="62" r="3.5" class="k-nuc"></circle></svg>';
+
+// ---------- question engine (same as the energy page, plus sort + pick) ----------
+function chipHtml(b, v) {
+  for (var i = 0; i < b.bank.length; i++) { var it = b.bank[i]; if (typeof it === "object" && it.v === v) return it.html; }
+  return tag(v);
+}
+function partHtml(p) {
+  if (typeof p === "string") return "<span>" + p + "</span>";
+  if (p.sc) return '<span class="scene">' + p.sc.map(function (n) { return I(n); }).join("") + "</span>";
+  if (p.lab) return '<span class="lbl">' + p.lab + ":</span>";
+  if (p.mk) return mkb(p.mk);
+  if (p.arr) return '<span class="arr" aria-hidden="true">←</span>';
+  return '<button type="button" class="slot' + (p.small ? " small" : "") + '" aria-label="فراغ"></button>';
+}
+function blockEl(b, aid, bi) {
+  var d = document.createElement("div");
+  d.className = "blk";
+  d._b = b;
+  var s = b.q ? "<p><b>" + b.q + "</b></p>" : "";
+  if (b.t === "fill") {
+    s += '<div class="bank">' + b.bank.map(function (it) {
+      var v = typeof it === "object" ? it.v : it;
+      return '<button type="button" class="chip" data-v="' + v + '">' + chipHtml(b, v) + "</button>";
+    }).join("") + "</div>";
+    s += '<div class="lines">' + b.lines.map(function (l) {
+      return '<div class="line"' + (l.m != null ? ' data-m="' + l.m + '"' : "") + ">" + l.p.map(partHtml).join("") + "</div>";
+    }).join("") + "</div>";
+  } else if (b.t === "mcq") {
+    if (b.shuffle && !b._sh) { var right = b.opts[b.ok]; b.opts = shuffle(b.opts.slice()); b.ok = b.opts.indexOf(right); b._sh = 1; }
+    s += '<div class="opts">' + b.opts.map(function (o, i) {
+      return '<button type="button" class="opt" data-i="' + i + '">' + o + "</button>";
+    }).join("") + "</div>";
+  } else if (b.t === "sort") {
+    var items = b.shuffle ? shuffle(b.items.slice()) : b.items;
+    s += '<div class="tray drop">' + items.map(function (it) {
+      return '<button type="button" class="chip" data-v="' + it[0] + '" data-ok="' + it[1] + '">' +
+        (it[2] || []).map(function (n) { return I(n, "sm"); }).join("") + "<span>" + it[0] + "</span></button>";
+    }).join("") + "</div>";
+    s += '<div class="bins">' + b.bins.map(function (bn, i) {
+      return '<div class="bin drop" data-bin="' + i + '"' + (bn.c ? ' style="--c:' + bn.c + '"' : "") + '><button type="button" class="bin-h">' + bn.t +
+        '</button><div class="binlist"></div></div>';
+    }).join("") + "</div>";
+  } else if (b.t === "pick") {
+    var opts = b.shuffle ? shuffle(b.opts.slice()) : b.opts;
+    s += '<div class="pickopts">' + opts.map(function (o) {
+      return '<button type="button" class="tog" aria-pressed="false" data-v="' + o[0] + '" data-ok="' + o[1] + '">' + (o[2] ? I(o[2], "sm") : "") + "<span>" + o[0] + "</span></button>";
+    }).join("") + '</div><p class="cnt" aria-live="polite"></p>';
+  } else {
+    s += '<textarea id="ta-' + aid + "-" + bi + '" aria-label="جوابك" placeholder="اكتب جوابك هون (للتدريب)…"></textarea>' +
+      '<div class="why model" hidden><h4>جواب نموذجي</h4>' + b.a + "</div>";
+  }
+  d.innerHTML = s;
+  if (b.t === "pick") updCnt(d);
+  return d;
+}
+function addTail(art, graded, q) {
+  var act = document.createElement("div");
+  act.className = "actions";
+  act.innerHTML = graded
+    ? '<button type="button" class="btn chk">فحص</button><button type="button" class="btn ghostbtn sol">الحل</button>'
+    : '<button type="button" class="btn sol">اكشف الجواب</button>';
+  art.appendChild(act);
+  var fb = document.createElement("div"); fb.className = "fb"; fb.setAttribute("aria-live", "polite"); art.appendChild(fb);
+  if (!q.why) return;
+  var why = document.createElement("div"); why.className = "why main"; why.hidden = true;
+  var body = Array.isArray(q.why) ? "<ul>" + q.why.map(function (w) { return "<li>" + w + "</li>"; }).join("") + "</ul>" : "<p>" + q.why + "</p>";
+  why.innerHTML = "<h4>الشرح</h4>" + body + (q.paper ? '<div class="paper"><b>على الورقة اكتب:</b> ' + q.paper + "</div>" : "");
+  art.appendChild(why);
+}
+function buildQ(q, prefix) {
+  var art = document.createElement("article");
+  art.className = "q";
+  art.id = "q" + prefix + q.n.replace(".", "-");
+  var graded = q.blocks.some(function (b) { return b.t !== "open"; });
+  art.innerHTML = '<div class="q-head"><span class="num">' + q.n + '</span><div class="prompt">' + q.prompt + "</div></div>" + (q.fig || "");
+  q.blocks.forEach(function (b, bi) { art.appendChild(blockEl(b, art.id, bi)); });
+  addTail(art, graded, q);
+  art._q = q; art._graded = graded; art._count = true;
+  return art;
+}
+// a practice block inside the lesson: same engine, not counted in the score
+function buildMini(host, b) {
+  if (!host) return;
+  var art = document.createElement("div");
+  art.className = "q mini";
+  art.id = host.id + "-q";
+  art.appendChild(blockEl(b, art.id, 0));
+  addTail(art, true, {});
+  art._q = { blocks: [b] }; art._graded = true; art._count = false;
+  host.appendChild(art);
+}
+
+// ---------- checking ----------
+function accepts(el, v) { return Array.isArray(el) ? el.indexOf(v) >= 0 : el === v; }
+function lineCombos(l) {
+  return l.combos || [l.p.filter(function (p) { return p && p.slot; }).map(function (p) { return p.a; })];
+}
+function firstVal(el) { return Array.isArray(el) ? el[0] : el; }
+
+function check(art, reveal) {
+  var allOk = true, hint = "";
+  [].forEach.call(art.querySelectorAll(".blk"), function (d) {
+    var b = d._b;
+    if (b.t === "fill") {
+      [].forEach.call(d.querySelectorAll(".line"), function (lineEl, li) {
+        var slots = lineEl.querySelectorAll(".slot");
+        var combos = lineCombos(b.lines[li]);
+        var best = combos[0], bestN = -1;
+        combos.forEach(function (c) {
+          var n = 0;
+          [].forEach.call(slots, function (s, i) { if (accepts(c[i], s.dataset.v)) n++; });
+          if (n > bestN) { bestN = n; best = c; }
+        });
+        [].forEach.call(slots, function (s, i) {
+          if (reveal && !accepts(best[i], s.dataset.v)) setSlot(s, d, firstVal(best[i]));
+          var ok = accepts(best[i], s.dataset.v);
+          s.classList.toggle("ok", ok); s.classList.toggle("bad", !ok);
+          if (!ok) allOk = false;
+        });
+      });
+    } else if (b.t === "mcq") {
+      var opts = d.querySelectorAll(".opt");
+      if (reveal) [].forEach.call(opts, function (o) { o.classList.toggle("sel", +o.dataset.i === b.ok); });
+      var sel = d.querySelector(".opt.sel");
+      [].forEach.call(opts, function (o) { o.classList.remove("ok", "bad"); });
+      if (!sel) { allOk = false; return; }
+      var good = +sel.dataset.i === b.ok;
+      sel.classList.add(good ? "ok" : "bad");
+      if (!good) allOk = false;
+    } else if (b.t === "sort") {
+      var bins = d.querySelectorAll(".bin");
+      if (reveal) [].forEach.call(d.querySelectorAll(".chip"), function (c) {
+        var bin = c.closest(".bin");
+        if (!bin || bin.dataset.bin !== c.dataset.ok) moveChip(c, bins[+c.dataset.ok]);
+      });
+      if (d.querySelector(".tray .chip")) { allOk = false; hint = "لسا في كروت برّا السلال. حطّ كل كرت بسلّة، وبعدين افحص."; }
+      [].forEach.call(d.querySelectorAll(".bin .chip"), function (c) {
+        var ok = c.closest(".bin").dataset.bin === c.dataset.ok;
+        c.classList.toggle("ok", ok); c.classList.toggle("bad", !ok);
+        if (!ok) allOk = false;
+      });
+    } else if (b.t === "pick") {
+      var tg = d.querySelectorAll(".tog"), k = 0;
+      if (reveal) [].forEach.call(tg, function (t) { t.setAttribute("aria-pressed", b.sol.indexOf(t.dataset.v) >= 0 ? "true" : "false"); });
+      [].forEach.call(tg, function (t) {
+        t.classList.remove("ok", "bad");
+        if (t.getAttribute("aria-pressed") !== "true") return;
+        k++;
+        var ok = t.dataset.ok === "1";
+        t.classList.add(ok ? "ok" : "bad");
+        if (!ok) allOk = false;
+      });
+      updCnt(d);
+      if (k !== b.n) { allOk = false; if (!hint) hint = "لازم تختار " + ar(b.n) + " بالضبط."; }
+    } else if (reveal) {
+      d.querySelector(".model").hidden = false;
+    }
+  });
+  var fb = art.querySelector(".fb"), why = art.querySelector(".why.main");
+  var hasOpen = art._q.blocks.some(function (b) { return b.t === "open"; });
+  if (reveal) {
+    fb.className = "fb"; fb.textContent = art._graded ? "هاد الحل." + (why ? " اقرأ الشرح تحت." : "") : "";
+    if (why) why.hidden = false;
+  } else if (allOk) {
+    fb.className = "fb ok";
+    fb.textContent = "ممتاز! كله صح." + (hasOpen ? " اكبس «الحل» لتشوف الجواب النموذجي للشرح." : "");
+    if (why) why.hidden = false;
+    art.classList.add("done");
+    var num = art.querySelector(".q-head .num");
+    if (num) num.classList.add("ok");
+    if (!art._won) { art._won = true; burst(art.querySelector(".chk") || art); }
+    if (art._count) { solved[art.id] = 1; updateScore(); }
+  } else {
+    fb.className = "fb bad";
+    fb.textContent = hint || "في إشي مش مزبوط. الأحمر غلط أو فاضي: جرّب كمان مرة، أو اكبس «الحل».";
+  }
+}
+
+// ---------- drag & tap ----------
+var picked = null, drag = null, skipClick = false;
+function setSlot(s, d, v) {
+  s.dataset.v = v;
+  s.innerHTML = '<span class="chipin">' + chipHtml(d._b, v) + "</span>";
+  s.classList.add("filled");
+  s.classList.remove("ok", "bad");
+}
+function clearSlot(s) {
+  delete s.dataset.v; s.innerHTML = ""; s.classList.remove("filled", "ok", "bad");
+}
+function unpick() { if (picked) picked.classList.remove("sel"); picked = null; }
+// sort cards move for real: into a bin, or back to the tray
+function moveChip(c, drop, instant) {
+  var list = drop.classList.contains("bin") ? drop.querySelector(".binlist") : drop;
+  if (c.parentNode === list) return;
+  c.classList.remove("ok", "bad", "sel");
+  if (instant) list.appendChild(c); else fly(c, list);
+}
+function updCnt(d) {
+  var k = d.querySelectorAll('.tog[aria-pressed="true"]').length, n = d._b.n, c = d.querySelector(".cnt");
+  c.textContent = "اخترت " + ar(k) + " من " + ar(n);
+  c.classList.toggle("full", k === n);
+}
+function togglePick(t) {
+  var d = t.closest(".blk");
+  var on = t.getAttribute("aria-pressed") === "true";
+  if (!on && d.querySelectorAll('.tog[aria-pressed="true"]').length >= d._b.n) { shake(d.querySelector(".cnt")); return; }
+  t.setAttribute("aria-pressed", on ? "false" : "true");
+  [].forEach.call(d.querySelectorAll(".tog"), function (x) { x.classList.remove("ok", "bad"); });
+  updCnt(d);
+}
+// numbered drawings: the arrow of the line you are on blinks
+function pulseMk(line) {
+  var art = line.closest(".q"), mk = art && art.querySelector('.mk[data-m="' + line.dataset.m + '"]');
+  if (!mk) return;
+  mk.classList.remove("pulse");
+  void mk.getBoundingClientRect();
+  mk.classList.add("pulse");
+  clearTimeout(mk._t);
+  mk._t = setTimeout(function () { mk.classList.remove("pulse"); }, 1800);
+}
+
+document.addEventListener("pointerdown", function (e) {
+  var c = e.target.closest(".chip");
+  if (!c || e.button > 0) return;
+  drag = { chip: c, x: e.clientX, y: e.clientY, ghost: null, hot: null };
+});
+document.addEventListener("pointermove", function (e) {
+  if (!drag) return;
+  if (!drag.ghost) {
+    if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 7) return;
+    drag.ghost = drag.chip.cloneNode(true);
+    drag.ghost.classList.add("drag-ghost");
+    document.body.appendChild(drag.ghost);
+  }
+  e.preventDefault();
+  drag.ghost.style.left = e.clientX + "px";
+  drag.ghost.style.top = e.clientY + "px";
+  var t = document.elementFromPoint(e.clientX, e.clientY);
+  var s = t && t.closest(".slot, .drop");
+  if (s && s.closest(".blk") !== drag.chip.closest(".blk")) s = null;
+  if (drag.hot && drag.hot !== s) drag.hot.classList.remove("hot");
+  if (s && s !== drag.hot) {
+    s.classList.add("hot");
+    var ln = s.closest(".line[data-m]");
+    if (ln) pulseMk(ln);
+  }
+  drag.hot = s;
+}, { passive: false });
+function endDrag() {
+  if (!drag) return;
+  if (drag.ghost) {
+    drag.ghost.remove();
+    if (drag.hot) {
+      drag.hot.classList.remove("hot");
+      if (drag.hot.classList.contains("slot")) setSlot(drag.hot, drag.hot.closest(".blk"), drag.chip.dataset.v);
+      else moveChip(drag.chip, drag.hot, true);
+      unpick();
+    }
+    skipClick = true; setTimeout(function () { skipClick = false; }, 0);
+  }
+  drag = null;
+}
+document.addEventListener("pointerup", endDrag);
+document.addEventListener("pointercancel", endDrag);
+
+var lastLine = null;
+document.addEventListener("pointerover", function (e) {
+  if (e.pointerType !== "mouse" || !e.target.closest) return;
+  var l = e.target.closest(".line[data-m]");
+  if (l && l !== lastLine) pulseMk(l);
+  lastLine = l;
+});
+document.addEventListener("focusin", function (e) {
+  var l = e.target.closest && e.target.closest(".line[data-m]");
+  if (l) pulseMk(l);
+});
+
+document.addEventListener("click", function (e) {
+  if (skipClick) { skipClick = false; if (e.target.closest(".chip")) return; }
+  var c = e.target.closest(".chip");
+  if (c) {
+    if (c.closest(".bin")) { unpick(); moveChip(c, c.closest(".blk").querySelector(".tray")); return; }
+    if (picked === c) { unpick(); return; }
+    unpick(); picked = c; c.classList.add("sel"); return;
+  }
+  var tg = e.target.closest(".tog");
+  if (tg) { togglePick(tg); return; }
+  var s = e.target.closest(".slot");
+  if (s) {
+    var d = s.closest(".blk"), ln = s.closest(".line[data-m]");
+    if (ln) pulseMk(ln);
+    if (picked && picked.closest(".blk") === d) { setSlot(s, d, picked.dataset.v); unpick(); }
+    else if (s.dataset.v) clearSlot(s);
+    return;
+  }
+  var dz = e.target.closest(".drop");
+  if (dz) {
+    if (picked && picked.closest(".blk") === dz.closest(".blk")) { moveChip(picked, dz); unpick(); }
+    return;
+  }
+  var o = e.target.closest(".opt");
+  if (o) {
+    [].forEach.call(o.parentNode.querySelectorAll(".opt"), function (x) { x.classList.remove("sel", "ok", "bad"); });
+    o.classList.add("sel"); return;
+  }
+  var art = e.target.closest(".q");
+  if (art && e.target.closest(".chk")) { check(art, false); return; }
+  if (art && e.target.closest(".sol")) { check(art, true); return; }
+});
+
+// ---------- lesson: tap the cells ----------
+function cellWidget(id, kind, onPick) {
+  var box = $(id);
+  if (!box) return null;
+  box.classList.add("js");
+  box.querySelector(".cellart").innerHTML = CELL(kind, "explore");
+  var svg = box.querySelector("svg"), info = box.querySelector(".info"), cur = [];
+  var rows = [].slice.call(box.querySelectorAll(".parts li"));
+  function row(k) { for (var i = 0; i < rows.length; i++) if (rows[i].dataset.k === k) return rows[i]; return null; }
+  function show(keys) {
+    cur = keys;
+    svg.classList.toggle("dim", keys.length > 0);
+    [].forEach.call(svg.querySelectorAll(".pt"), function (p) {
+      var on = keys.indexOf(p.dataset.k) >= 0;
+      p.classList.toggle("on", on);
+      p.classList.remove("pop");
+      if (on && !RM.matches) { void p.getBoundingClientRect(); p.classList.add("pop"); }
+    });
+    rows.forEach(function (r) { r.querySelector(".pbtn").setAttribute("aria-pressed", keys.indexOf(r.dataset.k) >= 0 ? "true" : "false"); });
+    info.style.setProperty("--c", keys.length === 1 ? "var(--o-" + keys[0] + ")" : "var(--rule)");
+    info.innerHTML = keys.length ? keys.map(function (k) {
+      var r = row(k);
+      return "<p>" + r.querySelector(".pbtn").innerHTML + " " + r.querySelector(".ptxt").innerHTML + "</p>";
+    }).join("") : '<p class="muted">اكبس على أي جزء بالرسمة، أو على اسمه.</p>';
+  }
+  function pick(k) { show(cur.length === 1 && cur[0] === k ? [] : [k]); if (onPick) onPick(); }
+  svg.addEventListener("click", function (e) { var p = e.target.closest(".pt"); if (p) pick(p.dataset.k); });
+  svg.addEventListener("keydown", function (e) {
+    var p = e.target.closest && e.target.closest(".pt");
+    if (p && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); pick(p.dataset.k); }
+  });
+  rows.forEach(function (r) { r.querySelector(".pbtn").addEventListener("click", function () { pick(r.dataset.k); }); });
+  show([]);
+  return { show: show };
+}
+cellWidget("animalCell", "animal");
+(function () {
+  var tb = $("plantExtra");
+  var pw = cellWidget("plantCell", "plant", function () { if (tb) tb.setAttribute("aria-pressed", "false"); });
+  if (!tb || !pw) return;
+  tb.addEventListener("click", function () {
+    var on = tb.getAttribute("aria-pressed") !== "true";
+    pw.show(on ? ["wal", "vac", "chl"] : []);
+    tb.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+})();
+
+// ---------- lesson: order game (smallest to biggest) ----------
+(function () {
+  var det = $("orderGame"), lad = $("ladderBox");
+  if (!det) return;
+  var box = det.querySelector(".og");
+  var NAMES = ["ذرّة", "جزيء", "عضيّة", "خلية", "نسيج", "عضو", "جهاز", "كائن حي"];
+  box.innerHTML = '<p class="og-msg" aria-live="polite"></p><div class="og-pool"></div><ol class="og-rungs">' +
+    NAMES.map(function (n, i) { return '<li class="rung" style="--k:' + (i + 1) + '"><span class="rn">' + ar(i + 1) + '</span><span class="rs"></span></li>'; }).join("") +
+    '</ol><div class="actions"><button type="button" class="btn ghostbtn og-reset">من جديد</button></div>';
+  var pool = box.querySelector(".og-pool"), msg = box.querySelector(".og-msg"), rungs = box.querySelectorAll(".rung"), next = 0, done = false;
+  function setQuiz() { lad.classList.toggle("quiz", det.open && !done); }
+  function deal() {
+    next = 0; done = false;
+    var order = NAMES.map(function (n, i) { return i; });
+    do { shuffle(order); } while (order.join() === "0,1,2,3,4,5,6,7");
+    pool.innerHTML = order.map(function (i) { return '<button type="button" class="ochip" data-i="' + i + '">' + NAMES[i] + "</button>"; }).join("");
+    [].forEach.call(rungs, function (r) { r.classList.remove("full"); r.querySelector(".rs").innerHTML = ""; });
+    msg.textContent = "اكبس على الأصغر أول إشي.";
+    setQuiz();
+  }
+  pool.addEventListener("click", function (e) {
+    var c = e.target.closest(".ochip");
+    if (!c || done) return;
+    if (+c.dataset.i === next) {
+      c.disabled = true;
+      fly(c, rungs[next].querySelector(".rs"));
+      rungs[next].classList.add("full");
+      next++;
+      if (next === NAMES.length) {
+        done = true;
+        msg.textContent = "برافو! رتّبتهم كلهم صح، من الذرّة للكائن الحي.";
+        burst(box.querySelector(".og-rungs"), true);
+        setQuiz();
+      } else msg.textContent = "صح! هلّق شو اللي بعده، أكبر منه بخطوة؟";
+    } else {
+      shake(c);
+      msg.textContent = "لأ، في إشي أصغر منه. جرّب كمان.";
+    }
+  });
+  box.querySelector(".og-reset").addEventListener("click", deal);
+  det.addEventListener("toggle", setQuiz);
+  deal();
+})();
+
+// ---------- lesson: sort life features vs survival needs (practice, not counted) ----------
+buildMini($("lifeSort"), { t: "sort", shuffle: true,
+  bins: [{ t: "مميزة حياة (بيعملها)", c: "var(--life)" }, { t: "شرط بقاء (بيحتاجه)", c: "var(--need)" }],
+  items: [["حركة", 0, ["person-running"]], ["ماء", 1, ["droplet"]], ["تنفّس", 0, ["lungs"]], ["أكسجين", 1, ["wind-face"]], ["تكاثر", 0, ["hatching-chick"]],
+    ["غذاء", 1, ["red-apple"]], ["درجة حرارة", 1, ["thermometer"]], ["ضوء", 1, ["sun"]], ["تربة", 1, ["soil"]]] });
+
+// ---------- lesson: diffusion in a glass (true random walk, nothing pushes the dots) ----------
+(function () {
+  var cv = $("dCan");
+  if (!cv || !cv.getContext) return;
+  var ctx = cv.getContext("2d"), wrap = cv.parentNode;
+  var N = 140, STEP = 0.021, SPS = 120, P = [], G = {}, col = {};
+  var W = 0, H = 0, dpr = 1, raf = 0, last = 0, acc = 0;
+  var running = false, visible = true, fast = false, homo = 0, settled = -1, msg = "";
+  var stat = $("dStat"), rb = $("dRb"), lb = $("dLb"), rv = $("dRv"), lv = $("dLv"), fastB = $("dFast");
+  var IDLE = "اكبس «نقّط عصير التوت» وراقب شو بيصير.";
+  function readCols() { col.water = cssv("--water"); col.juice = cssv("--juice"); col.ink = cssv("--fg"); col.muted = cssv("--muted"); }
+  function size() {
+    var w = wrap.clientWidth;
+    if (!w || w === W) return;
+    dpr = Math.min(window.devicePixelRatio || 1, 3);
+    W = w; H = Math.round(w * 0.9);
+    cv.style.height = H + "px";
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    G.x0 = W * 0.15; G.x1 = W * 0.85; G.top = H * 0.04; G.surf = H * 0.13; G.bot = H * 0.96; G.r = Math.max(8, W * 0.04);
+    var pad = Math.max(4, G.r * 0.45);
+    G.wx0 = G.x0 + pad; G.wx1 = G.x1 - pad; G.wy0 = G.surf + pad; G.wy1 = G.bot - pad;
+    G.A = (G.wy1 - G.wy0) / (G.wx1 - G.wx0);
+    draw();
+  }
+  function cup(top, close) {
+    var x0 = G.x0, x1 = G.x1, b = G.bot, r = G.r;
+    ctx.beginPath();
+    ctx.moveTo(x0, top);
+    ctx.lineTo(x0, b - r);
+    ctx.quadraticCurveTo(x0, b, x0 + r, b);
+    ctx.lineTo(x1 - r, b);
+    ctx.quadraticCurveTo(x1, b, x1, b - r);
+    ctx.lineTo(x1, top);
+    if (close) ctx.closePath();
+  }
+  function px(p) { return G.wx0 + p.x * (G.wx1 - G.wx0); }
+  function py(p) { return G.wy0 + p.y * (G.wy1 - G.wy0); }
+  function draw() {
+    if (!W) return;
+    var i;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    cup(G.surf, true); ctx.fillStyle = col.water; ctx.fill();
+    if (P.length) {
+      // soft colour cloud: every dot tints the water around it a little
+      ctx.save(); cup(G.surf, true); ctx.clip();
+      ctx.globalAlpha = 0.07; ctx.fillStyle = col.juice;
+      var R = W * 0.085;
+      for (i = 0; i < P.length; i++) { ctx.beginPath(); ctx.arc(px(P[i]), py(P[i]), R, 0, 6.2832); ctx.fill(); }
+      ctx.restore();
+    }
+    // the middle line splits the glass into right and left
+    ctx.save(); ctx.setLineDash([5, 6]); ctx.globalAlpha = 0.55; ctx.strokeStyle = col.muted; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(W / 2, G.surf + 4); ctx.lineTo(W / 2, G.bot - 4); ctx.stroke(); ctx.restore();
+    if (P.length) {
+      var rr = Math.max(2, W * 0.0085);
+      ctx.fillStyle = col.juice; ctx.beginPath();
+      for (i = 0; i < P.length; i++) { var x = px(P[i]), y = py(P[i]); ctx.moveTo(x + rr, y); ctx.arc(x, y, rr, 0, 6.2832); }
+      ctx.fill();
+    }
+    ctx.strokeStyle = col.ink; ctx.lineWidth = 3; ctx.lineJoin = "round"; ctx.lineCap = "round";
+    cup(G.top, false); ctx.stroke();
+    ctx.globalAlpha = 0.4; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(G.x0 + 2, G.surf); ctx.lineTo(G.x1 - 2, G.surf); ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+  // every dot takes one small step in a random direction and bounces off the glass
+  function step() {
+    var A = G.A || 1;
+    for (var i = 0; i < P.length; i++) {
+      var p = P[i], a = Math.random() * 6.2832;
+      p.x += STEP * Math.cos(a); p.y += STEP * Math.sin(a) / A;
+      if (p.x < 0) p.x = -p.x; else if (p.x > 1) p.x = 2 - p.x;
+      if (p.y < 0) p.y = -p.y; else if (p.y > 1) p.y = 2 - p.y;
+    }
+  }
+  function say(t) { if (t !== msg) { msg = t; stat.textContent = t; } }
+  function bars() {
+    var r = 0;
+    for (var i = 0; i < P.length; i++) if (P[i].x > 0.5) r++;
+    var R = P.length ? Math.round(r / P.length * 100) : 0, Lf = P.length ? 100 - R : 0;
+    rv.textContent = R + "%"; lv.textContent = Lf + "%";
+    rb.style.width = R + "%"; lb.style.width = Lf + "%";
+    return Math.abs(R - Lf);
+  }
+  function frame(t) {
+    raf = 0;
+    if (!running || !visible) return;
+    var dt = last ? Math.min(0.1, (t - last) / 1000) : 1 / 60;
+    last = t;
+    acc += dt * SPS * (fast ? 2 : 1);
+    var n = 0;
+    while (acc >= 1 && n < 60) { step(); acc -= 1; n++; }
+    var diff = bars();
+    if (settled < 0) {
+      if (diff <= 8) homo += dt; else homo = 0;
+      if (homo >= 0.6) { settled = 0; say("صار متجانس! اللون نفسه بكل الكاسة"); }
+      else say(diff > 70 ? "التركيز عالي بمحل واحد" : "الجزيئات عم تنتشر…");
+    } else if ((settled += dt) > 3.5) running = false;
+    draw();
+    if (running) raf = requestAnimationFrame(frame);
+  }
+  function kick() { if (running && visible && !raf) { last = 0; raf = requestAnimationFrame(frame); } }
+  function g3() { return (Math.random() + Math.random() + Math.random() - 1.5) / 1.5; }
+  function drop() {
+    P = [];
+    for (var i = 0; i < N; i++) P.push({ x: Math.min(0.99, Math.max(0.62, 0.9 + g3() * 0.09)), y: Math.min(0.3, Math.abs(g3()) * 0.13) });
+    running = true; settled = -1; homo = 0; acc = 0;
+    bars(); say("التركيز عالي بمحل واحد"); draw(); kick();
+  }
+  function reset() { running = false; P = []; bars(); say(IDLE); draw(); }
+  $("dDrop").addEventListener("click", drop);
+  $("dReset").addEventListener("click", reset);
+  fastB.addEventListener("click", function () { fast = !fast; fastB.setAttribute("aria-pressed", fast ? "true" : "false"); });
+  readCols(); size(); reset();
+  if (window.ResizeObserver) new ResizeObserver(function () { size(); }).observe(wrap);
+  else window.addEventListener("resize", size);
+  if (window.IntersectionObserver) new IntersectionObserver(function (es) { visible = es[es.length - 1].isIntersecting; kick(); }).observe(cv);
+  if (window.matchMedia) {
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    if (mq.addEventListener) mq.addEventListener("change", function () { readCols(); draw(); });
+  }
+})();
+
+// ---------- lesson: flip cards ----------
+[].forEach.call(document.querySelectorAll(".flip"), function (f) {
+  var fr = f.querySelector(".front"), bk = f.querySelector(".back");
+  function sync() {
+    var on = f.getAttribute("aria-pressed") === "true";
+    fr.setAttribute("aria-hidden", on ? "true" : "false");
+    bk.setAttribute("aria-hidden", on ? "false" : "true");
+  }
+  f.addEventListener("click", function () {
+    f.setAttribute("aria-pressed", f.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    sync();
+  });
+  sync();
+});
+
+// ---------- review questions ----------
+var OB = ["غشاء الخلية", "سيتوبلازم", "نواة", "ميتوكوندريا", "جدار الخلية", "فجوة عصارية", "بلاستيدات خضراء"];
+function numLines(keys) { return keys.map(function (k, i) { return { p: [MK(i + 1), S(ONAME[k])], m: i }; }); }
+
+var WS1 = [
+  { n: "1", prompt: "أي من بين الإجابات التالية هي <b>مميزات حياة</b>؟",
+    blocks: [{ t: "mcq", ok: 1, opts: ["1) درجة حرارة وماء", "2) حركة، تنفّس، تكاثر", "3) أكسجين، ماء", "4) غذاء، ضوء، تربة"] }],
+    why: ["مميزات الحياة = أشياء الكائن الحي <b>بيعملها</b>: بيتحرّك، بيتنفّس، بيتكاثر ← الجواب 2.",
+      "1، 3، 4: هدول أشياء الكائن الحي <b>بيحتاجها</b> من البيئة عشان يعيش ← هدول <b>شروط بقاء</b>، مش مميزات حياة."] },
+
+  { n: "2", prompt: "اذكر 3 من <b>احتياجات البقاء</b> للكائنات الحية.<small>اكبس على 3 أجوبة.</small>",
+    blocks: [{ t: "pick", n: 3, shuffle: true, sol: ["درجة حرارة", "غذاء", "ماء"], opts: [
+      ["ماء", 1, "droplet"], ["غذاء", 1, "red-apple"], ["درجة حرارة", 1, "thermometer"], ["أكسجين", 1, "wind-face"], ["ضوء", 1, "sun"], ["تربة", 1, "soil"],
+      ["حركة", 0, "person-running"], ["تنفّس", 0, "lungs"], ["تكاثر", 0, "hatching-chick"]] }],
+    why: ["احتياجات البقاء = الأشياء اللي لازم الكائن الحي يلاقيها ببيئته عشان يضلّ عايش.",
+      "حركة، تنفّس، تكاثر: هدول <b>مميزات حياة</b> (أشياء بيعملها)، مش احتياجات."],
+    paper: "درجة حرارة، غذاء، ماء." },
+
+  { n: "3", prompt: "اكتب اسم <b>العضيّة</b> بجانب الجملة.",
+    blocks: [{ t: "fill", bank: OB, lines: [
+      L(lab("1) «أنا محطة القوة في الخلية»"), S("ميتوكوندريا")),
+      L(lab("2) «أنا أحوي <bdi>DNA</bdi> (صفات وراثية) ومسؤولة عن انقسام الخلية»"), S("نواة")),
+      L(lab("3) «أنا شبه نفّاذ، اختياري لبعض المواد»"), S("غشاء الخلية")),
+      L(lab("4) «أنا أحوي كلوروفيل كي أقوم بالتمثيل الضوئي»"), S("بلاستيدات خضراء")),
+      L(lab("5) «أنا أخزّن الماء والمواد»"), S("فجوة عصارية")),
+      L(lab("6) «أنا أحمي وأدعم الخلية»"), S("جدار الخلية")),
+      L(lab("7) «أنا سائل أشبه الجلي»"), S("سيتوبلازم"))
+    ] }],
+    why: ["محطة القوة = الميتوكوندريا: هي اللي بتعطي الخلية قوة تشتغل.",
+      "<bdi>DNA</bdi> والانقسام = النواة.",
+      "شبه نفّاذ = الغشاء: بيختار شو يدخل وشو يطلع.",
+      "كلوروفيل وتمثيل ضوئي = البلاستيدات الخضرا، وهي بس بالنبات.",
+      "تخزين مي ومواد = الفجوة العصارية.",
+      "حماية ودعم = جدار الخلية.",
+      "سائل زي الجلي = السيتوبلازم."] },
+
+  { n: "4", prompt: "ماذا نعني بكائن <b>فقاري</b>؟",
+    blocks: [{ t: "open", a: "كائن يمتلك عظامًا وهيكلًا عظميًّا داخل جسمه، وله عمود فقري." }],
+    why: ["كلمة السر: <b>عظام جوّا الجسم + عمود فقري</b>."],
+    paper: "كائن يمتلك عظام وهيكل عظام." },
+
+  { n: "5", prompt: "صنّف الكائنات التالية لفقاري ولافقاري.",
+    blocks: [{ t: "sort", bins: [{ t: "فقاري", c: "var(--accent)" }, { t: "لافقاري", c: "var(--warn)" }], items: [
+      ["البطة", 0, ["duck"]], ["الخنفساء", 1, ["beetle"]], ["الأفعى", 0, ["snake"]], ["الإنسان", 0, ["person"]], ["الدلفين", 0, ["dolphin"]],
+      ["الذبابة", 1, ["fly"]], ["الضفدع", 0, ["frog"]], ["النحلة", 1, ["honeybee"]], ["الأفعى المائية", 0, ["snake", "water-wave"]], ["الحلزون", 1, ["snail"]]] }],
+    why: ["اسأل حالك: عنده عظام وعمود فقري جوّا جسمه؟",
+      "فقاري: بطة (طيور)، أفعى وأفعى مائية (زواحف)، إنسان ودلفين (ثدييات)، ضفدع (برمائيات).",
+      "لافقاري: خنفساء، ذبابة، نحلة (حشرات)، حلزون (رخويات)."],
+    paper: "فقاري: بطة، أفعى، إنسان، دلفين، ضفدع، أفعى مائية. — لافقاري: خنفساء، ذبابة، نحلة، حلزون." },
+
+  { n: "6", prompt: "اكتب بجانب كل مثال <b>رقم المصطلح</b> من التدريج البيولوجي (التسلسل الهرمي).",
+    blocks: [{ t: "fill", bank: ["① نسيج", "② عضو", "③ كائن حي", "④ جهاز", "⑤ عضيّة", "⑥ خلية", "⑦ جزيء", "⑧ ذرّة"], lines: [
+      L(SC("dna"), lab("نواة"), S("⑤ عضيّة")),
+      L(lab("جلدي"), S("① نسيج")),
+      L(SC("elephant"), lab("فيل"), S("③ كائن حي")),
+      L(SC("stomach"), lab("معدة"), S("② عضو")),
+      L(lab("خلية بشرة"), S("⑥ خلية")),
+      L(lab("وحدة واحدة من مادة المغنيزيوم"), S("⑧ ذرّة")),
+      L(SC("droplet"), lab("ماء"), S("⑦ جزيء")),
+      L(SC("nose", "lungs"), lab("الأنف + الرئتين + القصبة الهوائية"), S("④ جهاز"))
+    ] }],
+    why: ["نواة: جزء صغير جوّا الخلية ← <b>عضيّة</b> (5).",
+      "جلدي = نسيج الجلد: خلايا متشابهة بتشتغل مع بعض ← <b>نسيج</b> (1).",
+      "فيل: كائن كامل بكل أجهزته ← <b>كائن حي</b> (3).",
+      "معدة: كم نسيج مع بعض بيعملوا شغلة ← <b>عضو</b> (2).",
+      "خلية بشرة: أصغر وحدة حيّة ← <b>خلية</b> (6).",
+      "وحدة واحدة من مادة المغنيزيوم: أصغر وحدة بالمادة ← <b>ذرّة</b> (8).",
+      "ماء: كم ذرّة مربوطين مع بعض ← <b>جزيء</b> (7).",
+      "الأنف + الرئتين + القصبة الهوائية: كم عضو بيشتغلوا مع بعض ← <b>جهاز</b> (4)."],
+    paper: "نواة (5)، جلدي (1)، فيل (3)، معدة (2)، خلية بشرة (6)، وحدة واحدة من مادة المغنيزيوم (8)، ماء (7)، الأنف + الرئتين + القصبة الهوائية (4)." },
+
+  { n: "7", prompt: "اكتب بجانب الجملة: <b>وحيد خلية</b> أو <b>متعدّد خلايا</b>.<small>ممكن تستعمل نفس الجواب أكتر من مرة.</small>",
+    blocks: [{ t: "fill", bank: [chipI("وحيد خلية", "microbe"), chipI("متعدّد خلايا", "person")], lines: [
+      L(lab("1) «أنا أعيش ببيئة رطبة»"), S("وحيد خلية")),
+      L(lab("2) «أنا مبني من ملايين الخلايا»"), S("متعدّد خلايا")),
+      L(lab("3) «أنا أميبا»"), S("وحيد خلية")),
+      L(lab("4) «أنا فيل، مبني من عدّة خلايا»"), S("متعدّد خلايا")),
+      L(lab("5) «أنا يوجد في جسمي أجهزة»"), S("متعدّد خلايا"))
+    ] }],
+    why: ["1) بيئة رطبة: وحيد الخلية صغير كتير وبيعيش ببيئة رطبة ← <b>وحيد خلية</b>.",
+      "2) ملايين الخلايا ← أكيد <b>متعدّد خلايا</b>.",
+      "3) الأميبا كل جسمها خلية وحدة بس ← <b>وحيد خلية</b>.",
+      "4) الفيل جسمه مبني من خلايا كتير ← <b>متعدّد خلايا</b>.",
+      "5) أجهزة بالجسم؟ هاي بس عند <b>متعدّد الخلايا</b> (فيه أنسجة وأعضاء وأجهزة)."] },
+
+  { n: "8", prompt: "انظر إلى رسمة الخلية وأجب:",
+    fig: '<div class="fig">' + CELL("animal", "num", MK_Q8) + "</div>",
+    blocks: [
+      { t: "mcq", q: "1. ما هذه الخلية؟", ok: 0, opts: ["حيوانية", "نباتية"] },
+      { t: "mcq", q: "2. هل تبني جسم الإنسان أم البكتيريا؟", ok: 0, opts: ["جسم الإنسان", "البكتيريا"] },
+      { t: "fill", q: "3. اكتب اسم العضيّة بجانب كل رقم", bank: ["نواة", "غشاء الخلية", "سيتوبلازم", "ميتوكوندريا"], lines: numLines(["mem", "mit", "nuc", "cyt"]) }],
+    why: ["ما في جدار خلية، ولا بلاستيدات خضرا، ولا فجوة عصارية ← <b>حيوانية</b>.",
+      "جسم الإنسان مبني من خلايا حيوانية زي هاي. البكتيريا كائن وحيد الخلية، وخليته بسيطة وما فيها نواة.",
+      mkb(1) + " غشاء الخلية (برّا خالص)، " + mkb(2) + " ميتوكوندريا (الحبّة اللي جوّاها خط متعرّج)، " + mkb(3) + " نواة (الدايرة الكبيرة)، " + mkb(4) + " سيتوبلازم (السائل اللي معبّي الخلية)."] },
+
+  { n: "9", prompt: "انظر إلى رسمة الخلية وأجب:",
+    fig: '<div class="fig">' + NEURON + "</div>",
+    blocks: [
+      { t: "mcq", q: "1. ما اسم الخلية؟", ok: 0, shuffle: true, opts: ["خلية عصبية", "خلية عضلات", "خلية دم حمراء", "خلية بشرة"] },
+      { t: "mcq", q: "2. ما وظيفتها؟", ok: 0, shuffle: true, opts: ["نقل (استيعاب) معلومات من البيئة", "تحريك الجسم", "نقل الأكسجين إلى جميع الخلايا", "حماية الجسم والدفاع عنه من الأجسام الغريبة"] },
+      { t: "mcq", q: "3. كيف يلائم شكلها وظيفتها؟", ok: 0, shuffle: true, opts: ["لها تفرّعات: متفرّعة / متشعّبة", "طويلة تتقلّص وتتمدّد", "صغيرة جدًّا ولها سوط (ذيل)", "كثيفة جدًّا ومتراصّة"] }],
+    why: ["الشكل اللي إله <b>تفرّعات</b> كتير وذيل طويل ← <b>خلية عصبية</b> (خلية أعصاب).",
+      "شغلتها: <b>نقل (استيعاب) معلومات من البيئة</b>.",
+      "شكلها بيلائم شغلتها لأنه إلها <b>تفرّعات</b>: متفرّعة / متشعّبة.",
+      "باقي الأجوبة لخلايا تانية: تحريك الجسم، وطويلة بتتقلّص وبتتمدّد = <b>عضلات</b>. نقل الأكسجين = <b>دم حمراء</b>. حماية الجسم = <b>دم بيضاء</b>. صغيرة وإلها سوط (ذيل) = <b>حيوان منوي</b>. كثيفة ومتراصّة = <b>بشرة</b>."],
+    paper: "1) خلية عصبية. 2) نقل معلومات من البيئة. 3) متفرّعة / متشعّبة." }
+];
+
+// ---------- organelles worksheet ----------
+var WS2 = [
+  { n: "1", prompt: "<b>خلية حيوانية</b>: اكتب اسم الجزء بجانب كل رقم.",
+    fig: '<div class="fig">' + CELL("animal", "num", MK_A) + "</div>",
+    blocks: [{ t: "fill", bank: ["نواة", "ميتوكوندريا", "غشاء الخلية", "سيتوبلازم"], lines: numLines(["mem", "cyt", "nuc", "mit"]) }],
+    why: [mkb(1) + " <b>غشاء الخلية</b>: بيحيط بالخلية، و<b>شبه نفّاذ</b> (اختياري لبعض المواد).",
+      mkb(2) + " <b>سيتوبلازم</b>: سائل بيشبه الجلي، بيعبّي الخلية.",
+      mkb(3) + " <b>نواة</b>: فيها <bdi>DNA</bdi>، ومسؤولة عن انقسام الخلية.",
+      mkb(4) + " <b>ميتوكوندريا</b>: محطة القوة بالخلية."] },
+
+  { n: "2", prompt: "<b>خلية نباتية</b>: اكتب اسم الجزء بجانب كل رقم.",
+    fig: '<div class="fig">' + CELL("plant", "num", MK_P) + "</div>",
+    blocks: [{ t: "fill", bank: OB, lines: numLines(["wal", "mem", "cyt", "nuc", "vac", "chl", "mit"]) }],
+    why: [mkb(1) + " <b>جدار الخلية</b>: برّا خالص، بيحمي وبيدعم الخلية.",
+      mkb(2) + " <b>غشاء الخلية</b>: جوّا الجدار على طول، شبه نفّاذ.",
+      mkb(3) + " <b>سيتوبلازم</b>: السائل اللي زي الجلي.",
+      mkb(4) + " <b>نواة</b>: فيها <bdi>DNA</bdi>، ومسؤولة عن انقسام الخلية.",
+      mkb(5) + " <b>فجوة عصارية</b>: الكبيرة بالنص، بتخزّن المي والمواد.",
+      mkb(6) + " <b>بلاستيدات خضراء</b>: فيها كلوروفيل، وبتقوم بالتمثيل الضوئي.",
+      mkb(7) + " <b>ميتوكوندريا</b>: محطة القوة."] }
+];
+
+// ---------- research passage (ministry grade 7 exam, 2013, question 5) ----------
+function bottle(name, temp) {
+  return '<figure><svg viewBox="0 0 60 90" width="70" height="105" aria-hidden="true">' +
+    '<rect x="22" y="4" width="16" height="12" rx="3" style="fill:var(--fg)"></rect>' +
+    '<path d="M24 16 V28 C10 34 8 44 8 54 V78 a8 8 0 0 0 8 8 H44 a8 8 0 0 0 8 -8 V54 C52 44 50 34 36 28 V16 Z" style="fill:var(--surface);stroke:var(--fg);stroke-width:3"></path>' +
+    '<path d="M11 56 H49 V78 a5 5 0 0 1 -5 5 H16 a5 5 0 0 1 -5 -5 Z" style="fill:#E64980;opacity:.85"></path></svg>' +
+    "<br>قنّينة «" + name + "»<br><bdi>" + temp + "</bdi></figure>";
+}
+var WS3 = [
+  { n: "1", prompt: "قاس باسل الزمن الذي يستغرق لرائحة عطر الانتشار في فضاء الغرفة حتى يشمّها. أخذ باسل قنّينتين متشابهتين من العطر. تمّ حفظ كلّ قنّينة عطر قبل فتحها بدرجات حرارة مختلفة: القنّينة «أ» حُفظت بدرجة حرارة الغرفة (<bdi>25°C</bdi>) والقنّينة «ب» حُفظت بدرجة حرارة (<bdi>4°C</bdi>).",
+    fig: '<div class="fig">' + bottle("أ", "25°C") + bottle("ب", "4°C") + "</div>",
+    blocks: [
+      { t: "mcq", q: "أ. زمن انتشار العطر الذي تمّ حفظه بدرجة حرارة الغرفة (<bdi>25°C</bdi>) منذ لحظة فتح القنّينة وحتى شمّ الرائحة، يكون … زمن انتشار العطر الذي تمّ حفظه بدرجة حرارة (<bdi>4°C</bdi>).", ok: 0, opts: ["أقصر من", "أطول من", "مساوٍ لـ"] },
+      { t: "open", q: "فسّروا اختياركم بواسطة المبنى الجسيميّ للمادة.", a: "جسيمات العطر المحفوظ بدرجة حرارة الغرفة تتحرّك أسرع من جسيمات العطر المحفوظ بالبرد. كلّما كانت حركة الجسيمات أسرع، كان الانتشار أسرع، فيكون زمن الانتشار أقصر ونشمّ الرائحة أبكر." },
+      { t: "fill", q: "ب. أكملوا: في التجربة التي أجراها باسل…", bank: ["نوع العطر", "زمن انتشار العطر", "كمية العطر", "درجة حرارة العطر"], lines: [
+        L("<b>العامل المؤثّر</b> هو", S("درجة حرارة العطر")),
+        L("و<b>العامل المتأثّر</b> هو", S("زمن انتشار العطر"))
+      ] },
+      { t: "pick", q: "ج. اذكروا عاملين إضافيين يجب حفظهما <b>ثابتين</b> أثناء هذه التجربة. (اكبس على 2)", n: 2, shuffle: true, sol: ["نوع العطر", "كمية العطر"], opts: [
+        ["نوع العطر", 1], ["كمية العطر", 1], ["درجة حرارة الغرفة", 1], ["البعد عن القنّينة", 1], ["درجة حرارة العطر", 0], ["زمن انتشار العطر", 0]] }],
+    why: ["أ) بالحرارة الجسيمات <b>بتتحرّك أسرع</b>، فالعطر بينتشر أسرع وبنشمّه بوقت <b>أقصر</b>. بالبرد الجسيمات أبطأ، فبدها وقت أطول.",
+      "ب) شو كان <b>مختلف</b> بين القنّينتين؟ درجة حرارة العطر ← هاد <b>العامل المؤثّر</b>. شو <b>قاس</b> باسل؟ الزمن لحدّ ما شمّ الريحة ← هاد <b>العامل المتأثّر</b>.",
+      "ج) العوامل الثابتة = كل إشي تاني لازم يضلّ نفسه بالقنّينتين: نوع العطر، كمية العطر، درجة حرارة الغرفة، البعد عن القنّينة.",
+      "ليش مش «درجة حرارة العطر»؟ لأنها الإشي اللي غيّرناه (المؤثّر). وليش مش «زمن الانتشار»؟ لأنه الإشي اللي بنقيسه (المتأثّر)."],
+    paper: "أ) أقصر من. ب) العامل المؤثّر: درجة حرارة العطر. العامل المتأثّر: زمن انتشار العطر. ج) نوع العطر، كمية العطر." }
+];
+
+// ---------- build the question cards + score ----------
+var ALL = [], solved = {}, finaleShown = false;
+[[WS1, "list1", "a"], [WS2, "list2", "b"], [WS3, "list3", "c"]].forEach(function (g) {
+  var box = $(g[1]);
+  g[0].forEach(function (q) { var a = buildQ(q, g[2]); box.appendChild(a); ALL.push(a); });
+});
+function updateScore() {
+  var total = ALL.filter(function (a) { return a._graded; }).length, n = Object.keys(solved).length;
+  $("scoreTxt").textContent = "صح: " + n + " من " + total;
+  $("scoreBar").style.width = (total ? n / total * 100 : 0) + "%";
+  if (total && n === total && !finaleShown) {
+    finaleShown = true;
+    $("finale").hidden = false;
+    $("score").classList.add("win");
+    burst($("finale"), true);
+  }
+}
+$("finX").addEventListener("click", function () { $("finale").hidden = true; });
+updateScore();
+
+// ---------- scroll reveal (only when motion is ok) ----------
+if (window.IntersectionObserver && !RM.matches) {
+  var rvIO = new IntersectionObserver(function (es) {
+    es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); rvIO.unobserve(en.target); } });
+  }, { rootMargin: "0px 0px -6% 0px", threshold: 0.04 });
+  [].forEach.call(document.querySelectorAll(".card, .how, #list1 > .q, #list2 > .q, #list3 > .q"), function (el) { el.classList.add("rv"); rvIO.observe(el); });
+}
+</script>
+</body>
+</html>
