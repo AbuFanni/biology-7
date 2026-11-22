@@ -307,6 +307,17 @@
   .cg-ch button.bad { border-color: var(--bad); background: var(--bad-bg); text-decoration: line-through; }
   .cg-ch button:disabled { cursor: default; }
   .cg-ch button.bad:disabled, .cg-ch button.dim:disabled { opacity: .5; }
+  /* research passage 2: bar chart */
+  .chartfig { flex: 1 1 100%; margin: 0; }
+  .chartfig figcaption { font-weight: 700; text-align: center; margin-bottom: .3rem; line-height: 1.5; }
+  .barc .gl { stroke: var(--rule); stroke-width: 1; } .barc .ax { stroke: var(--fg); stroke-width: 1.5; }
+  .barc text { fill: var(--fg); font-size: 13px; } .barc .vl { font-weight: 700; font-size: 14px; }
+  .barc .hb { fill: var(--bad); } .barc .bb { fill: var(--accent); }
+  .barc rect { transform-box: fill-box; transform-origin: 50% 100%; }
+  .q.in .barc rect { animation: growbar .9s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes growbar { from { transform: scaleY(0); } }
+  .legend { display: flex; flex-wrap: wrap; gap: .3rem 1rem; justify-content: center; margin: .3rem 0 0; font-size: .95rem; }
+  .legend i { display: inline-block; width: .9rem; height: .9rem; border-radius: 3px; vertical-align: -2px; margin-inline-end: .35rem; }
   @keyframes squeeze { 50% { transform: scale(.72, 1.3); } }
   @keyframes wig { from { transform: scaleY(1); } to { transform: scaleY(-1); } }
 
@@ -423,6 +434,7 @@
   }
   @keyframes mkp { to { transform: scale(1.3); } }
   @media (prefers-reduced-motion: reduce) {
+    .barc rect { animation: none !important; }
     .drag-ghost { transform: translate(-50%, -60%); }
     .floats .ic { animation: none; }
     .rv { opacity: 1; transform: none; transition: none; }
@@ -463,7 +475,8 @@
       <a href="#explain">الشرح</a>
       <a href="#ws1" class="alt">أسئلة المراجعة</a>
       <a href="#ws2" class="alt">ورقة عضيّات الخلية</a>
-      <a href="#ws3" class="alt">قطعة بحث علمي</a>
+      <a href="#ws3" class="alt">قطعة بحث ١</a>
+      <a href="#ws4" class="alt">قطعة بحث ٢</a>
     </nav>
   </header>
 
@@ -740,7 +753,7 @@
     <div class="tip"><b>دقّق!</b> <b>النتيجة</b> = شو شفنا وقسنا بالتجربة. <b>الاستنتاج</b> = شو تعلّمنا من النتيجة.</div>
   </section>
 
-  <div class="part-title" id="questions"><h2>يلّا نحلّ</h2><span>أسئلة المراجعة، ورقة عضيّات الخلية، وقطعة بحث</span></div>
+  <div class="part-title" id="questions"><h2>يلّا نحلّ</h2><span>أسئلة المراجعة، ورقة عضيّات الخلية، وقطعتين بحث</span></div>
   <div class="how">
     <b>كيف تحلّ؟</b>
     <ol>
@@ -758,10 +771,13 @@
   <div class="ws-title" id="ws2"><h2>ورقة عضيّات الخلية</h2><p>سمِّ الأجزاء اللي الأسهم بتأشّر عليها</p></div>
   <div id="list2" class="wrap" style="max-width:none"></div>
 
-  <div class="ws-title" id="ws3"><h2>قطعة بحث علمي</h2><p>من امتحان وزارة المعارف في العلوم والتكنولوجيا للصف السابع</p></div>
+  <div class="ws-title" id="ws3"><h2>قطعة بحث علمي ١: انتشار العطر</h2><p>من امتحان وزارة المعارف في العلوم والتكنولوجيا للصف السابع</p></div>
   <div id="list3" class="wrap" style="max-width:none"></div>
 
-  <footer>الأيقونات: OpenMoji ‏(CC BY-SA 4.0). <span id="photo-credits">الصور الحقيقية من Wikimedia Commons: الأميبا (Cymothoa exigua، CC BY-SA 3.0)، خلايا الخدّ (Fritzmann2002، CC BY-SA 4.0)، خلايا النبات (‎~delta، CC BY-SA 4.0)، خلايا الدم (Bruce Wetzel و Harry Schaefer، ملك عام)، الخلية العصبية (Berkshire Community College، CC0).</span> قطعة البحث: امتحان العلوم والتكنولوجيا للصف السابع، وزارة المعارف، 2013.</footer>
+  <div class="ws-title" id="ws4"><h2>قطعة بحث علمي ٢: نبض القلب والتنفّس</h2><p>كمان من نفس امتحان الوزارة للصف السابع</p></div>
+  <div id="list4" class="wrap" style="max-width:none"></div>
+
+  <footer>الأيقونات: OpenMoji ‏(CC BY-SA 4.0). <span id="photo-credits">الصور الحقيقية من Wikimedia Commons: الأميبا (Cymothoa exigua، CC BY-SA 3.0)، خلايا الخدّ (Fritzmann2002، CC BY-SA 4.0)، خلايا النبات (‎~delta، CC BY-SA 4.0)، خلايا الدم (Bruce Wetzel و Harry Schaefer، ملك عام)، الخلية العصبية (Berkshire Community College، CC0).</span> قطع البحث: امتحان العلوم والتكنولوجيا للصف السابع (صيغة أ، السؤالان 5 و20)، وزارة المعارف، 2013.</footer>
 </div>
 
 <div class="score" id="score"><span id="scoreTxt" aria-live="polite">صح: 0 من 0</span><span class="pb" aria-hidden="true"><i id="scoreBar"></i></span></div>
@@ -1728,9 +1744,54 @@ var WS3 = [
     paper: "أ) أقصر من. ب) العامل المؤثّر: درجة حرارة العطر. العامل المتأثّر: زمن انتشار العطر. ج) نوع العطر، كمية العطر." }
 ];
 
+function barChart() {
+  var D = [["راحة", 70, 19], ["بعد المشي", 97, 27], ["بعد الركض", 128, 38]];
+  var x0 = 40, y0 = 178, sc = 150 / 140, gw = 98, h = "";
+  for (var v = 0; v <= 140; v += 20) {
+    var y = (y0 - v * sc).toFixed(1);
+    h += '<line x1="' + x0 + '" x2="336" y1="' + y + '" y2="' + y + '" class="' + (v ? "gl" : "ax") + '"></line><text x="' + (x0 - 6) + '" y="' + (+y + 4) + '" text-anchor="end">' + v + "</text>";
+  }
+  D.forEach(function (d, i) {
+    var gx = x0 + 14 + i * gw;
+    [[d[1], "hb", 0], [d[2], "bb", 36]].forEach(function (b) {
+      var bh = b[0] * sc, x = gx + b[2], y = y0 - bh;
+      h += '<rect class="' + b[1] + '" x="' + x + '" y="' + y.toFixed(1) + '" width="32" height="' + bh.toFixed(1) + '" rx="2" style="animation-delay:' + (i * 0.15) + 's"></rect>' +
+        '<text class="vl" x="' + (x + 16) + '" y="' + (y - 5).toFixed(1) + '" text-anchor="middle">' + b[0] + "</text>";
+    });
+    h += '<text x="' + (gx + 34) + '" y="' + (y0 + 17) + '" text-anchor="middle">' + d[0] + "</text>";
+  });
+  h += '<text x="188" y="' + (y0 + 34) + '" text-anchor="middle" style="font-weight:700">فعاليات الجسم</text>';
+  return '<figure class="chartfig"><figcaption>معدّلا عدد نبضات القلب وعدد مرّات التنفّس في الدقيقة في ثلاثة أوضاع لفعاليات جسمية</figcaption>' +
+    '<svg class="figsvg barc" viewBox="0 0 340 218" style="direction:ltr" role="img" aria-label="رسم بياني: راحة: نبض 70 وتنفّس 19. بعد المشي: نبض 97 وتنفّس 27. بعد الركض: نبض 128 وتنفّس 38.">' + h + "</svg>" +
+    '<p class="legend"><span><i style="background:var(--bad)"></i>معدّل نبضات القلب في الدقيقة</span><span><i style="background:var(--accent)"></i>معدّل مرّات التنفّس في الدقيقة</span></p></figure>';
+}
+var WS4 = [
+  { n: "1", prompt: "قارن تلاميذ صفّ سابع في مدرسة «ابن سينا» معدّل عدد نبضات القلب لديهم في الدقيقة ومعدّل عدد مرّات التنفّس في الدقيقة بين ثلاثة أوضاع مختلفة لفعاليات جسمية: <b>راحة</b>، بعد <b>مشي</b> 10 دقائق، وبعد <b>ركض</b> 10 دقائق. عرضوا النتائج في الرسم البيانيّ التالي:",
+    fig: '<div class="fig">' + barChart() + "</div>",
+    blocks: [
+      { t: "mcq", q: "أ. عيّنوا بالنسبة لكلّ من الأقوال التالية إذا كان <u>استنتاجًا من هذه التجربة</u>.<br>1. بعد المشي، يزداد معدّل نبضات القلب لكن معدّل وتيرة التنفّس لا يتغيّر بالمقارنة مع وضع الراحة.", ok: 1, opts: ["نعم", "لا"] },
+      { t: "mcq", q: "2. كلّما كانت الفعالية الجسمية مجهدة أكثر يزداد معدّل نبضات القلب ويزداد معدّل وتيرة التنفّس.", ok: 0, opts: ["نعم", "لا"] },
+      { t: "mcq", q: "3. كلّما كان زمن الركض أطول درجة حرارة الجسم ترتفع أكثر.", ok: 1, opts: ["نعم", "لا"] },
+      { t: "open", q: "ب. فسّروا النتائج المعروضة في الرسم البيانيّ. تطرّقوا في تفسيركم إلى عملية إنتاج الطاقة في الخلية.",
+        a: "<ul><li>أثناء المجهود، <b>خلايا العضلات</b> بحاجة لطاقة أكثر، فتستهلك <b>أكسجين</b> أكثر لإنتاج الطاقة (في الميتوكوندريا).</li>" +
+          "<li>عند إنتاج الطاقة يتكوّن في الخلايا <b>ثاني أكسيد الكربون</b>، ويجب التخلّص منه.</li>" +
+          "<li><b>وتيرة التنفّس ترتفع</b> لكي يدخل أكسجين أكثر إلى الرئتين ومنهما إلى الخلايا، ولكي يخرج ثاني أكسيد الكربون.</li>" +
+          "<li><b>نبضات القلب تزداد</b> لكي يصل الدم الغنيّ بالأكسجين إلى الخلايا بسرعة أكبر، ولكي يُنقل منها ثاني أكسيد الكربون.</li></ul>" },
+      { t: "fill", q: "ج. تدريب زيادة (مش من الامتحان): أكملوا…", bank: ["نوع الفعالية الجسمية", "عدد نبضات القلب ومرّات التنفّس", "مدّة الفعالية (10 دقائق)", "صفّ التلاميذ"], lines: [
+        L("<b>العامل المؤثّر</b> هو", S("نوع الفعالية الجسمية")),
+        L("و<b>العامل المتأثّر</b> هو", S("عدد نبضات القلب ومرّات التنفّس"))
+      ] }],
+    why: ["أ1) <b>لأ</b>: بالرسم التنفّس كمان زاد بعد المشي (من 19 لـ 27 بالدقيقة)، فالقول غلط.",
+      "أ2) <b>آه</b>: راحة ← مشي ← ركض. كل ما المجهود زاد، النبض زاد (70 ← 97 ← 128) والتنفّس زاد (19 ← 27 ← 38).",
+      "أ3) <b>لأ</b>: بالتجربة ما قاسوا حرارة الجسم أبدًا، وما غيّروا زمن الركض (دايمًا 10 دقايق). يمكن القول صحيح بالحياة، بس مش استنتاج من <b>هاي</b> التجربة.",
+      "ب) العضلات بتشتغل أكتر ← بدها طاقة أكتر ← <b>الميتوكوندريا</b> بتنتج الطاقة وبدها أكسجين أكتر وبتطلّع ثاني أكسيد الكربون ← منتنفّس أسرع، والقلب بيدقّ أسرع ليوصّل الدم (<b>خلايا الدم الحمراء</b> اللي بتحمل الأكسجين) للعضلات بسرعة.",
+      "ج) شو كان مختلف؟ الفعالية (راحة، مشي، ركض) ← <b>المؤثّر</b>. شو قاسوا؟ النبض والتنفّس ← <b>المتأثّر</b>. المدّة (10 دقايق) والتلاميذ كانوا نفس الإشي ← <b>ثابتين</b>."],
+    paper: "أ) 1. لا  2. نعم  3. لا. ب) خلايا العضلات بحاجة لطاقة أكثر، فتستهلك أكسجينًا أكثر وتنتج ثاني أكسيد كربون أكثر؛ لذلك ترتفع وتيرة التنفّس (لإدخال الأكسجين وإخراج ثاني أكسيد الكربون) وتزداد نبضات القلب (لنقل الدم الغنيّ بالأكسجين إلى الخلايا بسرعة وإزالة ثاني أكسيد الكربون). ج) المؤثّر: نوع الفعالية الجسمية. المتأثّر: عدد نبضات القلب ومرّات التنفّس." }
+];
+
 // ---------- build the question cards + score ----------
 var ALL = [], solved = {}, finaleShown = false;
-[[WS1, "list1", "a"], [WS2, "list2", "b"], [WS3, "list3", "c"]].forEach(function (g) {
+[[WS1, "list1", "a"], [WS2, "list2", "b"], [WS3, "list3", "c"], [WS4, "list4", "d"]].forEach(function (g) {
   var box = $(g[1]);
   g[0].forEach(function (q) { var a = buildQ(q, g[2]); box.appendChild(a); ALL.push(a); });
 });
@@ -1753,7 +1814,7 @@ if (window.IntersectionObserver && !RM.matches) {
   var rvIO = new IntersectionObserver(function (es) {
     es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); rvIO.unobserve(en.target); } });
   }, { rootMargin: "0px 0px -6% 0px", threshold: 0.04 });
-  [].forEach.call(document.querySelectorAll(".card, .how, #list1 > .q, #list2 > .q, #list3 > .q"), function (el) { el.classList.add("rv"); rvIO.observe(el); });
+  [].forEach.call(document.querySelectorAll(".card, .how, #list1 > .q, #list2 > .q, #list3 > .q, #list4 > .q"), function (el) { el.classList.add("rv"); rvIO.observe(el); });
 }
 </script>
 </body>
