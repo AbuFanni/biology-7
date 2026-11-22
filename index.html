@@ -282,6 +282,31 @@
   .ca-sp { fill: var(--ca-sp-t); stroke: var(--ca-sp); } .sp-tail { stroke: var(--ca-sp); }
   .soilg { fill: var(--soil-t); stroke: var(--soil); stroke-width: 1.5; }
   .ca-root { fill: var(--ca-root-t); stroke: var(--o-wal); }
+  /* card 9: "who am I?" cell game */
+  .cg-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem .8rem;
+            background: var(--surface2); border-radius: 14px; padding: .5rem .8rem; margin: .6rem 0 0; }
+  .cg-score { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
+  .cg-score b { color: var(--ok); }
+  .cg-bar.win { background: var(--ok-bg); box-shadow: inset 0 0 0 2px var(--ok); }
+  .cgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: .9rem; margin: .7rem 0 1rem; }
+  .cg { display: flex; flex-direction: column; gap: .5rem; min-width: 0; }
+  .cg .flip { width: 100%; display: block; }
+  .cg .face { justify-content: flex-start; }
+  .cg .front { justify-content: center; }
+  .cg .front .fname { font-size: 1.3rem; }
+  .cimg { display: block; width: 100%; height: 9rem; object-fit: contain; background: #fff; border-radius: 12px; padding: .35rem; }
+  .cg .back .fname { color: var(--ok); text-align: center; }
+  .cg .back .bl { position: relative; padding-inline-start: 1rem; margin-top: .2rem; line-height: 1.55; }
+  .cg .back .bl::before { content: "•"; position: absolute; inset-inline-start: .2rem; color: var(--ok); font-weight: 700; }
+  .cg-res { display: block; margin-top: .45rem; text-align: center; font-family: var(--font-display); font-weight: 700; color: var(--ok); }
+  .cg-res:empty { display: none; }
+  .cg-ch { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; min-height: 2.6rem; }
+  .cg-ch button { font: inherit; font-weight: 700; font-size: 1rem; min-height: 2.6rem; padding: .3rem .9rem; border-radius: 999px; cursor: pointer;
+                  border: 2px solid var(--rule); background: var(--surface); color: var(--fg); }
+  .cg-ch button.ok { border-color: var(--ok); background: var(--ok-bg); }
+  .cg-ch button.bad { border-color: var(--bad); background: var(--bad-bg); text-decoration: line-through; }
+  .cg-ch button:disabled { cursor: default; }
+  .cg-ch button.bad:disabled, .cg-ch button.dim:disabled { opacity: .5; }
   @keyframes squeeze { 50% { transform: scale(.72, 1.3); } }
   @keyframes wig { from { transform: scaleY(1); } to { transform: scaleY(-1); } }
 
@@ -434,6 +459,7 @@
       <a class="topic" href="#t10"><img class="ei" src="img/test-tube.svg" alt="">قطعة بحث علمي</a>
     </div>
     <nav class="nav">
+      <a href="summary.html">الملخّص</a>
       <a href="#explain">الشرح</a>
       <a href="#ws1" class="alt">أسئلة المراجعة</a>
       <a href="#ws2" class="alt">ورقة عضيّات الخلية</a>
@@ -634,36 +660,59 @@
 
   <section class="card" id="t9">
     <h3><span class="num">٩</span>أنواع الخلايا بالجسم</h3>
-    <p>مش كل الخلايا نفس الشكل. كل خلية <b>شكلها بيلائم شغلتها</b>. اكبس على الكرت لتشوف.</p>
-    <div class="flips">
-      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
-        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><g class="mus-anim"><path d="M6 35 C30 19 90 19 114 35 C90 51 30 51 6 35 Z" class="ca-mus" stroke-width="3"></path><path d="M28 31 H92 M28 39 H92" class="ca-mus-l" fill="none" stroke-width="1.4" stroke-linecap="round"></path><ellipse cx="60" cy="35" rx="9" ry="5" class="f-nuc s-nuc" stroke-width="2"></ellipse></g></svg><span class="fname">خلية عضلات</span><span class="hint">اكبس لتقلب</span></span>
-        <span class="face back"><span class="fname">خلية عضلات</span><span class="bl"><b>وظيفتها:</b> تحريك الجسم.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> طويلة، تتقلّص وتتمدّد.</span></span>
-      </span></button>
-      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
-        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><g class="neu-l" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 28 L14 17 L6 15 M14 17 L13 7 M20 41 L10 51 L4 53 M10 51 L12 62 M31 23 L33 10 L27 4 M33 10 L39 5 M28 47 L27 61"></path><path d="M42 35 C60 30 80 40 100 34"></path><path d="M100 34 L110 26 M100 34 L113 36 M100 34 L109 44"></path></g><g class="neu-k"><circle cx="110" cy="26" r="2.6"></circle><circle cx="113" cy="36" r="2.6"></circle><circle cx="109" cy="44" r="2.6"></circle></g><circle cx="31" cy="35" r="12" class="ca-neu" stroke-width="3"></circle><circle cx="31" cy="35" r="4.6" class="f-nuc s-nuc" stroke-width="2"></circle></svg><span class="fname">خلية أعصاب</span><span class="hint">اكبس لتقلب</span></span>
-        <span class="face back"><span class="fname">خلية أعصاب</span><span class="bl"><b>وظيفتها:</b> استيعاب معلومات من البيئة.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> لها تفرّعات أو تشعّبات.</span></span>
-      </span></button>
-      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
-        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><g transform="rotate(-18 86 42)"><ellipse cx="86" cy="42" rx="23" ry="11" class="ca-rbc" stroke-width="2.6"></ellipse><ellipse cx="86" cy="42" rx="9" ry="3.6" class="ca-rbc-c"></ellipse></g><circle cx="44" cy="35" r="25" class="ca-rbc" stroke-width="2.6"></circle><circle cx="44" cy="35" r="10.5" class="ca-rbc-c"></circle></svg><span class="fname">خلية دم حمراء</span><span class="hint">اكبس لتقلب</span></span>
-        <span class="face back"><span class="fname">خلية دم حمراء</span><span class="bl"><b>وظيفتها:</b> نقل الأكسجين إلى جميع الخلايا.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> مرنة، مفلطحة، لا يوجد لها نواة، تصل لكل خلية.</span></span>
-      </span></button>
-      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
-        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><path d="M52 21 Q78 3 100 22 M52 49 Q78 67 100 48" class="wbc-o" fill="none" stroke-width="12" stroke-linecap="round"></path><circle cx="44" cy="35" r="22.5" class="wbc-ok"></circle><path d="M52 21 Q78 3 100 22 M52 49 Q78 67 100 48" class="wbc-i" fill="none" stroke-width="7" stroke-linecap="round"></path><circle cx="44" cy="35" r="20" class="wbc-f"></circle><g class="k-nuc s-nuc" stroke-width="4"><circle cx="38" cy="31" r="5.5"></circle><circle cx="48" cy="29" r="5"></circle><circle cx="45" cy="40" r="5"></circle></g><g class="f-nuc"><circle cx="38" cy="31" r="5.5"></circle><circle cx="48" cy="29" r="5"></circle><circle cx="45" cy="40" r="5"></circle></g><g class="germ"><path d="M92 26 V23 M92 44 V47 M83 35 H80 M101 35 H104 M86 29 L84 27 M98 29 L100 27 M86 41 L84 43 M98 41 L100 43" stroke-width="1.8" stroke-linecap="round" fill="none"></path><circle cx="92" cy="35" r="8" stroke-width="2"></circle></g></svg><span class="fname">خلية دم بيضاء</span><span class="hint">اكبس لتقلب</span></span>
-        <span class="face back"><span class="fname">خلية دم بيضاء</span><span class="bl"><b>وظيفتها:</b> حماية الجسم والدفاع عنه من الأجسام الغريبة.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> لها أذرع كي تحاصر وتبتلع الجسم الغريب.</span></span>
-      </span></button>
-      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
-        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><g class="ca-skin" stroke-width="2"><rect x="6" y="6" width="26" height="17" rx="4"></rect><rect x="34" y="6" width="26" height="17" rx="4"></rect><rect x="62" y="6" width="26" height="17" rx="4"></rect><rect x="90" y="6" width="26" height="17" rx="4"></rect><rect x="6" y="26" width="12" height="17" rx="4"></rect><rect x="20" y="26" width="26" height="17" rx="4"></rect><rect x="48" y="26" width="26" height="17" rx="4"></rect><rect x="76" y="26" width="26" height="17" rx="4"></rect><rect x="104" y="26" width="12" height="17" rx="4"></rect><rect x="6" y="46" width="26" height="17" rx="4"></rect><rect x="34" y="46" width="26" height="17" rx="4"></rect><rect x="62" y="46" width="26" height="17" rx="4"></rect><rect x="90" y="46" width="26" height="17" rx="4"></rect></g><g class="k-nuc"><ellipse cx="19" cy="14.5" rx="3" ry="2.4"></ellipse><ellipse cx="47" cy="14.5" rx="3" ry="2.4"></ellipse><ellipse cx="75" cy="14.5" rx="3" ry="2.4"></ellipse><ellipse cx="103" cy="14.5" rx="3" ry="2.4"></ellipse><ellipse cx="33" cy="34.5" rx="3" ry="2.4"></ellipse><ellipse cx="61" cy="34.5" rx="3" ry="2.4"></ellipse><ellipse cx="89" cy="34.5" rx="3" ry="2.4"></ellipse><ellipse cx="19" cy="54.5" rx="3" ry="2.4"></ellipse><ellipse cx="47" cy="54.5" rx="3" ry="2.4"></ellipse><ellipse cx="75" cy="54.5" rx="3" ry="2.4"></ellipse><ellipse cx="103" cy="54.5" rx="3" ry="2.4"></ellipse></g></svg><span class="fname">خلية بشرة</span><span class="hint">اكبس لتقلب</span></span>
-        <span class="face back"><span class="fname">خلية بشرة</span><span class="bl"><b>وظيفتها:</b> تغلّف الجسم وتحمي الأنسجة.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> كثيفة جدًّا ومتراصّة.</span></span>
-      </span></button>
-      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
-        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><path class="sp-tail" d="M38 35 q6.3 -9 12.6 0 t12.6 0 t12.6 0 t12.6 0 t12.6 0 t12.6 0" fill="none" stroke-width="3" stroke-linecap="round"></path><ellipse cx="24" cy="35" rx="14" ry="9" class="ca-sp" stroke-width="2.6"></ellipse><ellipse cx="39" cy="35" rx="4.5" ry="3.2" class="ca-sp" stroke-width="2"></ellipse></svg><span class="fname">خلية حيوان منوي</span><span class="hint">اكبس لتقلب</span></span>
-        <span class="face back"><span class="fname">خلية حيوان منوي</span><span class="bl"><b>وظيفتها:</b> تكاثر الكائن الحي وتكوّن الجنين.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> صغيرة جدًّا، لها سوط (ذيل) كي تتحرّك بسرعة.</span></span>
-      </span></button>
-      <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
-        <span class="face front"><svg class="ca" viewBox="0 0 120 70" aria-hidden="true"><g class="soilg"><circle cx="60" cy="22" r="6"></circle><circle cx="80" cy="27" r="6"></circle><circle cx="100" cy="32" r="5"></circle><circle cx="116" cy="36" r="4"></circle><circle cx="60" cy="58" r="6"></circle><circle cx="82" cy="61" r="6"></circle><circle cx="104" cy="63" r="5"></circle><circle cx="28" cy="57" r="6"></circle><circle cx="9" cy="58" r="5"></circle><circle cx="45" cy="61" r="5"></circle></g><path d="M4 6 H44 V30 C60 32 84 40 110 45 C116 46 116 53 110 53 C84 50 60 45 40 44 H4 Z" class="ca-root" stroke-width="3" stroke-linejoin="round"></path><circle cx="22" cy="24" r="5.5" class="f-nuc s-nuc" stroke-width="2"></circle></svg><span class="fname">خلية شعيرات ماصّة</span><span class="hint">اكبس لتقلب</span></span>
-        <span class="face back"><span class="fname">خلية شعيرات ماصّة</span><span class="bl"><b>وظيفتها:</b> امتصاص الماء والأملاح من التربة.</span><span class="bl"><b>كيف يلائم شكلها وظيفتها:</b> تمتدّ طويلًا، وتتغلغل بين ذرّات التربة.</span></span>
-      </span></button>
+    <p>مش كل الخلايا نفس الشكل. كل خلية <b>شكلها بيلائم شغلتها</b>.</p>
+    <p><b>لعبة: مين أنا؟</b> شوف صورة الخلية (نفس صورة الكتاب) واختار اسمها. إذا عرفت، الكرت بينقلب والخلية بتحكيلك عن حالها.</p>
+    <div class="cg-bar"><span class="cg-score" aria-live="polite">عرفت <b id="cgN">٠</b> من ٧ من أوّل مرّة</span><button type="button" class="btn ghostbtn" id="cgReset">العب من جديد</button></div>
+    <div class="cgrid" id="cgrid">
+      <div class="cg" data-k="muscle" data-name="عضلات">
+        <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+          <span class="face front"><img class="cimg" src="img/cell-muscle.jpg" alt="صورة خلية من الكتاب"><span class="fname">مين أنا؟</span><span class="hint">اختار اسمي تحت</span></span>
+          <span class="face back"><span class="fname">أنا خلية عضلات</span><span class="bl">شكلي طويل، وأنا مرنة كتير.</span><span class="bl">بتقلّص وبقصر، وبرتخي وبتمدّد.</span><span class="bl">هيك بحرّك أعضاء الجسم.</span><span class="bl">فيّ ميتوكوندريا كتير بتعطيني طاقة.</span><span class="bl">كم خلية عضلات مع بعض بيعملوا ليف عضلي.</span><span class="cg-res"></span></span>
+        </span></button>
+        <div class="cg-ch" aria-label="اختار اسم الخلية"></div>
+      </div>
+      <div class="cg" data-k="nerve" data-name="أعصاب">
+        <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+          <span class="face front"><img class="cimg" src="img/cell-nerve.jpg" alt="صورة خلية من الكتاب"><span class="fname">مين أنا؟</span><span class="hint">اختار اسمي تحت</span></span>
+          <span class="face back"><span class="fname">أنا خلية أعصاب</span><span class="bl">عندي فروع كتير، وواحد منهم طويل كتير.</span><span class="bl">بستقبل معلومات من البيئة.</span><span class="bl">بنقل تعليمات لكل أجزاء الجسم.</span><span class="bl">موجودة بالدماغ وبالحبل الشوكي وبألياف الأعصاب.</span><span class="bl">بفروعي بوصّل المعلومات لخلايا بعيدة.</span><span class="cg-res"></span></span>
+        </span></button>
+        <div class="cg-ch" aria-label="اختار اسم الخلية"></div>
+      </div>
+      <div class="cg" data-k="rbc" data-name="دم حمراء">
+        <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+          <span class="face front"><img class="cimg" src="img/cell-rbc.jpg" alt="صورة خلية من الكتاب"><span class="fname">مين أنا؟</span><span class="hint">اختار اسمي تحت</span></span>
+          <span class="face back"><span class="fname">أنا خلية دم حمراء</span><span class="bl">ما عندي نواة.</span><span class="bl">بشبه القرص: صغيرة ومفلطحة.</span><span class="bl">بنقل الأكسجين من مكان لمكان بالجسم بمساعدة الهيموغلوبين.</span><span class="bl">وبرجّع ثاني أكسيد الكربون من الخلايا للرئتين.</span><span class="bl">عندي مرونة بتساعدني أوصل لكل محل بالجسم، حتى أضيق الشعيرات الدموية.</span><span class="cg-res"></span></span>
+        </span></button>
+        <div class="cg-ch" aria-label="اختار اسم الخلية"></div>
+      </div>
+      <div class="cg" data-k="wbc" data-name="دم بيضاء">
+        <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+          <span class="face front"><img class="cimg" src="img/cell-wbc.jpg" alt="صورة خلية من الكتاب"><span class="fname">مين أنا؟</span><span class="hint">اختار اسمي تحت</span></span>
+          <span class="face back"><span class="fname">أنا خلية دم بيضاء</span><span class="bl">بعيش بالدم، وأنا من جهاز المناعة.</span><span class="bl">بدافع عن الجسم من الأجسام الغريبة: بكتيريا، فيروسات، فطريات وغبار.</span><span class="bl">بقدر أغيّر شكلي.</span><span class="bl">بمدّ أذرعي، بحاصر الجسم الغريب، ببلعه وبفكّكه.</span><span class="cg-res"></span></span>
+        </span></button>
+        <div class="cg-ch" aria-label="اختار اسم الخلية"></div>
+      </div>
+      <div class="cg" data-k="sperm" data-name="حيوان منوي">
+        <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+          <span class="face front"><img class="cimg" src="img/cell-sperm.jpg" alt="صورة خلية من الكتاب"><span class="fname">مين أنا؟</span><span class="hint">اختار اسمي تحت</span></span>
+          <span class="face back"><span class="fname">أنا خلية حيوان منوي</span><span class="bl">أنا خلية تناسلية ذكرية.</span><span class="bl">أنا صغيرة كتير.</span><span class="bl">عندي سوط (ذنب) بيساعدني أتحرّك بسرعة.</span><span class="bl">بوصل للبويضة وبتّحد معها، ومع بعض منكوّن جنين.</span><span class="cg-res"></span></span>
+        </span></button>
+        <div class="cg-ch" aria-label="اختار اسم الخلية"></div>
+      </div>
+      <div class="cg" data-k="roothair" data-name="شعيرات ماصّة">
+        <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+          <span class="face front"><img class="cimg" src="img/cell-roothair.jpg" alt="صورة خلية من الكتاب"><span class="fname">مين أنا؟</span><span class="hint">اختار اسمي تحت</span></span>
+          <span class="face back"><span class="fname">أنا خلية شُعيرات ماصّة</span><span class="bl">أنا خلية بشرة بجذر النبتة.</span><span class="bl">عندي امتداد طويل ورفيع اسمه شُعيرة ماصّة.</span><span class="bl">بتغلغل بين حبّات التراب.</span><span class="bl">بمتصّ المي والأملاح المعدنية من التربة.</span><span class="bl">امتدادي بيكبّر سطح التلامس، فبمتصّ أكتر.</span><span class="cg-res"></span></span>
+        </span></button>
+        <div class="cg-ch" aria-label="اختار اسم الخلية"></div>
+      </div>
+      <div class="cg" data-k="skin" data-name="بشرة">
+        <button type="button" class="flip" aria-pressed="false"><span class="flip-in">
+          <span class="face front"><img class="cimg" src="img/cell-skin.jpg" alt="صورة خلية من الكتاب"><span class="fname">مين أنا؟</span><span class="hint">اختار اسمي تحت</span></span>
+          <span class="face back"><span class="fname">أنا خلية بشرة</span><span class="bl">بغلّف جسم الكائن الحي من برّا.</span><span class="bl">ببني الجلد عند الحيوانات، والبشرة عند النباتات.</span><span class="bl">بحمي الأنسجة اللي جوّا.</span><span class="bl">أنا وجاراتي لازقين ببعض كتير (متراصّين).</span><span class="bl">منعمل طبقة ما بتخلّي الأجسام الغريبة تفوت.</span><span class="cg-res"></span></span>
+        </span></button>
+        <div class="cg-ch" aria-label="اختار اسم الخلية"></div>
+      </div>
     </div>
     <div class="shots">
       <figure class="shot"><img src="img/photo-red-blood-cells.jpg" alt="صورة خلايا دم حمراء" loading="lazy" onerror="this.closest('figure').remove()"><figcaption>خلايا دم حمراء حقيقية</figcaption></figure>
@@ -1453,6 +1502,74 @@ buildMini($("lifeSort"), { t: "sort", shuffle: true,
   });
   sync();
 });
+
+// ---------- lesson: "who am I?" cell game ----------
+(function () {
+  var grid = document.getElementById("cgrid");
+  if (!grid) return;
+  var cards = [].slice.call(grid.querySelectorAll(".cg"));
+  var names = cards.map(function (c) { return c.getAttribute("data-name"); });
+  var nEl = document.getElementById("cgN"), bar = grid.parentNode.querySelector(".cg-bar");
+  var stars = 0, done = 0;
+  function mix(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function setFlip(f, on) {
+    f.setAttribute("aria-pressed", on ? "true" : "false");
+    f.querySelector(".front").setAttribute("aria-hidden", on ? "true" : "false");
+    f.querySelector(".back").setAttribute("aria-hidden", on ? "false" : "true");
+  }
+  function update() {
+    nEl.textContent = ar(stars);
+    var win = done === cards.length;
+    bar.classList.toggle("win", win);
+    if (win && !bar._won) { bar._won = true; burst(bar, stars === cards.length); }
+  }
+  function finish(c, how) {
+    if (c._done) return;
+    c._done = true; done++;
+    var right = c.getAttribute("data-name");
+    [].forEach.call(c.querySelectorAll(".cg-ch button"), function (b) {
+      b.disabled = true;
+      if (b.textContent === right) b.classList.add("ok"); else if (!b.classList.contains("bad")) b.classList.add("dim");
+    });
+    var res = c.querySelector(".cg-res");
+    if (how === "star") { stars++; res.textContent = "⭐ عرفتني من أوّل مرّة!"; }
+    else if (how === "ok") res.textContent = "✓ عرفتني";
+    else res.textContent = "👀 شفت الجواب";
+    setFlip(c.querySelector(".flip"), true);
+    update();
+  }
+  function deal() {
+    stars = 0; done = 0; bar._won = false;
+    mix(cards).forEach(function (c) {
+      grid.appendChild(c);
+      c._done = false; c._miss = false;
+      c.querySelector(".cg-res").textContent = "";
+      setFlip(c.querySelector(".flip"), false);
+      var right = c.getAttribute("data-name");
+      var opts = mix([right].concat(mix(names.filter(function (n) { return n !== right; })).slice(0, 2)));
+      var box = c.querySelector(".cg-ch");
+      box.innerHTML = "";
+      opts.forEach(function (o) {
+        var b = document.createElement("button");
+        b.type = "button"; b.textContent = o;
+        b.addEventListener("click", function () {
+          if (c._done) return;
+          if (o === right) { finish(c, c._miss ? "ok" : "star"); burst(b); }
+          else { c._miss = true; b.classList.add("bad"); b.disabled = true; shake(b); }
+        });
+        box.appendChild(b);
+      });
+    });
+    update();
+  }
+  cards.forEach(function (c) {
+    c.querySelector(".flip").addEventListener("click", function () {
+      if (!c._done && this.getAttribute("aria-pressed") === "true") finish(c, "peek");
+    });
+  });
+  document.getElementById("cgReset").addEventListener("click", deal);
+  deal();
+})();
 
 // ---------- review questions ----------
 var OB = ["غشاء الخلية", "سيتوبلازم", "نواة", "ميتوكوندريا", "جدار الخلية", "فجوة عصارية", "بلاستيدات خضراء"];

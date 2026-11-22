@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ملخّص البيولوجيا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap">
+<style>
+  /* same look as the lesson page: one column, organelles keep their colours */
+  :root {
+    --bg: #F2F5FA; --surface: #FFFFFF; --surface2: #E8EEF7; --fg: #172033; --muted: #586477; --rule: #D6DEEA;
+    --accent: #1F55C9; --accent-fg: #FFFFFF; --ok: #2B8A3E; --bad: #C92A2A; --warn: #D9480F;
+    --life: #C2255C; --need: #5C940D; --tile: #F6F8FC; --tile-line: #DCE3EE; --green: #3F8F2E; --green-fg: #FFFFFF;
+    --o-mem: #1C7ED6; --o-cyt: #E09F00; --o-nuc: #7048E8; --o-mit: #E8590C; --o-wal: #8B5A2B; --o-vac: #0C98AD; --o-chl: #2F9E44; --o-oth: #6B7A8F;
+    --juice: #D6204A; --water: #DDF1FF;
+    --font-display: "Baloo Bhaijaan 2", "IBM Plex Sans Arabic", Tahoma, sans-serif;
+    --font-body: "IBM Plex Sans Arabic", "Geeza Pro", Tahoma, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10151F; --surface: #182030; --surface2: #202A3D; --fg: #E9EEF6; --muted: #A1ACBD; --rule: #2C374B;
+      --accent: #7EA6FF; --accent-fg: #0E1420; --ok: #69DB7C; --bad: #FF8787; --warn: #FF922B;
+      --life: #F783AC; --need: #A9E34B; --tile: #F6F8FC; --tile-line: #DCE3EE; --green: #4FA83C; --green-fg: #0E1420;
+      --o-mem: #74B9FF; --o-cyt: #FFD043; --o-nuc: #B197FC; --o-mit: #FF8A4C; --o-wal: #D4A373; --o-vac: #3BC9DB; --o-chl: #69DB7C; --o-oth: #A9B6C8;
+      --juice: #FF5C7F; --water: #16304A;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10151F; --surface: #182030; --surface2: #202A3D; --fg: #E9EEF6; --muted: #A1ACBD; --rule: #2C374B;
+    --accent: #7EA6FF; --accent-fg: #0E1420; --ok: #69DB7C; --bad: #FF8787; --warn: #FF922B;
+    --life: #F783AC; --need: #A9E34B; --green: #4FA83C; --green-fg: #0E1420;
+    --o-mem: #74B9FF; --o-cyt: #FFD043; --o-nuc: #B197FC; --o-mit: #FF8A4C; --o-wal: #D4A373; --o-vac: #3BC9DB; --o-chl: #69DB7C; --o-oth: #A9B6C8;
+    --juice: #FF5C7F; --water: #16304A;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 1.12rem; line-height: 1.85;
+    padding: max(1.2rem, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 4rem max(16px, env(safe-area-inset-left, 0px));
+  }
+  img { max-width: 100%; }
+  .wrap { max-width: 50rem; margin: 0 auto; display: grid; gap: 1.2rem; }
+  h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.35; margin: 0; text-wrap: balance; }
+  p { margin: 0 0 .6rem; } p:last-child { margin-bottom: 0; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  .hero h1 { font-size: clamp(2.4rem, 9vw, 3.8rem); font-weight: 800; }
+  .hero .sub { font-size: 1.2rem; color: var(--muted); max-width: 36rem; }
+  .nav { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .9rem; }
+  .nav a, .nav button { font: 700 1.05rem var(--font-display); text-decoration: none; cursor: pointer; border-radius: 999px; padding: .3rem 1rem;
+           background: var(--surface); color: var(--fg); border: 1.5px solid var(--rule); }
+  .nav a.main { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+  .toc { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .8rem; }
+  .toc a { font-size: .95rem; font-weight: 700; color: var(--fg); text-decoration: none; background: var(--surface); border: 1.5px solid var(--rule);
+           border-radius: 999px; padding: .05rem .7rem; }
+
+  .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 18px; padding: 1.1rem 1.15rem 1.2rem; min-width: 0; scroll-margin-top: 1rem; }
+  .card > h2 { font-size: 1.5rem; display: flex; gap: .55rem; align-items: center; margin-bottom: .5rem; }
+  .num { flex: none; display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--accent); color: var(--accent-fg);
+         font: 700 1.05rem/1 var(--font-display); }
+  .lbl { display: inline-block; font: 700 .85rem/1.6 var(--font-display); border-radius: 8px; padding: 0 .5em; margin-inline-end: .35em; vertical-align: .1em; }
+  .lbl.what { background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); }
+  .lbl.diff { background: color-mix(in srgb, var(--warn) 16%, transparent); color: var(--warn); }
+  .what-is { background: var(--surface2); border-radius: 12px; padding: .55rem .85rem; margin-bottom: .7rem; }
+  .remember { border: 2px dashed var(--ok); border-radius: 12px; padding: .5rem .85rem; margin-top: .7rem; }
+  .remember > b:first-child { color: var(--ok); font-family: var(--font-display); }
+  .trap { border: 2px dashed var(--warn); border-radius: 12px; padding: .5rem .85rem; margin-top: .6rem; }
+  .trap > b:first-child { color: var(--warn); font-family: var(--font-display); }
+  .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .7rem; }
+  .pane { background: var(--surface2); border-radius: 14px; padding: .7rem .9rem; min-width: 0; border-inline-start: 6px solid var(--c, var(--accent)); }
+  .pane h3 { font-size: 1.15rem; margin-bottom: .15rem; }
+  .pane .rule { color: var(--muted); font-size: .98rem; margin-bottom: .35rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .chip { display: inline-flex; align-items: center; gap: .3rem; font-size: .95rem; font-weight: 700; background: var(--surface); border: 1.5px solid var(--rule);
+          border-radius: 10px; padding: .05rem .5rem .05rem .35rem; line-height: 1.7; }
+  .ei { width: 1.45em; height: 1.45em; flex: none; background: var(--tile); border: 1px solid var(--tile-line); border-radius: 7px; padding: .08em; }
+  ul.pts { margin: .1rem 0 0; padding-inline-start: 1.15rem; display: grid; gap: .15rem; }
+
+  table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: .98rem; line-height: 1.6; border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; }
+  th, td { padding: .4rem .55rem; text-align: right; vertical-align: top; border-bottom: 1px solid var(--rule); }
+  tr:last-child > * { border-bottom: 0; }
+  th { background: var(--surface2); font-family: var(--font-display); font-size: 1rem; }
+  td + td, th + th { border-inline-start: 1px solid var(--rule); }
+  tbody th { font-family: var(--font-body); font-weight: 700; background: color-mix(in srgb, var(--surface2) 55%, transparent); }
+  .tscroll { overflow-x: auto; }
+
+  .ladder { list-style: none; margin: 0; padding: 0; display: grid; gap: .3rem; counter-reset: st; }
+  .ladder li { counter-increment: st; display: grid; grid-template-columns: 2rem 6.2rem 1fr; gap: .1rem .55rem; align-items: baseline;
+               background: var(--surface2); border-radius: 10px; padding: .3rem .6rem; }
+  .ladder li::before { content: counter(st); display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%;
+                       background: var(--accent); color: var(--accent-fg); font: 700 .9rem/1 var(--font-display); align-self: center; }
+  .ladder li.up::before { background: var(--need); }
+  .ladder b { font-family: var(--font-display); font-size: 1.05rem; }
+  .ladder small { grid-column: 3; color: var(--muted); font-size: .9rem; line-height: 1.5; }
+  .ladder span { font-size: .98rem; }
+
+  .o { --c: var(--o-oth); display: inline-block; white-space: nowrap; font-weight: 700; padding: 0 .45em; border-radius: .45em; line-height: 1.7;
+       background: color-mix(in srgb, var(--c) 15%, transparent); border: 1.5px solid color-mix(in srgb, var(--c) 55%, transparent); }
+  .o.mem { --c: var(--o-mem); } .o.cyt { --c: var(--o-cyt); } .o.nuc { --c: var(--o-nuc); } .o.mit { --c: var(--o-mit); }
+  .o.wal { --c: var(--o-wal); } .o.vac { --c: var(--o-vac); } .o.chl { --c: var(--o-chl); }
+
+  .shot { margin: .3rem 0 .6rem; text-align: center; }
+  .shot img { border-radius: 14px; display: block; margin: 0 auto; width: 100%; max-width: 34rem; }
+  .shot figcaption { font-size: .9rem; color: var(--muted); margin-top: .3rem; }
+  .legend { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: .25rem .8rem; font-size: .95rem; margin: .2rem 0 .4rem; }
+
+  /* green comparison table, like the poster the teacher asked for */
+  .vs { border: 3px solid var(--green); border-radius: 14px; overflow: hidden; margin-top: .9rem; }
+  .vs-title { background: var(--green); color: var(--green-fg); text-align: center; font: 800 1.45rem/1.4 var(--font-display); padding: .45rem .6rem; }
+  .vs table { border: 0; border-radius: 0; font-size: 1rem; }
+  .vs thead th { background: var(--surface); text-align: center; vertical-align: bottom; padding: .5rem .3rem .4rem; }
+  .vs thead img { display: block; height: 5.2rem; width: auto; margin: 0 auto .3rem; border-radius: 10px; }
+  .vs thead span { display: block; background: var(--green); color: var(--green-fg); border-radius: 8px; padding: .1rem .3rem; font-size: 1rem; }
+  .vs tbody td { text-align: center; vertical-align: middle; width: 27%; }
+  .vs tbody th { width: 46%; }
+  .vs tbody tr.extra th { background: color-mix(in srgb, var(--green) 12%, transparent); }
+  .y, .n { display: inline-block; position: relative; width: 1.5rem; height: 1.5rem; vertical-align: middle; }
+  .y::after { content: ""; position: absolute; left: .45rem; top: .05rem; width: .5rem; height: 1rem; border: solid var(--ok); border-width: 0 .26rem .26rem 0; transform: rotate(45deg); }
+  .n::before, .n::after { content: ""; position: absolute; left: .62rem; top: .05rem; width: .26rem; height: 1.4rem; background: var(--bad); border-radius: 2px; transform: rotate(45deg); }
+  .n::after { transform: rotate(-45deg); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .glasses { display: flex; justify-content: center; align-items: flex-end; gap: .9rem; flex-wrap: wrap; margin: .3rem 0 .5rem; }
+  .glasses figure { margin: 0; text-align: center; font-size: .9rem; max-width: 11rem; line-height: 1.5; }
+  .glasses svg { width: 5.5rem; height: auto; display: block; margin: 0 auto .2rem; }
+  .arr { font-size: 1.6rem; color: var(--muted); align-self: center; }
+
+  .final { border: 2px solid var(--accent); }
+  .final ol { margin: .2rem 0 0; padding-inline-start: 1.5rem; display: grid; gap: .35rem; }
+  footer { color: var(--muted); font-size: .85rem; text-align: center; margin-top: 1rem; }
+
+  @media (max-width: 520px) {
+    .ladder li { grid-template-columns: 2rem 1fr; }
+    .ladder span, .ladder small { grid-column: 2; }
+    th, td { padding: .35rem .4rem; }
+  }
+  @media print {
+    @page { size: A4; margin: 10mm 11mm; }
+    :root { --bg: #fff; --surface: #fff; }
+    body { font-size: 9.4pt; line-height: 1.5; padding: 0; background: #fff; }
+    .nav, .toc { display: none; }
+    .hero h1 { font-size: 22pt; } .hero .sub { font-size: 10pt; }
+    .wrap { gap: 2.5mm; max-width: none; }
+    .card { border-radius: 6px; padding: 2.5mm 3.5mm; }
+    .card > h2 { font-size: 13pt; margin-bottom: 1.5mm; break-after: avoid; }
+    .num { width: 6mm; height: 6mm; font-size: 9pt; }
+    .what-is { padding: 1.5mm 3mm; margin-bottom: 2mm; }
+    .remember, .trap { padding: 1.2mm 3mm; margin-top: 2mm; }
+    .two { grid-template-columns: 1fr 1fr; gap: 2.5mm; }
+    .pane { padding: 2mm 3mm; } .pane h3 { font-size: 10.5pt; }
+    .chip { font-size: 8.6pt; line-height: 1.5; }
+    .ladder { grid-template-columns: 1fr 1fr; gap: 1.2mm 2.5mm; }
+    .ladder li { grid-template-columns: 6mm 17mm 1fr; padding: 1mm 2mm; }
+    .ladder li::before { width: 5mm; height: 5mm; font-size: 8pt; }
+    .ladder b { font-size: 9.5pt; } .ladder span { font-size: 8.8pt; } .ladder small { font-size: 8pt; }
+    table { font-size: 8.8pt; line-height: 1.4; }
+    th, td { padding: 1mm 1.8mm; }
+    .shot img { max-width: 92mm; }
+    .legend { grid-template-columns: 1fr 1fr; font-size: 8.4pt; }
+    .vs { margin-top: 2mm; } .vs-title { font-size: 13pt; padding: 1mm; }
+    .vs thead img { height: 15mm; }
+    .vs table { font-size: 9pt; }
+    .y, .n { transform: scale(.8); }
+    .glasses svg { width: 16mm; }
+    tr, .ladder li, .remember, .trap, .shot, .what-is { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <h1>الملخّص</h1>
+    <p class="sub">كل مواد امتحان البيولوجيا بمكان واحد: كل موضوع <b>شو هو</b> بسطرين، <b>الفرق</b> بين الأشياء اللي بتتخربط، وجملة <b>تذكّر</b>.</p>
+    <nav class="nav">
+      <a class="main" href="index.html">رجوع للدرس والأسئلة</a>
+      <button type="button" onclick="window.print()">اطبع الملخّص</button>
+    </nav>
+    <nav class="toc" aria-label="المواضيع">
+      <a href="#s1">مميزات الحياة واحتياجات البقاء</a><a href="#s2">التدريج البيولوجي</a><a href="#s3">وحيد ومتعدد الخلايا</a>
+      <a href="#s4">فقاري ولافقاري</a><a href="#s5">الخلية الحيوانية والنباتية</a><a href="#s6">الغشاء والجدار</a>
+      <a href="#s7">الانتشار</a><a href="#s8">أنواع الخلايا</a><a href="#s9">قطعة بحث علمي</a><a href="#end">الخلاصة</a>
+    </nav>
+  </header>
+
+  <section class="card" id="intro">
+    <h2>قبل ما نبلّش</h2>
+    <p><b>البيولوجيا</b> هي العلم اللي بيدرس الكائنات الحيّة وكل إشي إله علاقة فيها. كل مواد الامتحان بتجاوب على ٣ أسئلة كبار:</p>
+    <ul class="pts">
+      <li><b>شو هو الكائن الحيّ؟</b> شو بيعمل (مميزات الحياة)، وشو بيحتاج عشان يعيش (احتياجات البقاء).</li>
+      <li><b>كيف بنرتّب الكائنات الحيّة؟</b> بدرجات من الذرّة للمجتمع (التدريج البيولوجي)، وبمجموعات (التصنيف: وحيد ومتعدد الخلايا، فقاري ولافقاري).</li>
+      <li><b>من شو مبنية؟</b> من <b>خلايا</b>: جوّاها عُضيّات، الحيوانية غير النباتية، المواد بتفوت وبتطلع منها بالانتشار، وكل خلية شكلها على قد شغلتها.</li>
+    </ul>
+    <p style="margin-top:.6rem">بكل موضوع رح تلاقي: <span class="lbl what">شو هو؟</span> الفكرة بسطرين، <span class="lbl diff">الفرق</span> بس لما في شغلتين بيتخربطوا ببعض، ومربّع <b style="color:var(--ok)">تذكّر</b>. وبالآخر <b>الخلاصة</b>: ١٠ جمل لازم تعرفهم.</p>
+  </section>
+
+  <section class="card" id="s1">
+    <h2><span class="num">١</span>مميزات الحياة واحتياجات البقاء</h2>
+    <div class="what-is"><span class="lbl what">شو هو؟</span>الكائن الحيّ هو جسم بيشتغل لحاله وفيه <b>كل</b> مميزات الحياة. كل الكائنات الحيّة، من البكتيريا للفيل، إلها نفس مميزات الحياة ونفس احتياجات البقاء.</div>
+    <span class="lbl diff">الفرق</span>
+    <div class="two" style="margin-top:.4rem">
+      <div class="pane" style="--c:var(--life)">
+        <h3>مميزات الحياة = إشي <span style="color:var(--life)">بيعمله</span></h3>
+        <p class="rule">ظواهر وعمليات بتصير عند كل الكائنات الحيّة من لحظة ما تنشأ لحد ما تموت.</p>
+        <div class="chips">
+          <span class="chip"><img class="ei" src="img/red-apple.svg" alt="">التغذية (استهلاك الطاقة)</span>
+          <span class="chip"><img class="ei" src="img/lungs.svg" alt="">التنفّس</span>
+          <span class="chip"><img class="ei" src="img/hatching-chick.svg" alt="">التكاثر</span>
+          <span class="chip"><img class="ei" src="img/sweat-droplets.svg" alt="">الإفراز</span>
+          <span class="chip"><img class="ei" src="img/seedling.svg" alt="">النمو والتطوّر</span>
+          <span class="chip"><img class="ei" src="img/eye.svg" alt="">ردّ فعل على محفّزات</span>
+          <span class="chip"><img class="ei" src="img/person-running.svg" alt="">الحركة</span>
+          <span class="chip"><img class="ei" src="img/microscope.svg" alt="">المبنى الخلوي</span>
+        </div>
+      </div>
+      <div class="pane" style="--c:var(--need)">
+        <h3>احتياجات البقاء = إشي <span style="color:var(--need)">بيحتاجه</span></h3>
+        <p class="rule">أشياء حيوية ما بيقدر الكائن الحيّ يعيش بدونها، وبياخدها من بيئته.</p>
+        <div class="chips">
+          <span class="chip"><img class="ei" src="img/wind-face.svg" alt="">أكسجين</span>
+          <span class="chip"><img class="ei" src="img/droplet.svg" alt="">ماء</span>
+          <span class="chip"><img class="ei" src="img/red-apple.svg" alt="">غذاء</span>
+          <span class="chip"><img class="ei" src="img/sun.svg" alt="">ضوء</span>
+          <span class="chip"><img class="ei" src="img/potted-plant.svg" alt="">تربة</span>
+          <span class="chip"><img class="ei" src="img/thermometer.svg" alt="">درجة حرارة ملائمة</span>
+          <span class="chip"><img class="ei" src="img/shield.svg" alt="">حماية</span>
+        </div>
+      </div>
+    </div>
+    <div class="remember"><b>تذكّر:</b> اسأل حالك: الكائن <b>بيعمله</b>؟ ميزة حياة. <b>بيحتاجه</b> من البيئة؟ احتياج بقاء. مثلًا: <b>التنفّس</b> ميزة حياة، بس <b>الأكسجين</b> احتياج بقاء.</div>
+    <div class="trap"><b>انتبه!</b> الحركة لحالها مش دليل إنه الإشي حيّ: السيارة بتسافر، المي بتجري والغيوم بتتحرّك، وهمّ مش حيّين. والنبات حيّ مع إنه حركته صعب نشوفها.</div>
+  </section>
+
+  <section class="card" id="s2">
+    <h2><span class="num">٢</span>التدريج البيولوجي (مستويات التنظيم بالطبيعة)</h2>
+    <div class="what-is"><span class="lbl what">شو هو؟</span>كل إشي بالطبيعة مرتّب بدرجات، و<b>كل درجة مبنية من الدرجة اللي قبلها</b>. بنمشي من الأصغر للأكبر، مع مثال الفيل من الكتاب (وأمثلة الدفتر بين قوسين).</div>
+    <ol class="ladder">
+      <li><b>ذرّة</b><span>وحدة البناء الأساسية لكل المواد</span><small>ذرّة هيدروجين (وحدة وحدة من مادة المغنيزيوم)</small></li>
+      <li><b>جزيء</b><span>ذرّتين أو أكتر مربوطين برباط كيميائي</span><small>جزيء جلوكوز، يعني سكّر (الماء)</small></li>
+      <li><b>عُضيّة</b><span>مبنى جوّا الخلية إله وظيفة</span><small>الميتوكندريون (النواة)</small></li>
+      <li><b>خليّة</b><span>وحدة المبنى والأداء الوظيفي الأساسية بالجسم الحيّ</span><small>خلية عضلة بالقلب (خلية بشرة)</small></li>
+      <li><b>نسيج</b><span>خلايا بتشبه بعض بالمبنى وبالوظيفة</span><small>نسيج عضلة القلب (نسيج جلدي)</small></li>
+      <li><b>عُضو</b><span>كم نسيج مع بعض، إلهم وظيفة معيّنة بالجسم</span><small>القلب (المعدة)</small></li>
+      <li><b>جهاز</b><span>كم عضو شغلهم المشترك وظيفة وحدة بالجسم</span><small>جهاز النقل (الدم) (الأنف + القصبة الهوائية + الرئتين)</small></li>
+      <li><b>كائن حيّ</b><span>جسم بيشتغل لحاله وفيه كل مميزات الحياة</span><small>الفيل الأفريقي (فيل)</small></li>
+      <li class="up"><b>عشيرة</b><span>كائنات من <b>نفس النوع</b> عايشة مع بعض بنفس البيئة</span><small>عشيرة فيلة بالسفانا</small></li>
+      <li class="up"><b>مجتمع</b><span>عشائر من <b>أنواع مختلفة</b> عايشة مع بعض بنفس المنظومة البيئية</span><small>فيلة، زرافات، حمير وحش، أسود وأشجار السنط بالسفانا</small></li>
+    </ol>
+    <div class="two" style="margin-top:.7rem">
+      <div class="pane"><h3><span class="lbl diff">الفرق</span>عضو ↔ جهاز</h3>عضو = إشي واحد إله وظيفة (القلب، المعدة). جهاز = <b>كم عضو</b> بيشتغلوا مع بعض (الأنف + القصبة الهوائية + الرئتين).</div>
+      <div class="pane" style="--c:var(--need)"><h3><span class="lbl diff">الفرق</span>عشيرة ↔ مجتمع</h3>عشيرة = <b>نوع واحد</b> (بس فيلة). مجتمع = <b>كذا نوع</b> مع بعض (فيلة وزرافات وأسود…).</div>
+    </div>
+    <div class="remember"><b>تذكّر:</b> ذرّة ← جزيء ← عضيّة ← خليّة ← نسيج ← عضو ← جهاز ← كائن حيّ ← عشيرة ← مجتمع.</div>
+  </section>
+
+  <section class="card" id="s3">
+    <h2><span class="num">٣</span>وحيد الخلية ومتعدد الخلايا</h2>
+    <div class="what-is"><span class="lbl what">شو هو؟</span><b>التصنيف</b> = تقسيم الكائنات الحيّة لمجموعات حسب صفات مشتركة. أبسط تقسيم: <b>كم خلية بالجسم؟</b> خلية وحدة بس = وحيد الخلية. خلايا كتير (من قليلة لملايين) = متعدد الخلايا.</div>
+    <span class="lbl diff">الفرق</span>
+    <div class="tscroll" style="margin-top:.4rem"><table>
+      <thead><tr><th></th><th><img class="ei" src="img/microbe.svg" alt=""> وحيد الخلية</th><th><img class="ei" src="img/elephant.svg" alt=""> متعدد الخلايا</th></tr></thead>
+      <tbody>
+        <tr><th>عدد الخلايا</th><td>خلية وحدة</td><td>خلايا كتير</td></tr>
+        <tr><th>مين بيعمل الشغل؟</th><td>الخلية الوحيدة بتعمل <b>كل</b> العمليات الحيوية</td><td>كل مجموعة خلايا إلها وظيفة مختلفة</td></tr>
+        <tr><th>وين بيعيش؟</th><td>ببيئة <b>رطبة بس</b></td><td>في منه ببيئة رطبة، وفي منه ببيئة جافّة</td></tr>
+        <tr><th>كيف بيدخّل المواد وبيطلّع الفضلات؟</th><td>من خلال غشاء الخلية</td><td>من خلال أجهزة الجسم (الهضم، التنفّس، الإفراز)</td></tr>
+        <tr><th>التكاثر</th><td>سريع (دقائق، ساعات)</td><td>بطيء (أيام، أسابيع، أشهر)</td></tr>
+        <tr><th>أمثلة</th><td>بكتيريا، براميسيوم، أميبا</td><td>شقائق النعمان، كلب، دودة الأرض، فيل، إنسان</td></tr>
+      </tbody>
+    </table></div>
+    <div class="remember"><b>تذكّر:</b> بالجسم <b>أجهزة</b> أو <b>ملايين خلايا</b>؟ أكيد متعدد الخلايا. وخلية وحدة من جسم متعدد الخلايا ما بتقدر تعيش لحالها برّا الجسم (إلا بالمختبر).</div>
+  </section>
+
+  <section class="card" id="s4">
+    <h2><span class="num">٤</span>فقاري ولافقاري</h2>
+    <div class="what-is"><span class="lbl what">شو هو؟</span>تقسيم تاني للحيوانات، والسؤال فيه واحد: <b>عنده عظام وعمود فقري جوّا جسمه؟</b> آه = فقاري. لأ = لافقاري.</div>
+    <span class="lbl diff">الفرق</span>
+    <div class="two" style="margin-top:.4rem">
+      <div class="pane">
+        <h3>الفقاريات</h3>
+        <ul class="pts">
+          <li>عظام جوّا الجسم بتعمل <b>هيكل داخلي</b> (من عظم وغضروف)، وبيكبر مع الحيوان.</li>
+          <li><b>عمود فقري</b> بنص الجسم، مبني من عظام قصيرة اسمها فقرات.</li>
+          <li>الدم بيجري بجهاز نقل (دموي) <b>مغلق</b>.</li>
+          <li>الجهة اليمين من الجسم نفس الجهة الشمال (تماثل ثنائي الجوانب).</li>
+          <li>أغلبها إلها زوجين أطراف وذيل.</li>
+        </ul>
+      </div>
+      <div class="pane" style="--c:var(--warn)">
+        <h3>اللافقاريات</h3>
+        <ul class="pts">
+          <li><b>ما في عظام</b> جوّا جسمها.</li>
+          <li>فيها طائفتين: <b>الحشرات</b> (نحلة، ذبابة، خنفساء) و<b>الرخويات</b> (حلزون).</li>
+        </ul>
+        <div class="chips" style="margin-top:.4rem"><span class="chip"><img class="ei" src="img/honeybee.svg" alt="">حشرات</span><span class="chip"><img class="ei" src="img/snail.svg" alt="">رخويات</span></div>
+      </div>
+    </div>
+    <h3 style="font-size:1.15rem;margin:.8rem 0 .35rem">طوائف الفقاريات</h3>
+    <div class="tscroll"><table>
+      <thead><tr><th>الطائفة</th><th>بتعرفها من</th><th>حرارة الجسم</th><th>الصغار</th></tr></thead>
+      <tbody>
+        <tr><th><img class="ei" src="img/fish.svg" alt=""> الأسماك</th><td>زعانف، خياشيم، جلد أملس مخاطي بحراشف</td><td>مش ثابتة</td><td>بيض بالماء</td></tr>
+        <tr><th><img class="ei" src="img/frog.svg" alt=""> البرمائيات</th><td>جلد مكشوف رطب، بتعيش بالماء وبعدين على البرّ، الصغير (شرغوف) غير الكبير</td><td>مش ثابتة</td><td>بيض بالماء</td></tr>
+        <tr><th><img class="ei" src="img/lizard.svg" alt=""> الزواحف</th><td>بتزحف، جلد جافّ بحراشف بتسلخه</td><td>مش ثابتة</td><td>بيض على اليابسة</td></tr>
+        <tr><th><img class="ei" src="img/bird.svg" alt=""> الطيور</th><td>ريش، منقار، أجنحة، رجلين</td><td><b>ثابتة</b></td><td>بيض على اليابسة</td></tr>
+        <tr><th><img class="ei" src="img/cow.svg" alt=""> الثدييات</th><td>شعر (فرو)، الصغار بترضع حليب، صيوان للأذن</td><td><b>ثابتة</b></td><td>جوّا الرحم بجسم الأم</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:.92rem;color:var(--muted);margin-top:.4rem">بالكتاب الأسماك ٣ طوائف، فبصير المجموع ٧ طوائف. بالدفتر بنعدّهم ٥ مجموعات زي الجدول.</p>
+    <div class="trap"><b>انتبه!</b> الأفعى ما إلها رجلين بس عندها عمود فقري ← فقارية (زواحف). الدلفين عايش بالبحر بس هو من الثدييات ← فقاري.</div>
+    <div class="remember"><b>تذكّر:</b> حرارة جسم <b>ثابتة</b> = طيور وثدييات بس.</div>
+  </section>
+
+  <section class="card" id="s5">
+    <h2><span class="num">٥</span>الخلية الحيوانية والخلية النباتية</h2>
+    <div class="what-is"><span class="lbl what">شو هو؟</span>الخلية هي وحدة المبنى والأداء الوظيفي الأساسية بالكائن الحيّ. جوّاها أجزاء اسمها <b>عُضيّات</b>، وكل عضيّة إلها شغلة.</div>
+    <div class="tscroll"><table>
+      <thead><tr><th>الجزء</th><th>شغلته</th></tr></thead>
+      <tbody>
+        <tr><th><span class="o mem">غشاء الخلية</span></th><td>بيغلّف الخلية وبيفصلها عن برّا. <b>نفّاذ اختياري</b>: بيمرّق مواد معيّنة بس.</td></tr>
+        <tr><th><span class="o cyt">السيتوبلازم</span></th><td>سائل الخلية، شفّاف ولزج بيشبه الجل، بيعبّي معظم الخلية.</td></tr>
+        <tr><th><span class="o nuc">النواة</span></th><td>فيها المادة الوراثية (<bdi>DNA</bdi>)، فيها كل التعليمات لبناء الخلية وشغلها وانقسامها.</td></tr>
+        <tr><th><span class="o mit">الميتوكندريا</span></th><td>«<b>محطات القوة</b>»: جوّاها بصير التنفّس الخلوي.</td></tr>
+        <tr><th><span class="o">الريبوزومات</span></th><td>«مصانع الزلاليات» (البروتينات).</td></tr>
+        <tr><th><span class="o">جسيمات غولجي</span></th><td>أكياس مسطّحة فوق بعض، بتجهّز الزلاليات والدهون وبتطلّعها برّا الخلية.</td></tr>
+        <tr><th><span class="o">الشبكة الإندوبلازمية</span></th><td>شبكة أغشية متفرّعة كتير بالسيتوبلازم.</td></tr>
+        <tr><th><span class="o wal">جدار الخلية</span></th><td>بالنباتية بس: صلب، <b>بيحمي وبيدعم</b> الخلية وبيحافظ على شكلها.</td></tr>
+        <tr><th><span class="o chl">البلاستيدات الخضراء</span></th><td>بالنباتية بس: فيها <b>كلوروفيل</b>، وبتعمل <b>التمثيل الضوئي</b> (النبات بيصنع أكله بضو الشمس).</td></tr>
+        <tr><th><span class="o vac">الفجوة العصارية</span></th><td>بالنباتية بس: كبيرة، <b>بتخزّن الماء والمواد</b>، وبتحافظ على توازن المي بالخلية.</td></tr>
+      </tbody>
+    </table></div>
+
+    <figure class="shot">
+      <img src="img/cells-cartoon.jpg" alt="رسمة كرتونية لخلية حيوانية وخلية نباتية" loading="lazy">
+      <figcaption>الخلية الحيوانية (Animal Cell) والخلية النباتية (Plant Cell)</figcaption>
+    </figure>
+    <div class="legend">
+      <span><b>الدايرة الوردية بالسمّاعات</b> = <span class="o nuc">النواة</span>: المدير اللي بيعطي التعليمات.</span>
+      <span><b>الحبّة البرتقالية بالعضلات</b> = <span class="o mit">الميتوكندريا</span>: القوة.</span>
+      <span><b>الإطار الأخضر السميك</b> = <span class="o wal">جدار الخلية</span>: بالنباتية بس.</span>
+      <span><b>الأخضر اللي لابس طاقية طبّاخ</b> = <span class="o chl">البلاستيدة الخضراء</span>: بتطبخ أكل النبتة.</span>
+      <span><b>الكيس الأزرق الكبير</b> (فيه مي وأكل وفضلات) = <span class="o vac">الفجوة العصارية</span>: مخزن.</span>
+      <span><b>الخطوط الخضرا المتعرّجة</b> = جسيم غولجي. <b>الطيّات البنفسجية</b> حوالين النواة = الشبكة الإندوبلازمية.</span>
+    </div>
+    <p style="font-size:.92rem;color:var(--muted)">بالرسمة في كيس أزرق صغير بالخلية الحيوانية كمان. بس حسب الكتاب، <b>الفجوة العصارية</b> هي من أجزاء الخلية النباتية، وهيك بنجاوب بالامتحان.</p>
+
+    <div class="vs">
+      <div class="vs-title">الفرق بين الخلايا الحيوانية والنباتية</div>
+      <table>
+        <thead><tr>
+          <th style="vertical-align:bottom"><span>أجزاء الخلية</span></th>
+          <th><img src="img/cell-animal-cartoon.jpg" alt=""><span>خلايا حيوانية</span></th>
+          <th><img src="img/cell-plant-cartoon.jpg" alt=""><span>خلايا نباتية</span></th>
+        </tr></thead>
+        <tbody>
+          <tr class="extra"><th><span class="o wal">جدار الخلية</span></th><td><i class="n"></i><span class="sr">لا</span></td><td><i class="y"></i><span class="sr">نعم</span></td></tr>
+          <tr><th><span class="o mem">غشاء الخلية</span></th><td><i class="y"></i><span class="sr">نعم</span></td><td><i class="y"></i><span class="sr">نعم</span></td></tr>
+          <tr class="extra"><th><span class="o chl">البلاستيدات الخضراء</span></th><td><i class="n"></i><span class="sr">لا</span></td><td><i class="y"></i><span class="sr">نعم</span></td></tr>
+          <tr><th><span class="o nuc">النواة</span></th><td><i class="y"></i><span class="sr">نعم</span></td><td><i class="y"></i><span class="sr">نعم</span></td></tr>
+          <tr class="extra"><th><span class="o vac">الفجوة العصارية</span></th><td><i class="n"></i><span class="sr">لا</span></td><td><i class="y"></i><span class="sr">نعم</span></td></tr>
+          <tr><th><span class="o cyt">السيتوبلازم</span></th><td><i class="y"></i><span class="sr">نعم</span></td><td><i class="y"></i><span class="sr">نعم</span></td></tr>
+          <tr><th><span class="o mit">الميتوكندريا</span></th><td><i class="y"></i><span class="sr">نعم</span></td><td><i class="y"></i><span class="sr">نعم</span></td></tr>
+          <tr><th><span class="o">الريبوزومات</span></th><td><i class="y"></i><span class="sr">نعم</span></td><td><i class="y"></i><span class="sr">نعم</span></td></tr>
+          <tr><th><span class="o">جسيمات غولجي</span></th><td><i class="y"></i><span class="sr">نعم</span></td><td><i class="y"></i><span class="sr">نعم</span></td></tr>
+          <tr><th><span class="o">الشبكة الإندوبلازمية</span></th><td><i class="y"></i><span class="sr">نعم</span></td><td><i class="y"></i><span class="sr">نعم</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="remember"><b>تذكّر:</b> الخلية النباتية = كل اللي بالحيوانية + <b>٣</b>: <span class="o wal">جدار الخلية</span> <span class="o chl">البلاستيدات الخضراء</span> <span class="o vac">الفجوة العصارية</span>.</div>
+    <div class="trap"><b>انتبه!</b> النواة مش بكل الخلايا: <b>البكتيريا</b> ما فيها نواة (المادة الوراثية عندها بالسيتوبلازم بدون غشاء)، و<b>خلايا الدم الحمراء</b> بتخسر نواتها لما تكبر.</div>
+  </section>
+
+  <section class="card" id="s6">
+    <h2><span class="num">٦</span>غشاء الخلية وجدار الخلية</h2>
+    <div class="what-is"><span class="lbl what">شو هو؟</span>الاتنين بيغلّفوا الخلية، بس مش نفس الإشي. الغشاء موجود <b>بكل</b> خلية، والجدار بيكون <b>برّا</b> الغشاء عند خلايا معيّنة بس.</div>
+    <span class="lbl diff">الفرق</span>
+    <div class="tscroll" style="margin-top:.4rem"><table>
+      <thead><tr><th></th><th><span class="o mem">غشاء الخلية</span></th><th><span class="o wal">جدار الخلية</span></th></tr></thead>
+      <tbody>
+        <tr><th>شغلته</th><td>بيفصل الخلية عن برّا، بيحافظ على بيئة ثابتة جوّاها، وبيحميها من عناصر غريبة (فيروسات، بكتيريا)</td><td>بيثبّت الخلية، بيحافظ على شكلها، وبيحميها من الصدمات والضغط</td></tr>
+        <tr><th>قديش صلب؟</th><td>مش صلب: طبقتين من جزيئات الدهون وبيناتهم زلاليات</td><td><b>صلب</b></td></tr>
+        <tr><th>مين بيمرق منه؟</th><td><b>نفّاذ اختياري</b>: بيختار، مواد بتمرق ومواد لأ</td><td>فيه فتحات كتير: <b>مش اختياري</b>، المواد بتمرق</td></tr>
+        <tr><th>عند مين؟</th><td>بكل الخلايا</td><td>النباتات، الفطريات، وقسم من البكتيريا</td></tr>
+      </tbody>
+    </table></div>
+    <div class="remember"><b>تذكّر:</b> لما الخلية النباتية تخسر مي، بتنكمش بس الجدار بيمنعها تنهار. ولما يفوتها مي كتير، بتنتفخ شوي بس الجدار الصلب بيمنعها تنفجر.</div>
+  </section>
+
+  <section class="card" id="s7">
+    <h2><span class="num">٧</span>الانتشار</h2>
+    <div class="what-is"><span class="lbl what">شو هو؟</span>الانتشار هو انتشار المادة من المكان الذي فيه تركيزها عالٍ إلى المكان الذي فيه تركيزها منخفض، نتيجةً للحركة العشوائية لجزيئات المادة في جميع الاتجاهات وتصادمها ببعضها، وهي عملية لا تحتاج إلى بذل طاقة.</div>
+    <ul class="pts">
+      <li><b>من وين لوين؟</b> من المحل اللي فيه من المادة <b>كتير</b> للمحل اللي فيه منها <b>شوي</b> (بنقول: مع اتجاه منحدر التراكيز).</li>
+      <li><b>ليش؟</b> الجزيئات دايمًا بتتحرّك بكل الاتجاهات وبتتصادم ببعض.</li>
+      <li><b>لوقتيش؟</b> لحد ما يصير التركيز نفسه بكل محل (متجانس).</li>
+    </ul>
+    <div class="glasses" aria-label="مثال عصير التوت بالمي">
+      <figure><svg viewBox="0 0 60 70" aria-hidden="true"><path d="M8 6 L12 64 H48 L52 6" style="fill:var(--water);stroke:var(--fg);stroke-width:2.5;stroke-linejoin:round"></path><path d="M11.4 50 L12 64 H48 L48.6 50 Z" style="fill:var(--juice)"></path></svg>بالبداية: العصير كله تحت</figure>
+      <span class="arr" aria-hidden="true">←</span>
+      <figure><svg viewBox="0 0 60 70" aria-hidden="true"><path d="M8 6 L12 64 H48 L52 6" style="fill:var(--water);stroke:var(--fg);stroke-width:2.5;stroke-linejoin:round"></path><path d="M9 18 L12 64 H48 L51 18 Z" style="fill:var(--juice);opacity:.45"></path></svg>بعد وقت: لون واحد متجانس</figure>
+    </div>
+    <p>عبر غشاء الخلية: إذا التركيز <b>برّا</b> أعلى، المادة بتفوت <b>لجوّا</b> الخلية. إذا التركيز <b>جوّا</b> أعلى، بتطلع <b>لبرّا</b>. هيك بيمرقوا مثلًا المي والأكسجين وثاني أكسيد الكربون.</p>
+    <span class="lbl diff">الفرق</span>
+    <div class="tscroll" style="margin-top:.4rem"><table>
+      <thead><tr><th></th><th>الانتشار</th><th>المضخّات</th></tr></thead>
+      <tbody>
+        <tr><th>بدّه طاقة؟</th><td><b>لأ</b></td><td><b>آه</b></td></tr>
+        <tr><th>كيف؟</th><td>المادة بتمرق لحالها عبر طبقتي الدهون، أو عبر قنوات وناقلات بالغشاء</td><td>الخلية «بتضخّ» المادة لجوّا أو لبرّا بمضخّات خاصّة بالغشاء</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:.95rem;margin-top:.5rem">كمان بالكتاب: انتشار <b>المي</b> عبر غشاء اختياري، من محلول فيه مي كتير (مواد ذايبة قليلة) لمحلول فيه مي أقل (مواد ذايبة كتير)، اسمه <b>أسموزا (تناضح)</b>.</p>
+    <div class="remember"><b>تذكّر:</b> انتشار = من <b>كتير لقليل</b>، <b>لحاله</b>، <b>بلا طاقة</b>.</div>
+  </section>
+
+  <section class="card" id="s8">
+    <h2><span class="num">٨</span>أنواع الخلايا بالجسم</h2>
+    <div class="what-is"><span class="lbl what">شو هو؟</span>بالكائن متعدد الخلايا في أنواع خلايا كتير، وكل نوع إله شغلة. القاعدة: <b>شكل الخلية بيلائم شغلتها</b> (التلاؤم بين المبنى والوظيفة).</div>
+    <div class="tscroll"><table>
+      <thead><tr><th>الخلية</th><th>شغلتها</th><th>كيف شكلها بيساعدها؟</th></tr></thead>
+      <tbody>
+        <tr><th>خلية عضلات</th><td>تحريك الجسم</td><td>طويلة ومرنة، بتتقلّص وبتتمدّد، وفيها ميتوكندريا كتير بتعطيها طاقة</td></tr>
+        <tr><th>خلية أعصاب</th><td>استيعاب معلومات من البيئة ونقلها</td><td>إلها فروع (تفرّعات)، واحد منها طويل كتير بيوصّل المعلومات لبعيد</td></tr>
+        <tr><th>خلية دم حمراء</th><td>نقل الأكسجين من الرئتين لكل الخلايا، وثاني أكسيد الكربون للرئتين</td><td>صغيرة، قرص مفلطح مرن بيضغط حاله وبيوصل لأضيق الشعيرات، بلا نواة ومليانة هيموغلوبين</td></tr>
+        <tr><th>خلية دم بيضاء</th><td>حماية الجسم والدفاع عنه من الأجسام الغريبة</td><td>بتغيّر شكلها وبتبعت أذرع بتحاصر الجسم الغريب وبتبلعه</td></tr>
+        <tr><th>خلية بشرة</th><td>بتغلّف الجسم وبتحمي الأنسجة اللي جوّا</td><td>كثيفة كتير ومتراصّة، بتعمل طبقة بتمنع دخول الأجسام الغريبة</td></tr>
+        <tr><th>خلية حيوان منوي</th><td>التكاثر: بتتّحد مع البويضة وبتكوّن جنين</td><td>صغيرة كتير وإلها سوط (ذيل) بتتحرّك فيه بسرعة</td></tr>
+        <tr><th>خلية شعيرات ماصّة</th><td>امتصاص الماء والأملاح من التربة (بجذور النبات)</td><td>إلها امتداد طويل ودقيق بيتغلغل بين ذرّات التراب وبيكبّر سطح التلامس</td></tr>
+      </tbody>
+    </table></div>
+    <div class="remember"><b>تذكّر:</b> بالسؤال «كيف يلائم شكلها وظيفتها؟» اكتب <b>الشكل</b> ووصّله <b>بالشغلة</b>. مثال: خلية الأعصاب متفرّعة، عشان توصّل معلومات.</div>
+  </section>
+
+  <section class="card" id="s9">
+    <h2><span class="num">٩</span>قطعة بحث علمي</h2>
+    <div class="what-is"><span class="lbl what">شو هو؟</span>قصة قصيرة عن تجربة، وبيسألوك عنها. دوّر فيها على ٣ أشياء:</div>
+    <div class="tscroll"><table>
+      <tbody>
+        <tr><th>العامل المؤثّر</th><td>الإشي اللي <b>غيّروه</b> بين الحالتين</td></tr>
+        <tr><th>العامل المتأثّر</th><td>الإشي اللي <b>قاسوه</b>، وتغيّر بسبب المؤثّر</td></tr>
+        <tr><th>العوامل الثابتة</th><td>كل إشي تاني <b>ضلّ نفسه</b> بالحالتين، عشان التجربة تكون عادلة</td></tr>
+      </tbody>
+    </table></div>
+    <div class="remember"><b>تذكّر:</b> <b>النتيجة</b> = شو شفنا وقسنا. <b>الاستنتاج</b> = شو تعلّمنا من النتيجة.</div>
+  </section>
+
+  <section class="card final" id="end">
+    <h2>الخلاصة: ١٠ جمل لازم تعرفهم</h2>
+    <ol>
+      <li><b>بيعمل</b> = ميزة حياة (٨ مميزات). <b>بيحتاج</b> = احتياج بقاء (٧ احتياجات).</li>
+      <li>الحركة لحالها مش دليل على الحياة: السيارة والغيوم بتتحرّك.</li>
+      <li>ذرّة ← جزيء ← عضيّة ← خليّة ← نسيج ← عضو ← جهاز ← كائن حيّ ← عشيرة ← مجتمع.</li>
+      <li>عشيرة = <b>نوع واحد</b>. مجتمع = <b>أنواع مختلفة</b>.</li>
+      <li>وحيد الخلية: خلية وحدة بتعمل كل إشي، بيعيش ببيئة رطبة بس، وبيتكاثر بسرعة.</li>
+      <li>فقاري = عظام وعمود فقري <b>جوّا</b> الجسم. حرارة ثابتة = طيور وثدييات بس.</li>
+      <li>النباتية = الحيوانية + جدار + بلاستيدات خضراء + فجوة عصارية.</li>
+      <li>الغشاء <b>بيختار</b> مين يمرق. الجدار <b>صلب</b> وفيه فتحات، وبيحافظ على الشكل.</li>
+      <li>الانتشار من تركيز عالي لمنخفض، <b>بلا طاقة</b>. المضخّات <b>بدها طاقة</b>.</li>
+      <li>كل خلية شكلها على قد شغلتها. البكتيريا وخلية الدم الحمراء <b>بلا نواة</b>.</li>
+    </ol>
+  </section>
+
+  <footer>الأيقونات: OpenMoji ‏(CC BY-SA 4.0). <a href="index.html" style="color:inherit">رجوع للدرس والأسئلة</a></footer>
+</div>
+</body>
+</html>
